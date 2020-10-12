@@ -62,6 +62,18 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+
+        'mysql_moodle'  => [
+        'driver'     => 'mysql',
+        'host'       => env('MOODLE_HOST', 'localhost'),
+        'database'   => env('MOODLE_DATABASE', 'forge'),
+        'username'   => env('MOODLE_USERNAME', 'forge'),
+        'password'   => env('MOODLE_PASSWORD', ''),
+        'charset'    => 'utf8',
+        'collation'  => 'utf8_unicode_ci',
+        'prefix'     => '',
+        'strict'     => false,
+         ],
         
         'pgsql' => [
             'driver' => 'pgsql',

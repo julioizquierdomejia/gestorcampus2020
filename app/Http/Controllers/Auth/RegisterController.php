@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserMoodle;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,12 +49,14 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'document' => ['required', 'string', 'min:8' ,'max:20', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
     }
 
     /**
@@ -64,10 +67,54 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        //verificamos la longitud del documento de identidad
+        if(strlen($data['document']) == 8){
+
+            $url = 'http://www.sigesin.conareme.org.pe/controlador/r3n13c.php?dni='.$data['document'];
+            $json = file_get_contents($url, false );
+            $infoUser =  json_decode($json);
+
+            $apellido_paterno = $infoUser[0]->apellido_paterno;
+            $apellido_materno = $infoUser[0]->apellido_materno;
+            $nombres = $infoUser[0]->nombres;
+            $pais_domicilio = $infoUser[0]->pais_domicilio;
+
+            $user = User::create([
+            //return User::create([
+                'document' => $data['document'],
+                'name' => $nombres,
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            $userMoodle = new UserMoodle();
+            $userMoodle->user_id = $user->id;
+            
+            $userMoodle->user = $data['email'];
+            $userMoodle->password = bcrypt($data['password']);
+
+            $userMoodle->name = $nombres;
+            $userMoodle->last_name = $apellido_paterno;
+            $userMoodle->mothers_last_name = $apellido_materno;
+
+            $userMoodle->save();
+
+            return $user;
+
+
+        }else{
+            
+            return User::create([
+                'document' => $data['document'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+        }
+
+        
+
+        
     }
 }
