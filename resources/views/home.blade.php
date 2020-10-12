@@ -15,7 +15,7 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Usuarios Gestor</p>
-                  <p class="card-title"><p>
+                  <p class="card-title">{{$users->count()}}<p>
                 </div>
               </div>
             </div>
@@ -41,7 +41,7 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Usuarios Moodle</p>
-                  <p class="card-title"><p>
+                  <p class="card-title">{{$users->count()}}<p>
                 </div>
               </div>
             </div>
