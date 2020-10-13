@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\CourseMoodle;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,8 @@ class HomeController extends Controller
     {
 
         $users = User::all();
+        $courses = CourseMoodle::all();
 
-        return view('home', compact('users'));
+        return view('home', compact('users', 'courses'));
     }
 }
