@@ -74,8 +74,9 @@ class RegisterController extends Controller
             $url = 'http://www.sigesin.conareme.org.pe/controlador/r3n13c.php?dni='.$data['document'];
             $json = file_get_contents($url, false );
             $infoUser =  json_decode($json);
+        }
 
-            $apellido_paterno = $infoUser[0]->apellido_paterno;
+        $apellido_paterno = $infoUser[0]->apellido_paterno;
             $apellido_materno = $infoUser[0]->apellido_materno;
             $nombres = $infoUser[0]->nombres;
             $pais_domicilio = $infoUser[0]->pais_domicilio;
@@ -100,18 +101,9 @@ class RegisterController extends Controller
 
             $userMoodle->save();
 
+            $user->roles()->attach(3);
+
             return $user;
-
-
-        }else{
-            
-            return User::create([
-                'document' => $data['document'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]);
-
-        }
 
         
 

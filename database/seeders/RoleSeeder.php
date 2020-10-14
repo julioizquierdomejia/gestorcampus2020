@@ -18,13 +18,16 @@ class RoleSeeder extends Seeder
         $role = new Role();
         $role->name = 'superadmin';
         $role->description = 'Super administrador del sistema - config';
-
         $role->save();
 
         $role = new Role();
         $role->name = 'admin';
         $role->description = 'Administrador del sistema';
+        $role->save();
 
+        $role = new Role();
+        $role->name = 'user';
+        $role->description = 'Usuario participante';
         $role->save();
     }
 }
