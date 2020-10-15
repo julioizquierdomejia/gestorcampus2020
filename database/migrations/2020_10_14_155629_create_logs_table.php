@@ -15,9 +15,16 @@ class CreateLogsTable extends Migration
     {
         Schema::connection('mysql')->create('logs', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->unsigned();
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->string('section');
             $table->string('action');
+            $table->string('feedback');
+            $table->string('ip');
+            $table->string('device');
+            $table->string('system');
             $table->timestamps();
         });
     }
