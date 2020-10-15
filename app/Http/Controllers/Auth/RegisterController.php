@@ -74,18 +74,21 @@ class RegisterController extends Controller
             $url = 'http://www.sigesin.conareme.org.pe/controlador/r3n13c.php?dni='.$data['document'];
             $json = file_get_contents($url, false );
             $infoUser =  json_decode($json);
-        }
 
-        $apellido_paterno = $infoUser[0]->apellido_paterno;
+            $apellido_paterno = $infoUser[0]->apellido_paterno;
             $apellido_materno = $infoUser[0]->apellido_materno;
             $nombres = $infoUser[0]->nombres;
             $pais_domicilio = $infoUser[0]->pais_domicilio;
+            $sexo = $infoUser[0]->sexo;
 
             $user = User::create([
             //return User::create([
                 'document' => $data['document'],
                 'name' => $nombres,
                 'email' => $data['email'],
+                'sexo' => $sexo,
+                'status' => 1,
+                'avatar' => 'default.jpg',
                 'password' => Hash::make($data['password']),
             ]);
 
@@ -104,6 +107,37 @@ class RegisterController extends Controller
             $user->roles()->attach(3);
 
             return $user;
+        }else{
+
+            $user = User::create([
+            //return User::create([
+                'document' => $data['document'],
+                'name' => '',
+                'email' => $data['email'],
+                'sexo' => '',
+                'status' => 1,
+                'avatar' => 'default.jpg',
+                'password' => Hash::make($data['password']),
+            ]);
+
+            $userMoodle = new UserMoodle();
+            $userMoodle->user_id = $user->id;
+            
+            $userMoodle->user = $data['email'];
+            $userMoodle->password = bcrypt($data['password']);
+
+            $userMoodle->name = $nombres;
+            $userMoodle->last_name = $apellido_paterno;
+            $userMoodle->mothers_last_name = $apellido_materno;
+
+            $userMoodle->save();
+
+            $user->roles()->attach(3);
+
+            return $user;
+        }
+
+
 
         
 

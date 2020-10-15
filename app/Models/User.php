@@ -49,5 +49,5 @@ class User extends Authenticatable
 
     public function logs(){
         return $this->belongsToMany(Log::class);
-    }
+    } 
 }
