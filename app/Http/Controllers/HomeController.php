@@ -29,7 +29,10 @@ class HomeController extends Controller
 
         $users = User::all();
         $courses = CourseMoodle::all();
+        
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
 
-        return view('home', compact('users', 'courses'));
+        return view('home', compact('users', 'courses', 'usuario'));
     }
 }

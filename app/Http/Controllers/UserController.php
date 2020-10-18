@@ -22,6 +22,16 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    protected function validator(array $data)
+    {   
+
+        return Validator::make($data, [
+            'document' => ['required', 'string', 'min:8' ,'max:20', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -65,7 +75,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -89,6 +99,38 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $usuario = UserMoodle::where('id', $id);
+
+        if($request->datauser == 1){
+
+            $usuario->update([
+                'name' => $request->input('name'),
+                'last_name' => $request->input('last_name'),
+                'mothers_last_name' => $request->input('mothers_last_name'),
+                'sexo' => $request->input('sexo')
+            ]);
+        }
+
+        if($request->datauser == 2){
+
+            $usuario->update([
+                'address' => $request->input('address'),
+                'urbanizacion' => $request->input('urbanizacion'),
+                'distrito' => $request->input('distrito'),
+                'city' => $request->input('city'),
+                'provincia' => $request->input('provincia')
+
+            ]);
+        }
+
+
+        return redirect('user');
+
+
+
+
+
     }
 
     /**

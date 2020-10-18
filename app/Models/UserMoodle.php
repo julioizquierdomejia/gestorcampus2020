@@ -16,6 +16,24 @@ class UserMoodle extends Model
      *
      * @var string
      */
+
+    protected $fillable = [
+        'name',
+        'last_name',
+        'mothers_last_name',
+        'sexo',
+        'avatar',
+        'address',
+        'urbanizacion',
+        'distrito',
+        'city',
+        'provincia',
+        'country',
+        'telephone',
+        'celular'
+    ];
+
+
      protected $connection = 'mysql';
  
      /**

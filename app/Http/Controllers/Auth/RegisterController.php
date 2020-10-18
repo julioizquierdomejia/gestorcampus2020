@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\Log;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,15 +81,25 @@ class RegisterController extends Controller
             $nombres = $infoUser[0]->nombres;
             $pais_domicilio = $infoUser[0]->pais_domicilio;
             $sexo = $infoUser[0]->sexo;
+            
+            $direccion = $infoUser[0]->direccion;
+            $urbanizacion = $infoUser[0]->localidad_domicilio;
+            $distrito = $infoUser[0]->distrito_domicilio;
+            $city = $infoUser[0]->departamento_domicilio;
+            $provincia = $infoUser[0]->provincia_domicilio;
+            $pais = $infoUser[0]->pais_domicilio;
+            
+            if($sexo == 1){
+                $avatar = 'avatar_man.png';
+            }else{
+                $avatar = 'avatar_woman.png';
+            }
 
             $user = User::create([
             //return User::create([
                 'document' => $data['document'],
-                'name' => $nombres,
                 'email' => $data['email'],
-                'sexo' => $sexo,
                 'status' => 1,
-                'avatar' => 'default.jpg',
                 'password' => Hash::make($data['password']),
             ]);
 
@@ -101,10 +112,32 @@ class RegisterController extends Controller
             $userMoodle->name = $nombres;
             $userMoodle->last_name = $apellido_paterno;
             $userMoodle->mothers_last_name = $apellido_materno;
+            $userMoodle->sexo = $sexo;
+            $userMoodle->avatar = $avatar;
+
+            $userMoodle->address = $direccion;
+            $userMoodle->urbanizacion = $urbanizacion;
+            $userMoodle->distrito = $distrito;
+            $userMoodle->city = $city;
+            $userMoodle->provincia = $provincia;
+            $userMoodle->country = $pais;
+            
 
             $userMoodle->save();
 
             $user->roles()->attach(3);
+
+            //aqui se genera un Log
+            $log = Log::create([
+                //return User::create([
+                'user_id' => $user->id,
+                'section' => 'Usuarios',
+                'action' => 'Creación',
+                'feedback' => 'self',
+                'ip' => 'ip',
+                'device' => 'device',
+                'system' => 'system'
+            ]);
 
             return $user;
         }else{
@@ -112,11 +145,8 @@ class RegisterController extends Controller
             $user = User::create([
             //return User::create([
                 'document' => $data['document'],
-                'name' => '',
                 'email' => $data['email'],
-                'sexo' => '',
                 'status' => 1,
-                'avatar' => 'default.jpg',
                 'password' => Hash::make($data['password']),
             ]);
 
@@ -126,17 +156,40 @@ class RegisterController extends Controller
             $userMoodle->user = $data['email'];
             $userMoodle->password = bcrypt($data['password']);
 
-            $userMoodle->name = $nombres;
-            $userMoodle->last_name = $apellido_paterno;
-            $userMoodle->mothers_last_name = $apellido_materno;
+            $userMoodle->name = '';
+            $userMoodle->last_name = '';
+            $userMoodle->mothers_last_name = '';
+            $userMoodle->sexo = '';
+            $userMoodle->avatar = 'avatar_man.png';
+
+            $userMoodle->address = '';
+            $userMoodle->urbanizacion = '';
+            $userMoodle->distrito = '';
+            $userMoodle->city = '';
+            $userMoodle->provincia = '';
+            $userMoodle->country = '';
+            
 
             $userMoodle->save();
 
             $user->roles()->attach(3);
 
+            //aqui se genera un Log
+            $log = Log::create([
+                //return User::create([
+                'user_id' => $user->id,
+                'section' => 'Usuarios',
+                'action' => 'Creación',
+                'feedback' => 'self',
+                'ip' => 'ip',
+                'device' => 'device',
+                'system' => 'system'
+            ]);
+
             return $user;
         }
 
+        
 
 
         

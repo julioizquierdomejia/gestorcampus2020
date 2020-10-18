@@ -19,12 +19,12 @@ class CreateLogsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->string('section');
-            $table->string('action');
-            $table->string('feedback');
-            $table->string('ip');
-            $table->string('device');
-            $table->string('system');
+            $table->string('section')->nullable();
+            $table->string('action')->nullable();
+            $table->string('feedback')->nullable();
+            $table->string('ip')->nullable();
+            $table->string('device')->nullable();
+            $table->string('system')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-single-02 text-warning"></i>
+                  <i class="fal fa-user-md-chat text-warning"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -35,7 +35,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-single-02 text-success"></i>
+                  <i class="fal fa-user-graduate text-success"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -61,7 +61,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-ruler-pencil text-danger"></i>
+                  <i class="fal fa-journal-whills text-danger"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -87,7 +87,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="nc-icon nc-paper text-primary"></i>
+                  <i class="fal fa-file-certificate text-primary"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">

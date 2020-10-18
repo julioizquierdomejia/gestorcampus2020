@@ -69,10 +69,11 @@
         @else
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    @if(Auth::user()->name == null)
+                    
+                    @if($usuario->name == null)
                         Bienvenido
                     @else
-                        {{ Auth::user()->name }}
+                        {{ $usuario->name }}
                     @endif
                 </a>
 
@@ -87,8 +88,6 @@
                         @csrf
                     </form>
                 </div>
-
-
             </li>
         @endguest
       </ul>
