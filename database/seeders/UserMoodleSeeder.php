@@ -20,6 +20,8 @@ class UserMoodleSeeder extends Seeder
         $user->user = 'julio.izquierdo.mejia@gmail.com';
         $user->password = bcrypt('M4r14Jul14123456');
         
+        $user->document = '06813928';
+        
         $user->name = 'JULIO JORGE';
         $user->last_name = 'IZQUIERDO';
         $user->mothers_last_name = 'MEJIA';

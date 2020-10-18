@@ -22,15 +22,21 @@ Coded by www.creative-tim.com
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>{{ config('app.name', 'Laravel') }}</title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css"/>
+
+  <link href="css/app.css" rel="stylesheet" />
+  
   <!-- CSS Files -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="css/app.css" rel="stylesheet" />
-  <link href="assets/demo/demo.css" rel="stylesheet" />
+  
+  
+
+
 </head>
 
 <body class="">
@@ -79,26 +85,38 @@ Coded by www.creative-tim.com
       </footer>
     </div>
   </div>
-  <!--   Core JS Files   -->
+
+  <script src="{{asset('js/jquery-1.x-git.js')}}"></script>
+  <script src="{{asset('js/datatables.js')}}"></script>
+  <script src="{{asset('js/script.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+ 
+
+  <!--   Core JS Files 
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
+  
+  Chart JS 
   <script src="assets/js/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
+  Notifications Plugin 
   <script src="assets/js/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script><!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc 
+  <script src="assets/js/paper-dashboard.min.js?v=2.0.1" type="text/javascript"></script>Paper Dashboard DEMO methods, don't include it in your project! 
   <script src="assets/demo/demo.js"></script>
-  <script src="js/script.js"></script>
+  <script src="{{asset('js/datatables.js')}}"></script>
+  -->
+
   <script>
-    $(document).ready(function() {
+    //$(document).ready(function() {
       // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      demo.initChartsPages();
-    });
+      //demo.initChartsPages();
+    //});
   </script>
 </body>
 

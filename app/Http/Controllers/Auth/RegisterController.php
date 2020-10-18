@@ -105,6 +105,8 @@ class RegisterController extends Controller
 
             $userMoodle = new UserMoodle();
             $userMoodle->user_id = $user->id;
+
+            $userMoodle->document = $data['document'];
             
             $userMoodle->user = $data['email'];
             $userMoodle->password = bcrypt($data['password']);
@@ -156,6 +158,8 @@ class RegisterController extends Controller
             $userMoodle->user = $data['email'];
             $userMoodle->password = bcrypt($data['password']);
 
+            $userMoodle->document = $data['document'];
+            
             $userMoodle->name = '';
             $userMoodle->last_name = '';
             $userMoodle->mothers_last_name = '';

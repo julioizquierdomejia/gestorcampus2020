@@ -124,12 +124,7 @@ class UserController extends Controller
             ]);
         }
 
-
         return redirect('user');
-
-
-
-
 
     }
 
@@ -143,4 +138,22 @@ class UserController extends Controller
     {
         //
     }
+
+
+
+    public function search($name)
+    {
+
+        $usuario_moodle = UserMoodle::where('name', 'LIKE', '%' . $name . '%')
+            ->orWhere('last_name', 'LIKE', '%' . $name . '%') 
+            ->orWhere('mothers_last_name', 'LIKE', '%' . $name . '%') 
+            ->orWhere('distrito', 'LIKE', '%' . $name . '%') 
+            ->orWhere('user', 'LIKE', '%' . $name . '%') 
+            ->get();
+
+        return $usuario_moodle;
+        
+    }
+
+
 }
