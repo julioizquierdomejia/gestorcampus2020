@@ -77,7 +77,7 @@ $(document).ready(function(){
 	$(".multi_usuarios_lista").on("click", ".botoncito", function(){
 		
 		var id = $(this).attr('id');
-		
+
 		$.ajax({
 			type:'GET',
 			url: "user/"+id,
@@ -89,10 +89,10 @@ $(document).ready(function(){
 				console.log(data[0]);
 
 				$('.box_more_result').css({'display':'none'});
-
 				$('.box').css({'display':'block'});
 
-				$('.boxname').html(data[0].name + ' ' + '<b>' +data[0].last_name + ' ' + data[0].mothers_last_name + '</b>') ;
+				$('.boxname').html(data[0].name + ' ' + '<b>' +data[0].last_name + ' ' + data[0].mothers_last_name + '</b>');
+				$('.boxavatar').attr('src', '../assets/img/'+data[0].avatar );
 
 				var tl = gsap.timeline({});
 				tl.to(".box", .64, {left: 0, rotation: 0, opacity:1, duration: .64});

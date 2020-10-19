@@ -145,12 +145,12 @@ class UserController extends Controller
     {
 
         $usuario_moodle = UserMoodle::where('name', 'LIKE', '%' . $name . '%')
-            ->orWhere('last_name', 'LIKE', '%' . $name . '%') 
-            ->orWhere('document', 'LIKE', '%' . $name . '%') 
-            ->orWhere('mothers_last_name', 'LIKE', '%' . $name . '%') 
-            ->orWhere('distrito', 'LIKE', '%' . $name . '%') 
+            ->orWhere('id', $name)
+            ->orWhere('last_name', 'LIKE', '%' . $name . '%')
+            ->orWhere('document', $name )
+            ->orWhere('mothers_last_name', 'LIKE', '%' . $name . '%')
+            ->orWhere('distrito', 'LIKE', '%' . $name . '%')
             ->orWhere('user', 'LIKE', '%' . $name . '%')
-            ->orWhere('id', $name) 
             ->get();
 
         return $usuario_moodle;
