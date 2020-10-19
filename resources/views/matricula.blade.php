@@ -33,27 +33,31 @@
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="card card-user box">
+  <div class="col-md-4 box" style="display: none;">
+    <div class="card card-user">
       <div class="image">
         <img src="../assets/img/damir-bosnjak.jpg" alt="...">
       </div>
-      <div class="card-body">
+      <div class="card-body" style="min-height: 157px;">
         <div class="author">
-          <a href="#">
-            <img class="avatar border-gray boxavatar" src="../assets/img/{{$usuario->avatar}}" alt="Avatar por defecto">
-            <h5 class="title">{{Auth::user()->name}}</h5>
-          </a>
+          <img class="avatar border-gray boxavatar" src="" alt="Avatar por defecto">
           <p class="boxname">
-            {{Auth::user()->email}}
           </p>
         </div>
-        <p class="text-center">
-          "Donde quiera que se ama el arte de la medicina
-          <br>
-          se ama también a la humanidad. <br>
-          (Platón)."
-        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 box_more_result" style="display: none;">
+    <div class="card card-user">
+      <div class="card-body">
+        <h5>Resultados</h5>
+
+        <div class="list-group multi_usuarios_lista">
+
+          
+        </div>
+        
       </div>
     </div>
   </div>
