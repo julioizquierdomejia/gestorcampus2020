@@ -13,7 +13,7 @@ class CreateTokenTable extends Migration
      */
     public function up()
     {
-        Schema::create('token', function (Blueprint $table) {
+        Schema::connection('mysql')::create('token', function (Blueprint $table) {
             $table->id();
             $table->text('access_token');
             $table->timestamps();
