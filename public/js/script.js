@@ -105,4 +105,18 @@ $(document).ready(function(){
 	});
 
 
+	//programacion para los cards de los cursos par amatriculas
+	$('.card_curso').on('click', function(e){
+		e.preventDefault();
+		gsap.to(me, {rotation: 27, x: 100, duration: 1});
+	})
+
+	$('.card_curso').mouseover(function(){
+		me = $(this);
+
+		gsap.to(me, {rotation: 27, x: 100, duration: 1});
+
+	})
+
+
 })

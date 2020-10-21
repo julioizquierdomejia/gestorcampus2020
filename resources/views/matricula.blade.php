@@ -64,6 +64,29 @@
 
 
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="mb-5"> Seleccione el Curso a matricularse</h4>
+      <div class="row row-cols-1 row-cols-md-6">
+        @foreach($cursosVisibles as $curso)
+          <div class="col mb-4">
+            <a class="card_curso">
+              <div class="card card_cursos_select">
+                <div class="overall"></div>
+                <div class="card-body">
+                  <h5 class="card-title"><span>Curso : </span>{{ $curso->shortname }}</h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="card">

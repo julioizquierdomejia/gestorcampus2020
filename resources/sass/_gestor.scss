@@ -1,0 +1,33 @@
+/* Estilos para los card de los cursos para matriculas */
+.card_curso{
+	text-decoration: none!important;
+	overflow: hidden;
+	display: block;
+	background-color: gray;
+
+	.overall{
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: absolute;
+		z-index: 10;
+		opacity: .6;
+		background-color: plum;
+
+	}
+
+	.card_cursos_select{
+		.card-body{
+			height: 120px!important;
+			padding: 10px!important;
+			.card-title{
+				font-size: 16px!important;
+				display: block;
+				span{
+					font-weight: bold;
+					display: block;
+				}
+			}
+		}
+	}
+}
