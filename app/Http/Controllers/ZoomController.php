@@ -52,11 +52,17 @@ class ZoomController extends Controller
         }
     }
 
-    function create_meeting() {
+    function create_meeting(Request $request) {
 	    $client = new \GuzzleHttp\Client(['base_uri' => 'https://api.zoom.us']);
 	 
 	    $arr_token = $this->get_access_token();
 	    $accessToken = $arr_token->access_token;
+
+		$topic = $request->input('topic');
+		$type = $request->input('type');
+		$start_time = $request->input('start_time');
+		$duration = $request->input('duration');
+		$password = $request->input('password');
 	 
 	    try {
 	        $response = $client->request('POST', '/v2/users/me/meetings', [
@@ -64,11 +70,11 @@ class ZoomController extends Controller
 	                "Authorization" => "Bearer $accessToken"
 	            ],
 	            'json' => [
-	                "topic" => "Let's learn Laravel",
-	                "type" => 2,
-	                "start_time" => "2020-05-05T20:30:00",
-	                "duration" => "30", // 30 mins
-	                "password" => "123456"
+	                "topic" => $topic,
+	                "type" => $type,
+	                "start_time" => $start_time,
+	                "duration" => $duration, // 30 mins
+	                "password" => $password
 	            ],
 	        ]);
 	 
