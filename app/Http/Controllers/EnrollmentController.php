@@ -21,11 +21,15 @@ class EnrollmentController extends Controller
         $cursos = CourseMoodle::all();
 
         $cursosVisibles = DB::connection('mysql_moodle')->table('course')
-        	->groupBy('category')
-        	->where('visible', 1)
+            ->join('course_categories', 'course.category', '=', 'course_categories.id')
+            ->where('course.visible', 1)
+            ->select('course.id', 'course.fullname', 'course.shortname', 'course_categories.name')
+            ->orderBy('course_categories.name', 'asc')
         	->get();        	
 
-        dd($cursosVisibles);
+        //dd($cursosVisibles);
+
+
         return view('matricula', compact('usuario', 'cursos', 'cursosVisibles'));
     }
 }

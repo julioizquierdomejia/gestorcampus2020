@@ -64,17 +64,6 @@
 </div>
 
 
-@foreach($cursosVisibles as $key => $cursos) 
-    {{ $key }}
-    @foreach($cursosVisibles as $course) 
-        <div>
-            <a href="/product/{{ $product->id }}">
-                {{ $course->shortname }}
-            </a>
-        </div>
-    @endforeach
-@endforeach
-
 <!--div class="row">
   <div class="col-md-12">
     <h4 class="mb-5"> Seleccione el Curso a matricularse</h4>
@@ -110,32 +99,31 @@
           <table class="table" id="tabla">
             <thead class=" text-primary">
               <th>
-                Categoria
-              </th>
-              <th>
                 Curso
               </th>
               <th>
-                City
+                Categoria
               </th>
               <th class="text-right">
-                Estado
               </th>
             </thead>
             <tbody>
               @foreach($cursosVisibles as $curso)
               <tr>
                 <td>
-                  {{ $curso->category }}
+                  <b>
+                    {{ $curso->shortname }}
+                  </b>
+                  
                 </td>
                 <td>
-                  {{ $curso->shortname }}
+                  {{ $curso->name }}
                 </td>
                 <td>
-                  Oud-Turnhout
+                  <button class="btn btn-primary">Seleccionar</button>
                 </td>
                 <td class="text-right">
-                  {{ $curso->visible }}
+                  
                 </td>
               </tr>
               @endforeach

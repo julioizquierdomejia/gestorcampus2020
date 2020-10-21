@@ -3,6 +3,7 @@ $(document).ready(function(){
 	cardInicio()
 
 	function cardInicio(){
+
 		$('.box').css({'display':'none'});
 		$('.box').css({'left':'500px', 'transform':'rotate(20deg)', 'opacity':0});
 
@@ -26,6 +27,8 @@ $(document).ready(function(){
 	$('#buscar_usuario').click(function(e){
 
 		cardInicio()
+
+		alert('hola mundo');
 		
 		e.preventDefault();
 		
