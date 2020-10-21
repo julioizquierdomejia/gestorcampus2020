@@ -61,17 +61,28 @@
       </div>
     </div>
   </div>
-
-
 </div>
 
-<div class="row">
+
+@foreach($cursosVisibles as $key => $cursos) 
+    {{ $key }}
+    @foreach($cursosVisibles as $course) 
+        <div>
+            <a href="/product/{{ $product->id }}">
+                {{ $course->shortname }}
+            </a>
+        </div>
+    @endforeach
+@endforeach
+
+<!--div class="row">
   <div class="col-md-12">
     <h4 class="mb-5"> Seleccione el Curso a matricularse</h4>
+    <button type="submit" id='buscar_usuario' class="btn btn-primary btn-round d-inline">Buscar</button>
       <div class="row row-cols-1 row-cols-md-6">
         @foreach($cursosVisibles as $curso)
           <div class="col mb-4">
-            <a class="card_curso">
+            <a class="card_curso" id={{ $curso->id }}>
               <div class="card card_cursos_select">
                 <div class="overall"></div>
                 <div class="card-body">
@@ -84,7 +95,7 @@
         @endforeach
       </div>
   </div>
-</div>
+</div-->
 
 
 <div class="row">
@@ -92,16 +103,17 @@
     <div class="card">
       <div class="card-header">
         <h4 class="card-title"> Relación de Matriculados</h4>
+
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table" id="tabla">
             <thead class=" text-primary">
               <th>
-                Name
+                Categoria
               </th>
               <th>
-                Country
+                Curso
               </th>
               <th>
                 City
@@ -114,10 +126,10 @@
               @foreach($cursosVisibles as $curso)
               <tr>
                 <td>
-                  {{ $curso->shortname }}
+                  {{ $curso->category }}
                 </td>
                 <td>
-                  Niger
+                  {{ $curso->shortname }}
                 </td>
                 <td>
                   Oud-Turnhout

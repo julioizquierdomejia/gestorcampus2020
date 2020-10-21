@@ -108,13 +108,21 @@ $(document).ready(function(){
 	//programacion para los cards de los cursos par amatriculas
 	$('.card_curso').on('click', function(e){
 		e.preventDefault();
-		gsap.to(me, {rotation: 27, x: 100, duration: 1});
+		//gsap.to(me, {rotation: 27, x: 100, duration: 1});
+		console.log($(this).attr('id'));
 	})
 
 	$('.card_curso').mouseover(function(){
-		me = $(this);
+		me = $(this).find('.overall');
 
-		gsap.to(me, {rotation: 27, x: 100, duration: 1});
+		gsap.to(me, {opacity: 0.32, duration: 0.32});
+
+	})
+
+	$('.card_curso').mouseout(function(){
+		me = $(this).find('.overall');
+
+		gsap.to(me, {opacity: 0, duration: 0.32});
 
 	})
 
