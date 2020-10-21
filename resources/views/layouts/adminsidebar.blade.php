@@ -30,7 +30,7 @@
   </a>
 </li>
 <li>
-  <a href="./user.html">
+  <a href="./zoom">
     <i class="nc-icon nc-tv-2"></i>
     <p>Video Conferencias</p>
   </a>

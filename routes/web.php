@@ -27,3 +27,7 @@ Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])
 Route::get('/matricula', [App\Http\Controllers\EnrollmentController::class, 'index'])->name('matricula');
 
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
+
+Route::get('/zoom', [App\Http\Controllers\ZoomController::class, 'index'])->name('zoom');
+Route::get('/create-meeting', [App\Http\Controllers\ZoomController::class, 'create_meeting'])->name('create_meeting');
+Route::get('/callback', [App\Http\Controllers\ZoomController::class, 'callback'])->name('callback');
