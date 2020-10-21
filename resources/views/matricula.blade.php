@@ -70,43 +70,8 @@
       <div class="card-header">
         <h4 class="card-title"> Relación de Matriculados</h4>
       </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table" id="tabla">
-            <thead class=" text-primary">
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Estado
-              </th>
-            </thead>
-            <tbody>
-              @foreach($cursosVisibles as $curso)
-              <tr>
-                <td>
-                  {{ $curso->shortname }}
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  {{ $curso->visible }}
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+      <div class="card-body card_table_courses">
+        
       </div>
     </div>
   </div>

@@ -51,6 +51,9 @@ $(document).ready(function(){
 					tl.from(".boxavatar", .64,  {y: -106, opacity:0, duration: .64, ease: "elastic"});
 					tl.from(".boxname", .64,  {y: 32, opacity:0, duration: .64, ease: "elastic"});
 
+					var id_usuario = data[0].id;
+					traerCursos(id_usuario)
+
 				}
 
 				if(data.length > 1){
@@ -85,9 +88,6 @@ $(document).ready(function(){
 
 			success:function(data){
 
-				console.log('---->>>>>>>>>>')
-				console.log(data[0]);
-
 				$('.box_more_result').css({'display':'none'});
 				$('.box').css({'display':'block'});
 
@@ -98,11 +98,32 @@ $(document).ready(function(){
 				tl.to(".box", .64, {left: 0, rotation: 0, opacity:1, duration: .64});
 				tl.from(".boxavatar", .64,  {y: -106, opacity:0, duration: .64, ease: "elastic"});
 				tl.from(".boxname", .64,  {y: 32, opacity:0, duration: .64, ease: "elastic"});
+
+				var id_usuario = data[0].id;
+
+				traerCursos(id_usuario);
 				
 			}
 		})
 
 	});
+
+
+	function traerCursos(id_usuario){
+
+		$.ajax({
+			type:'GET',
+			url: "matricula/"+id_usuario,
+			data:{},
+
+			success:function(data){
+				$('.card_table_courses').append('<div class="table-responsive"><table class="table table_courses" id="tabla"><thead class=" text-primary"><th><b>Curso</b></th><th>Categoria</th><th class="text-center">Acción</th></thead><tbody id="table_courses_body"></tbody></table></div>')
+				$.each( data, function( key, value ) {
+					$('#table_courses_body').append('<tr><td>'+value.shortname+'</td><td>'+value.name+'</td><td class="text-center"><button class="btn btn-primary" id="'+value.id+'">Matricularse</button></td></tr>')
+				});
+			}
+		})
+	}
 
 
 })
