@@ -55,7 +55,19 @@
 
         <div class="list-group multi_usuarios_lista">
 
-          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 box_more_result" style="display: block;">
+    <div class="card card-user">
+      <div class="card-body">
+        <h5>Resultados</h5>
+
+        <div class="list-group multi_usuarios_lista">
+
         </div>
         
       </div>
