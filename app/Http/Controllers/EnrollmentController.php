@@ -41,4 +41,8 @@ class EnrollmentController extends Controller
 
         return $cursosVisibles;
     }
+
+    public function marticular($userid){
+        
+    }
 }

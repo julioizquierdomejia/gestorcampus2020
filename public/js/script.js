@@ -8,6 +8,9 @@ $(document).ready(function(){
 
 		$('.box_more_result').css({'display':'none'});
 		$('.box_more_result').css({'left':'500px', 'transform':'rotate(20deg)', 'opacity':0});
+
+		$('.box_my_courses').css({'display':'none'});
+		$('.box_my_courses').css({'left':'500px', 'transform':'rotate(20deg)', 'opacity':0});
 	}
 	
 
@@ -117,13 +120,38 @@ $(document).ready(function(){
 			data:{},
 
 			success:function(data){
+
+				$('.box_my_courses').css({'display':'block'});
+
+				var tl = gsap.timeline({});
+				tl.to(".box_my_courses", .64, {left: 0, rotation: 0, opacity:1, duration: .64});
+
+				$('.table-responsive').remove();
+
 				$('.card_table_courses').append('<div class="table-responsive"><table class="table table_courses" id="tabla"><thead class=" text-primary"><th><b>Curso</b></th><th>Categoria</th><th class="text-center">Acción</th></thead><tbody id="table_courses_body"></tbody></table></div>')
 				$.each( data, function( key, value ) {
-					$('#table_courses_body').append('<tr><td>'+value.shortname+'</td><td>'+value.name+'</td><td class="text-center"><button class="btn btn-primary" id="'+value.id+'">Matricularse</button></td></tr>')
+					$('#table_courses_body').append('<tr style="opacity:1; margin-left:100px" class="fila"><td>'+value.shortname+'</td><td>'+value.name+'</td><td class="text-center"><button class="btn btn-primary btn_matricular" iduser="'+ id_usuario +'" id="'+value.id+'">Matricular</button></td></tr>')
+
+					/*
+					$('#table_courses_body').on("click", ".btn_matricular", function(){
+						console.log("Id del curso ->> " + $(this).attr('id') + " Id del usuario -->> " + $(this).attr('iduser'));
+						//alert(value.shortname);
+						//$('#modalMatricula').modal();
+						//$('.modal-body').html('<p>Seguro que deseas matricular en el curso de : '+ value.shortname +'</p>')
+						
+					});
+					*/
+
 				});
 			}
 		})
+
+		$('#table_courses_body').click(function(){
+			console.log("Id del curso ->> " + $(this).attr('id') + " Id del usuario -->> " + $(this).attr('iduser'));
+		})
 	}
+
+	
 
 
 })
