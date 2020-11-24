@@ -31,5 +31,6 @@ class UserSeeder extends Seeder
 
         //vamos a relacionar roles con usuarios
         $user->roles()->attach($role_superadmin);
+
     }
 }

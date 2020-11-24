@@ -55,7 +55,19 @@
 
         <div class="list-group multi_usuarios_lista">
 
-          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 box_my_courses">
+    <div class="card card-user">
+      <div class="card-body">
+        <h5>Mis Cursos</h5>
+
+        <div class="list-group my_courses_lista">
+
         </div>
         
       </div>
@@ -94,6 +106,7 @@
         <h4 class="card-title"> Relación de Matriculados</h4>
 
       </div>
+<<<<<<< HEAD
       <div class="card-body">
         <div class="table-responsive">
           <table class="table" id="tabla">
@@ -130,9 +143,38 @@
             </tbody>
           </table>
         </div>
+=======
+      <div class="card-body card_table_courses">
+        
+>>>>>>> tmp
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal de confirmacion de Matrícula -->
+<div class="modal" tabindex="-1" role="dialog" id="modalMatricula">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmación de Matrícula</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 @endsection

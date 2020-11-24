@@ -25,5 +25,18 @@ Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name
 Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 
 Route::get('/matricula', [App\Http\Controllers\EnrollmentController::class, 'index'])->name('matricula');
+Route::get('/matricula/{id}', [App\Http\Controllers\EnrollmentController::class, 'getcursos'])->name('getcursos');
+Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::class, 'domatricula'])->name('domatricula');
 
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
+
+
+//para detalle de cursos
+Route::get('/detallecurso', function () {
+    return view('detallecurso');
+});
+
+Route::get('/acercade', function () {
+    return view('acercade');
+});
+
