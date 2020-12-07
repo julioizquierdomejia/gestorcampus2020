@@ -22,7 +22,19 @@
   <body>
     <div class="contenedor navheader d-flex justify-content-end">
         <nav>
-            <a href="" class="btn btn-primary">Acceder</a>
+
+            @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/home') }}" class="btn btn-primary">Inicio</a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-primary">Acceder</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn btn-danger">Registrate</a>
+                        @endif
+                    @endif
+            @endif
+
         </nav>
     </div>
 
@@ -94,7 +106,7 @@
                     <nav class="mt-5">
                       <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-tinku" role="tab" aria-controls="nav-home" aria-selected="true">PROGRAMA TINKU</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-moc" role="tab" aria-controls="nav-profile" aria-selected="false">CURSOS MOC</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-moc" role="tab" aria-controls="nav-profile" aria-selected="false">CURSOS AUTOINSTRUCTIVOS</a><!-- cambiarnombre -->
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-otros" role="tab" aria-controls="nav-contact" aria-selected="false">OTROS CURSOS</a>
                       </div>
                     </nav>
