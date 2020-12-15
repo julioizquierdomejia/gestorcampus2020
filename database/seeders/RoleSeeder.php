@@ -15,13 +15,34 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
+        
         $role = new Role();
-        $role->name = 'superadmin';
-        $role->description = 'Super administrador del sistema - config';
+        $role->name = 'manager';
+        $role->description = 'Administrador del sistema';
         $role->save();
 
         $role = new Role();
-        $role->name = 'admin';
+        $role->name = 'coursecreator';
+        $role->description = 'Administrador del sistema';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'editingteacher';
+        $role->description = 'Administrador del sistema';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'teacher';
+        $role->description = 'Administrador del sistema';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'student';
+        $role->description = 'Administrador del sistema';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'guest';
         $role->description = 'Administrador del sistema';
         $role->save();
 
@@ -29,5 +50,16 @@ class RoleSeeder extends Seeder
         $role->name = 'user';
         $role->description = 'Usuario participante';
         $role->save();
+
+        $role = new Role();
+        $role->name = 'frontpage';
+        $role->description = 'Administrador del sistema';
+        $role->save();
+
+        $role = new Role();
+        $role->name = 'superadmin';
+        $role->description = 'Super administrador del sistema - config';
+        $role->save();
+
     }
 }

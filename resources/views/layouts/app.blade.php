@@ -32,10 +32,11 @@ Coded by www.creative-tim.com
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css"/>
 
-  <link href="css/app.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+  
   
   <!-- CSS Files -->
-  <link href="assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+  <link href="/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 
 
@@ -47,7 +48,7 @@ Coded by www.creative-tim.com
       <div class="logo">
         <a href="" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/{{$usuario->avatar}}">
+            <img src="/../assets/img/{{$usuario->avatar}}">
           </div>
           <!-- <p>CT</p> -->
         </a>
@@ -72,7 +73,7 @@ Coded by www.creative-tim.com
             <nav class="footer-nav">
               <ul>
                 <li><a href="https://www.aspefam.org.pe/" target="_blank">#ASPEFAM</a></li>
-                <li><a href="https://www.campus.aspefam.org.pe/" target="_blank">#CAPUS</a></li>
+                <li><a href="https://www.campus.aspefam.org.pe/" target="_blank">#CAMPUS</a></li>
               </ul>
             </nav>
             <div class="credits ml-auto">

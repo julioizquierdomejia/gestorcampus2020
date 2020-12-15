@@ -99,157 +99,41 @@
 
         <div class="content">
 
-            <div class="row">
-                <div class="col p-5">
-                    <!-- Tabs -->
-                    <h2 class="title-seccion">Nuestros Cursos</h2>
-                    <nav class="mt-5">
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-tinku" role="tab" aria-controls="nav-home" aria-selected="true">PROGRAMA TINKU</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-moc" role="tab" aria-controls="nav-profile" aria-selected="false">CURSOS AUTOINSTRUCTIVOS</a><!-- cambiarnombre -->
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-otros" role="tab" aria-controls="nav-contact" aria-selected="false">OTROS CURSOS</a>
-                      </div>
-                    </nav>
-                    <div class="tab-content p-3 mt-3" id="nav-tabContent">
-                        <!-- Detalle TAB Tinku -->
-                        <div class="tab-pane fade show active" id="nav-tinku" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <div class="row row-cols-1 row-cols-md-5">
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="/detallecurso">
-                                    <img src="images/curso01.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tinku Emergencias y Desastres</h5>
-                                      <p class="card-text"></p>
-                                    </div>  
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso02.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tinku Medicina Intensiva</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso03.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tinku Neonatología</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso04.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tinku COVID - 19: Médicos Especialistas</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso04.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tinku COVID - 19: Médicos Generales</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        <!-- END Detalle TAB Tinku -->
-
-
-                        <!-- Detalle TAB MOC -->
-                        <div class="tab-pane fade" id="nav-moc" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <div class="row row-cols-1 row-cols-md-5">
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso03.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Curso: Salud Mental</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso02.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Curso: Atención Integrada a las Enfermedades Prevalentes de la Infancia - De 2 meses a 5 años</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso01.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Curso: Correcto llenado del Certificado de Defunción</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        <!-- END Detalle TAB MOC -->
-
-                        <!-- Detalle TAB Otros -->
-                        <div class="tab-pane fade" id="nav-otros" role="tabpanel" aria-labelledby="nav-home-tab">
-                            <div class="row row-cols-1 row-cols-md-5">
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso02.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Tutoría Aplicada al Diseño y Evaluación de Objetos de Aprendizaje para la Educación Médica</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="col mb-4">
-                                <div class="card">
-                                  <a href="">
-                                    <img src="images/curso01.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Diseño de Objetos de Aprendizaje para la Educación Médica</h5>
-                                      <p class="card-text"></p>
-                                    </div>
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        <!-- END Detalle TAB OTROS -->
-
-
-
-                    </div>
-
-                    <!-- end Tabs -->
+          <div class="row">
+            <div class="col p-5">
+              <h2 class="title-seccion">Nuestros Cursos</h2>
+              <nav class="mt-5">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  @foreach($categorias as $categoria)
+                  <a class="nav-item nav-link @if ($loop->first) active @endif" id="nav-home-tab_" data-toggle="tab" href="#B{{$categoria->category_id}}" role="tab" aria-controls="nav-home_" aria-selected="true">{{$categoria->name}}</a>
+                  @endforeach
                 </div>
+              </nav>
+              <div class="tab-content p-4" id="nav-tabContent">
+                @foreach($categorias as $categoria)
+                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$categoria->category_id}}" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row row-cols-1 row-cols-md-5">
+                      @foreach($cursos as $curso)
+                        @if($curso->categoria == $categoria->category_id )
+                          <div class="col mb-4">
+                            <div class="card">
+                              <a href="/detallecurso/{{ $curso->id}}">
+                                <img src="images/curso01.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ $curso->shortname  }}</h5>
+                                  <p class="card-text"></p>
+                                </div>  
+                              </a>
+                            </div>
+                          </div>
+                        @endif
+                      @endforeach
+                    </div>
+                  </div>
+                @endforeach
+              </div>
             </div>
+          </div>
 
             <!-- acerca de -->
             <div class="row">

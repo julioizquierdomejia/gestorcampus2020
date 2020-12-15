@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome']);
 
 Auth::routes();
 
@@ -30,11 +35,22 @@ Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::cl
 
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
 
+Route::get('/cursos', [App\Http\Controllers\CourseController::class, 'index'])->name('cursos');
+Route::get('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('curso.show');
+Route::get('/cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active']);
+Route::post('/cursos', [App\Http\Controllers\CourseController::class, 'store']);
+Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail']);
+//Route::resource('/cursos', App\Http\Controllers\CourseController::class);
+
+
+
 
 //para detalle de cursos
-Route::get('/detallecurso', function () {
+/*
+Route::get('/detallecurso/{id}', function () {
     return view('detallecurso');
 });
+*/
 
 Route::get('/acercade', function () {
     return view('acercade');

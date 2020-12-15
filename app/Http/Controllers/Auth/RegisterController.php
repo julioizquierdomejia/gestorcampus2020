@@ -127,7 +127,7 @@ class RegisterController extends Controller
 
             $userMoodle->save();
 
-            $user->roles()->attach(3);
+            $user->roles()->attach(7);
 
             //aqui se genera un Log
             $log = Log::create([
@@ -176,7 +176,7 @@ class RegisterController extends Controller
 
             $userMoodle->save();
 
-            $user->roles()->attach(3);
+            $user->roles()->attach(7);
 
             //aqui se genera un Log
             $log = Log::create([
