@@ -42,6 +42,25 @@
 		          <input name='fullname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->fullname}}">
 		          <input name='shortname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->shortname}}">
 
+		        <div class="row">
+		        	<div class="col">
+		        		<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="customSwitch1" checked style="padding:2px; width: 60px;">
+						  <label class="custom-control-label" for="customSwitch1">Activar</label>
+						</div>
+		        	</div>		
+		        </div>
+
+		        <div class="row">
+		        	<div class="col">
+		        		<div class="custom-control custom-switch">
+						  <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+						  <label class="custom-control-label" for="customSwitch1">Activar</label>
+						</div>
+		        	</div>		
+		        </div>
+
+
 				<div class="row">
 		          	<div class="col">
 		          		<div class="form-check">

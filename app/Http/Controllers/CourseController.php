@@ -39,7 +39,7 @@ class CourseController extends Controller
             $status = 1;
         }
 
-        return view('cursos.index', compact('usuario', 'cursos', 'cursos_moodle', 'categorias', 'status'));
+        return view('admin.cursos.index', compact('usuario', 'cursos', 'cursos_moodle', 'categorias', 'status'));
     }
 
     /**
@@ -147,8 +147,9 @@ class CourseController extends Controller
         
         
 
-        return view('cursos.show', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status'));
+        return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status'));
     }
+
 
     public function detail($course){
 
@@ -170,7 +171,7 @@ class CourseController extends Controller
         $secciones = CourseSectionMoodle::where('course', $course)->get();
         $cursos = Course::where('status', 1)->get();
 
-        return view('cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course'));
+        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course'));
     }
 
 
