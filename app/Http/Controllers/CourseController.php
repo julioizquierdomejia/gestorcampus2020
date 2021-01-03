@@ -10,6 +10,11 @@ use App\Models\CourseMoodle;
 use App\Models\CategoryCourseMoodle;
 use App\Models\CourseSectionMoodle;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+
+
+
 
 class CourseController extends Controller
 {
@@ -21,6 +26,7 @@ class CourseController extends Controller
     public function index()
     {
         //
+
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
         
@@ -30,16 +36,23 @@ class CourseController extends Controller
         //Trameos los cursos creados en moodle
         $cursos_moodle = CourseMoodle::where('visible', 1)->get();
 
-        $cursos = Course::where('status', 1)->get();
+        $cursos_iterados = [];
 
-        //Preguntamos si la tala de cursos esta vacia con el modelo cursos
-        if($cursos->count() == 0){
-            $status = 0;
-        }else{
-            $status = 1;
+        //iteramos los cursos de moodle para ver cuales esta activo en el gestor
+        foreach ($cursos_moodle as $key => $item) {
+
+            $curso_activo = Course::where('course_moodle_id', $item->id)->first();
+
+            if ($curso_activo) {
+                array_push($cursos_iterados, [$item->id, $item->shortname, 'ACTIVO', $item->category]);
+            }else{
+                array_push($cursos_iterados, [$item->id, $item->shortname, 'MOODLE', $item->category]);
+            }
         }
 
-        return view('admin.cursos.index', compact('usuario', 'cursos', 'cursos_moodle', 'categorias', 'status'));
+        //dd($cursos_iterados);
+
+        return view('admin.cursos.index', compact('usuario', 'cursos_moodle', 'categorias', 'cursos_iterados'));
     }
 
     /**
@@ -129,7 +142,7 @@ class CourseController extends Controller
         $usuario = usermoodle::where('id', $user_id)->first();
 
         //traemos la informacoin del curso de moodle
-        $cursos_moodle =CourseMoodle::findorFail($course);
+        $cursos_moodle = CourseMoodle::findorFail($course);
         //traemos las secciones del curso de moodle
         $secciones = CourseSectionMoodle::where('course', $course)->get();
         
@@ -144,10 +157,19 @@ class CourseController extends Controller
             $status = 1;
         }
 
+        $curso_activo = Course::where('course_moodle_id', $cursos_moodle->id)->first();
+
+        if ($curso_activo) {
+            $statusCurso = 'ACTIVO';
+        }else{
+            $statusCurso = 'MOODLE';
+        }
+
+
         
         
 
-        return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status'));
+        return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status', 'statusCurso'));
     }
 
 

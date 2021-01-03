@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'info Cursos'])
 
 @section('content')
 
@@ -24,19 +24,15 @@
 						@if($cursos->isEmpty())
 							<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-secondary">Activar</a>
 						@else
-							@foreach($cursos as $curso)
-								@if($cursos_moodle->id == $curso->course_moodle_id)
-									<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-warning">Editar</a>
-								@endif
-							@endforeach
 
-							@foreach($cursos as $curso)
-								@if($cursos_moodle->id != $curso->course_moodle_id)
-									<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-secondary">Activar</a>
-								@endif
-							@endforeach
+							@if($statusCurso == 'ACTIVO')
+								<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-warning">Editar</a>
+							@endif
 
-
+							@if($statusCurso == 'MOODLE')
+								<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-secondary">Activar</a>
+							@endif
+							
 						@endif
 					</h3>
 					<p class="description text-center">

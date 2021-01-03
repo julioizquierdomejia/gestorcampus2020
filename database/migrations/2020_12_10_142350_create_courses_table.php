@@ -15,7 +15,11 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->string('course_moodle_id');
+
+            $table->unsignedBigInteger('course_group_id')->nullable();
+
             $table->string('categoria');
             $table->string('fullname')->nullable();
             $table->string('shortname')->nullable();

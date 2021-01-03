@@ -5,27 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseMoodle extends Model
+class course_group extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'status',
+    ];
 
     /**
      * The database connection used by the model.
      *
      * @var string
      */
-     protected $connection = 'mysql_moodle';
+     protected $connection = 'mysql';
  
      /**
      * The database table used by the model.
      *
      * @var string
      */
-     protected $table = 'course';
-
-    public function cruceDeCursos() {
-        return $this->hasMany( Course::class, 'course_moodle_id' );
-    }
-
-
+     //protected $table = 'courses';
 }

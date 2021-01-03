@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Cursos'])
 
 @section('content')
-
+	
 	<div class="row">
 		<div class="col">
 			@foreach($categorias as $categoria)
-			<h4>{{$categoria->name}}</h4>
-			<table class="table table-hover">
+				<h4>{{$categoria->name}}</h4>
+				<table class="table table-hover">
 				<thead class="thead-dark">
 				    <tr>
 				      <th scope="col">id</th>
@@ -16,39 +16,35 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-						@foreach($cursos_moodle as $curso_moodle)
-							@if($curso_moodle->category == $categoria->id)
-								<tr>
-							      <th scope="row">{{ $curso_moodle->id }}</th>
-							      <td>{{ $curso_moodle->shortname }}</td>
-							      <td>
-							      	@if($status == 0) <!-- Base de datos cursos vacia -->
-							      		<span class="badge badge-pill badge-warning">Solo Moodle</span>
-							      	@else <!-- Base de datos con información -->
-							      		
-							      	@endif
+					@foreach($cursos_iterados as $key => $curso)
+						@if($categoria->id == $curso[3])
 
-							      	<!-----------
-							      	@foreach($cursos as $curso)
-						      			@if($curso->course_moodle_id == $curso_moodle->id)
-						      				<span class="badge badge-pill badge-success">Disponible</span>
-						      				@continue
-						      			@endif
-						      		@endforeach
-						      		----->
-							      </td>
-							      <td>
-							      	<a href="/cursos/{{$curso_moodle->id}}" title="show">
-			                            <i class="fas fa-eye text-success  fa-lg"></i>
-			                        </a>
-							      </td>
-							    </tr>
+							@if($curso[2] == 'ACTIVO')
+								<tr class="bg-success">
+							@else
+								<tr>
 							@endif
-						@endforeach
+
+							
+								<th scope="row">{{$curso[0]}}</th>
+								<td>{{$curso[1]}}</td>
+								<td>{{$curso[2]}}</td>
+								<td>
+									<a href="/cursos/{{$curso[0]}}" title="show">
+										@if($curso[2] == 'ACTIVO')
+											<i class="fas fa-eye text-white  fa-lg"></i>
+										@else
+											<i class="fas fa-eye text-success  fa-lg"></i>
+										@endif
+			                        </a>
+								</td>
+							</tr>
+						@endif
+					@endforeach
 					</tbody>
 				</table>
 			@endforeach
-		</div>	
+		</div>
 	</div>
 
 @endsection

@@ -12,6 +12,13 @@
   </a>
 </li>
 
+<li class="{{ request()->routeIs('grupos') ? 'active' : '' }}">
+  <a href="/grupos">
+    <i class="fal fa-object-group"></i>
+    <p>Agrupacion de cursos</p>
+  </a>
+</li>
+
 <li class="{{ request()->routeIs('cursos') ? 'active' : '' }}">
   <a href="/cursos">
     <i class="fal fa-clipboard-user"></i>
