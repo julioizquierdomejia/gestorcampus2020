@@ -20,7 +20,7 @@
 </li>
 
 <li class="{{ request()->routeIs('cursos') ? 'active' : '' }}">
-  <a href="/cursos">
+  <a href="cursos">
     <i class="fal fa-clipboard-user"></i>
     <p>Cursos</p>
   </a>
