@@ -128,7 +128,7 @@
                         @if($curso->course_group_id == $grupo[0] )
                           <div class="col mb-4">
                             <div class="card">
-                              <a href="/detallecurso/{{ $curso->id}}">
+                              <a href=" {{ route('curso.detail', $curso->id) }}"></a>
                                 <img src="images/curso01.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                   <h5 class="card-title">{{ $curso->shortname  }}</h5>
