@@ -22,15 +22,15 @@
 					<h3>
 
 						@if($cursos->isEmpty())
-							<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-secondary">Activar</a>
+							<a href=" {{ route('curso.active', $cursos_moodle->id) }} " class="btn btn-secondary">Activar</a>
 						@else
 
 							@if($statusCurso == 'ACTIVO')
-								<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-warning">Editar</a>
+								<a href=" {{ route('curso.active', $cursos_moodle->id) }} " class="btn btn-warning">Editar</a>
 							@endif
 
 							@if($statusCurso == 'MOODLE')
-								<a href="/cursos/{{$cursos_moodle->id}}/activar" class="btn btn-secondary">Activar</a>
+								<a href=" {{ route('curso.active', $cursos_moodle->id) }} " class="btn btn-secondary">Activar</a>
 							@endif
 							
 						@endif

@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => 'Grupos para Cursos'])
 @section('content')
 	
-	<a href="grupos/create" class="btn btn-primary"><i class="fal fa-layer-group"></i> Crear nuevo Grupo</a>
+	<a href="{{ route('grupos.create')}}" class="btn btn-primary"><i class="fal fa-layer-group"></i> Crear nuevo Grupo</a>
 	<div class="row row-cols-1 row-cols-md-4 g-4 mt-5">
 		@foreach($grupos as $key => $grupo)
 		  <div class="col">
