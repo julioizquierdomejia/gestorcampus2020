@@ -40,13 +40,13 @@ Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 
 //Route::resource('/cursos', App\Http\Controllers\CourseController::class);
 
 Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(function () {
-	Route::get('/cursos', [App\Http\Controllers\CourseController::class, 'index'])->name('cursos');
-	Route::get('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('curso.show');
-	Route::get('/cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active']);
-	Route::post('/cursos', [App\Http\Controllers\CourseController::class, 'store']);
+	Route::get('cursos', [App\Http\Controllers\CourseController::class, 'index'])->name('cursos');
+	Route::get('cursos/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('curso.show');
+	Route::get('cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active']);
+	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store']);
 
 
-	Route::resource('grupos', App\Http\Controllers\CourseGroupController::class);
+	Route::resource('grupos', App\Http\Controllers\GroupController::class);
 
 
 });

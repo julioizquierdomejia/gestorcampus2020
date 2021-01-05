@@ -99,22 +99,33 @@
 
         <div class="content">
 
+          
+          <div class="row">
+            <div class="col">
+              
+
+
+            </div>
+          </div>
+
+
+
           <div class="row">
             <div class="col p-5">
               <h2 class="title-seccion">Nuestros Cursos</h2>
               <nav class="mt-5">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  @foreach($categorias as $categoria)
-                  <a class="nav-item nav-link @if ($loop->first) active @endif" id="nav-home-tab_" data-toggle="tab" href="#B{{$categoria->category_id}}" role="tab" aria-controls="nav-home_" aria-selected="true">{{$categoria->name}}</a>
+                  @foreach($grupos_iterados as $grupo)
+                  <a class="nav-item nav-link @if ($loop->first) active @endif" id="nav-home-tab_" data-toggle="tab" href="#B{{$grupo[0]}}" role="tab" aria-controls="nav-home_" aria-selected="true">{{$grupo[1]}}</a>
                   @endforeach
                 </div>
               </nav>
               <div class="tab-content p-4" id="nav-tabContent">
-                @foreach($categorias as $categoria)
-                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$categoria->category_id}}" role="tabpanel" aria-labelledby="nav-home-tab">
+                @foreach($grupos_iterados as $grupo)
+                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row row-cols-1 row-cols-md-5">
                       @foreach($cursos as $curso)
-                        @if($curso->categoria == $categoria->category_id )
+                        @if($curso->course_group_id == $grupo[0] )
                           <div class="col mb-4">
                             <div class="card">
                               <a href="/detallecurso/{{ $curso->id}}">

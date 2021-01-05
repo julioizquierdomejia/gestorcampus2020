@@ -31,3 +31,18 @@
 		}
 	}
 }
+
+.form-check-radio{
+
+	.form-check-label{
+		input{
+			opacity: .4;
+		}
+
+		span{
+			margin-left: 10px;
+			margin-top: -4px!important;
+			font-size: 14px;
+		}
+	}
+}

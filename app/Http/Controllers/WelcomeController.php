@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Group;
 use App\Models\UserMoodle;
 use App\Models\CourseMoodle;
 use App\Models\CourseCategoryMoodle;
@@ -23,7 +24,20 @@ class WelcomeController extends Controller
     	$cursos = Course::all();
         $categorias = Category::orderBy('name', 'asc')->get();
     	$roles = Role::all();
-    	
-        return view('welcome', compact('cursos', 'roles', 'categorias'));
+        $grupos = Group::all();
+
+        $grupos_iterados = [];
+        //iteramos los grupos de moodle para ver cuales se estan usando en cursos activos
+        foreach ($grupos as $key => $item) {
+
+            $grupo_activo = Course::where('course_group_id', $item->id)->first();
+
+            if ($grupo_activo) {
+                array_push($grupos_iterados, [$item->id, $item->name]);
+            }
+        }
+
+        
+        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados'));
     }
 }

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\course_group;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
 
-
-class CourseGroupController extends Controller
+class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +20,7 @@ class CourseGroupController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $grupos = course_group::all();
+        $grupos = Group::all();
         return view('admin.grupos.index', compact('grupos', 'usuario'));
     }
 
@@ -36,9 +35,8 @@ class CourseGroupController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $grupos = course_group::all();
+        $grupos = Group::all();
         return view('admin.grupos.create', compact('grupos', 'usuario'));
-
     }
 
     /**
@@ -55,25 +53,22 @@ class CourseGroupController extends Controller
             'description' => 'required',
         ]);
 
-        course_group::create($request->all());
+        Group::create($request->all());
 
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $grupos = course_group::all();
+        $grupos = Group::all();
         return view('admin.grupos.index', compact('grupos', 'usuario'));
-
-        //return redirect()->route('admin.grupos.index');
-            //->with('success', 'Project created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\course_group  $course_group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function show(course_group $course_group)
+    public function show(Group $group)
     {
         //
     }
@@ -81,35 +76,32 @@ class CourseGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\course_group  $course_group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(course_group $course_group)
+    public function edit(Group $group)
     {
         //
-
-        $grupo = course_group::find($course_group);
+        $grupo = Group::find($group);
 
         dd($grupo);
 
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $grupo = course_group::where('id', $course_group)->first();
+        $grupo = Group::where('id', $group)->first();
 
         dd($grupo);
-
-        //return view('admin.grupos.edit', compact('usuario', 'course_group'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\course_group  $course_group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, course_group $course_group)
+    public function update(Request $request, Group $group)
     {
         //
     }
@@ -117,10 +109,10 @@ class CourseGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\course_group  $course_group
+     * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function destroy(course_group $course_group)
+    public function destroy(Group $group)
     {
         //
     }
