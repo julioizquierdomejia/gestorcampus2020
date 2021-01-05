@@ -43,7 +43,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('cursos', [App\Http\Controllers\CourseController::class, 'index'])->name('cursos');
 	Route::get('cursos/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('curso.show');
 	Route::get('cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active'])->name('curso.active');
-	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store']);
+	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('curso.store');
 
 
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);

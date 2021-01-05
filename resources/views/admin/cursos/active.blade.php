@@ -38,7 +38,7 @@
 		        Información Complementaria</h5>
 		      </div>
 		      <div class="card-body">
-		      	<form class="form-group" method="POST" action="/cursos" enctype="multipart/form-data">
+		      	<form class="form-group" method="POST" action=" {{ route('curso.store') }} " enctype="multipart/form-data">
 		          @csrf
 		          <input name='course_moodle_id' type="hidden" class="form-control" placeholder="" value="{{$course}}">
 		          <input name='categoria' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->category}}">
