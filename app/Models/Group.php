@@ -5,26 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Group extends Model
 {
     use HasFactory;
 
-
-
     protected $fillable = [
-        'course_moodle_id',
-        'course_group_id',
-        'instructor',
-        'price',
-        'introduccion',
+        'name',
         'description',
-        'Informacion_adicional',
-        'novedades',
-        'categoria',
-        'shortname',
-        'fullname',
         'status',
-        'type',
     ];
 
     /**
@@ -39,7 +27,5 @@ class Course extends Model
      *
      * @var string
      */
-     protected $table = 'courses';
-
-
+     //protected $table = 'courses';
 }

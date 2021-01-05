@@ -28985,3 +28985,13 @@ readers do not read off random characters that represent icons */
   display: block;
 }
 
+.form-check-radio .form-check-label input {
+  opacity: 0.4;
+}
+
+.form-check-radio .form-check-label span {
+  margin-left: 10px;
+  margin-top: -4px !important;
+  font-size: 14px;
+}
+

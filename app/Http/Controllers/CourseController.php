@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
@@ -73,6 +74,13 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
+         $request->validate([
+            'instructor' => 'required',
+            'introduccion' => 'required',
+            'course_group_id' => 'required',
+            'type' => 'required',
+        ]);
         
         $catagorias = Category::all();
         $categoria = $request->categoria;
@@ -163,11 +171,7 @@ class CourseController extends Controller
             $statusCurso = 'ACTIVO';
         }else{
             $statusCurso = 'MOODLE';
-        }
-
-
-        
-        
+        }        
 
         return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status', 'statusCurso'));
     }
@@ -193,7 +197,9 @@ class CourseController extends Controller
         $secciones = CourseSectionMoodle::where('course', $course)->get();
         $cursos = Course::where('status', 1)->get();
 
-        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course'));
+        $grupos = Group::all();
+
+        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos'));
     }
 
 

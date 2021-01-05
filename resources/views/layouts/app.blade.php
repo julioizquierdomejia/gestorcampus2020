@@ -36,7 +36,6 @@ Coded by www.creative-tim.com
 
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
   
-  
   <!-- CSS Files -->
   <link href="/assets/css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -91,7 +90,7 @@ Coded by www.creative-tim.com
     </div>
   </div>
 
-  
+  <!-- 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
@@ -102,7 +101,7 @@ Coded by www.creative-tim.com
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
   <script src="{{asset('js/datatables.js')}}"></script>
   
-  <script src="assets/js/core/popper.min.js"></script>
+  <script src="{{asset('js/core/popper.min.js')}}"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
@@ -111,7 +110,7 @@ Coded by www.creative-tim.com
 
 
 
-  <!--   Core JS Files 
+    Core JS Files 
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap.min.js"></script>
@@ -127,12 +126,10 @@ Coded by www.creative-tim.com
   <script src="{{asset('js/datatables.js')}}"></script>
   -->
 
-  <script>
-    //$(document).ready(function() {
-      // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-      //demo.initChartsPages();
-    //});
-  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
   @yield('javascript')
 </body>
 

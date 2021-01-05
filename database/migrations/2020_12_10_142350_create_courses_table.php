@@ -31,6 +31,7 @@ class CreateCoursesTable extends Migration
             $table->string('price')->nullable();
             $table->string('nuevo')->nullable();
             $table->string('status')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

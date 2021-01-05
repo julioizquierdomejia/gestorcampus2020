@@ -28,6 +28,9 @@
 				</div>
 			</div>
 		</div>
+
+		{{-- Inicia el formulario --}}
+
 		<div class="col-md-8">
 			<div class="card card-user">
 		      <div class="card-header">
@@ -42,48 +45,68 @@
 		          <input name='fullname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->fullname}}">
 		          <input name='shortname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->shortname}}">
 
-		        <div class="row">
-		        	<div class="col">
-		        		<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitch1" checked style="padding:2px; width: 60px;">
-						  <label class="custom-control-label" for="customSwitch1">Activar</label>
-						</div>
-		        	</div>		
-		        </div>
+		          {{-- Campos ocultos de apoyo para los grpos --}}
+		          <input name='course_group_id' type="hidden" class="form-control" placeholder="" value="{{ old('course_group_id') }}" id="course_group_id">
+		          <input name='course_group' type="hidden" class="form-control" placeholder="" value="{{ old('course_group') }}" id="course_group">
 
-		        <div class="row">
-		        	<div class="col">
-		        		<div class="custom-control custom-switch">
-						  <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-						  <label class="custom-control-label" for="customSwitch1">Activar</label>
-						</div>
-		        	</div>		
-		        </div>
+		          {{-- Campos ocultos de apoyo para el tipo de curso --}}
+		          <input name='type' type="hidden" class="form-control" placeholder="" value="{{ old('type') }}" id="type">
+		          <input name='type_name' type="hidden" class="form-control" placeholder="" value="{{ old('type_name') }}" id="type_name">
+			        
+			        <div class="row">
+			        	<div class="col">
+			        		
+			        		<div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="opc-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Seleccione un Grupo
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							  	@foreach($grupos as $key => $grupo)
+							  		<a class="dropdown-item dropdown-item-grupo" href="#" data-id={{$grupo->id}}>{{$grupo->name}}</a>
+							  	@endforeach
+							  </div>
+							  @error('course_group_id')
+			                    <span class="invalid-feedback d-block" role="alert">
+			                        <strong>{{ $message }}</strong>
+			                    </span>
+			                @enderror
+							</div>
+			        	</div>		
+			        </div>
 
-
-				<div class="row">
-		          	<div class="col">
-		          		<div class="form-check">
-						  <input class="form-check-input" type="radio" name="status" id="activo" value="1" checked>
-						  <label class="form-check-label" for="activo">
-						    Activar Curso
-						  </label>
-						</div>
-						<div class="form-check">
-						  <input class="form-check-input" type="radio" name="status" id="inactivo" value="2">
-						  <label class="form-check-label" for="inactivo">
-						    Desactivar Curso
-						  </label>
-						</div>
-		          	</div>
-
-		          </div>
-
+			        <div class="row">
+			        	<div class="col">
+			        		
+			        		<div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="opc-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Seleccione tipo de Curso
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							  	<a class="dropdown-item dropdown-item-type" href="#" data-id='1'>PostPago</a>
+							  	<a class="dropdown-item dropdown-item-type" href="#" data-id='2'>Prepago</a>
+							  </div>
+							  @error('type')
+			                    <span class="invalid-feedback d-block" role="alert">
+			                        <strong>{{ $message }}</strong>
+			                    </span>
+			                @enderror
+							</div>
+			        	</div>		
+			        </div>
+			        
 		          <div class="row">
 		            <div class="col-md-7">
 		              <div class="form-group">
 		                <label>Instructor</label>
-		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="">
+		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}">
+
+		                @error('instructor')
+		                    <span class="invalid-feedback d-block" role="alert">
+		                        <strong>{{ $message }}</strong>
+		                    </span>
+		                @enderror
+
+
 		              </div>
 		            </div>
 		            <div class="col-md-5">
@@ -97,7 +120,13 @@
 		          	<div class="col">
 		          		<div class="form-group">
     						<label for="exampleFormControlTextarea1">Introducción</label>
-    						<textarea class="form-control" id="introduccion" name="introduccion" rows="3"></textarea>
+    						<textarea class="form-control" id="introduccion" name="introduccion" rows="3">{{old('introduccion') }}</textarea>
+
+    						@error('introduccion')
+			                    <span class="invalid-feedback d-block" role="alert">
+			                        <strong>{{ $message }}</strong>
+			                    </span>
+			                @enderror
   						</div>
 		          	</div>
 		          </div>
@@ -140,6 +169,43 @@
 
 
 @endsection
+
+@section('javascript')
+
+	<script type="text/javascript">
+
+		//verificamos si antes de la validacion se selecciono algua opcion con mi input de apoyo
+		if($('#course_group').val() == ''){
+			$('#opc-active').text('Seleccione un Grupo');
+		}else{
+			$('#opc-active').text($('#course_group').val());
+		}
+
+		if($('#type').val() == ''){
+			$('#opc-type').text('Seleccione un tipo de curso');
+		}else{
+			$('#opc-type').text($('#type_name').val());
+		}
+		
+		$('.dropdown-item-grupo').click(function(){
+
+			$('#opc-active').text($(this).text());
+			$('#course_group_id').val($(this).data('id'));
+			$('#course_group').val($(this).text());
+			//alert($(this).text())
+		})
+
+		$('.dropdown-item-type').click(function(){
+
+			$('#opc-type').text($(this).text());
+			$('#type').val($(this).data('id'));
+			$('#type_name').val($(this).text());
+		})
+
+	</script>
+	
+@endsection
+
 
   
     
