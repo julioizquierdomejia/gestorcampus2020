@@ -13,7 +13,7 @@
 </li>
 
 <li class="{{ request()->routeIs('grupos') ? 'active' : '' }}">
-  <a href="grupos">
+  <a href=" {{ route('grupos.index')}} ">
     <i class="fal fa-object-group"></i>
     <p>Agrupacion de cursos</p>
   </a>
