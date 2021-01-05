@@ -11,7 +11,7 @@
 		        Crear Grupo</h5>
 		      </div>
 		      <div class="card-body">
-		        <form class="form-group" method="POST" action="/grupos" enctype="multipart/form-data">
+		        	<form class="form-group" method="POST" action="{{ route('grupos.store') }}" enctype="multipart/form-data">
 		          @csrf
 		          <input type="hidden" name="status" value="1">
 		          <div class="row">
