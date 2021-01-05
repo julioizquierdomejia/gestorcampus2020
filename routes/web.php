@@ -36,7 +36,7 @@ Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::cl
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
 
 
-Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail']);
+Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail'])->name('curso.detail');
 //Route::resource('/cursos', App\Http\Controllers\CourseController::class);
 
 Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(function () {
