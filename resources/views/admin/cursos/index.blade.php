@@ -30,7 +30,7 @@
 								<td>{{$curso[1]}}</td>
 								<td>{{$curso[2]}}</td>
 								<td>
-									<a href="/cursos/{{$curso[0]}}" title="show">
+									<a href="cursos/{{$curso[0]}}" title="show">
 										@if($curso[2] == 'ACTIVO')
 											<i class="fas fa-eye text-white  fa-lg"></i>
 										@else
