@@ -66,12 +66,13 @@ return [
         'mysql_moodle'  => [
         'driver'     => 'mysql',
         'host'       => env('MOODLE_HOST', 'localhost'),
+        'port' => env('DB_PORT', '3306'),
         'database'   => env('MOODLE_DATABASE', 'forge'),
         'username'   => env('MOODLE_USERNAME', 'forge'),
         'password'   => env('MOODLE_PASSWORD', ''),
         'charset'    => 'utf8',
         'collation'  => 'utf8_unicode_ci',
-        'prefix'     => 'mdl_cv',
+        'prefix'     => 'mdl_cv_',
         'strict'     => false,
          ],
         
