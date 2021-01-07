@@ -74,7 +74,7 @@ class LoginController extends Controller
                 }
         }
 
-        $moodle_session = ($cookies['MoodleSession']);
+        $moodle_session = ($cookies['MoodleSession']); 
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://www.desarrollo.aspefam.org.pe/login/index.php");
@@ -88,7 +88,7 @@ class LoginController extends Controller
         $info = curl_getinfo($ch);
         $headers = self::get_headers_from_curl_response($response);
 
-        dd($ch);
+        dd($my_login);
 
         $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
 
