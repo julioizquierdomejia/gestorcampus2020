@@ -87,6 +87,9 @@ class LoginController extends Controller
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
         $headers = self::get_headers_from_curl_response($response);
+
+        dd($headers);
+
         $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
 
         $data = array("error" => "0","secure"=>$headers['Set-Cookie'], "ruta" => "");
