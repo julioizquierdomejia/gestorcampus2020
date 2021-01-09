@@ -60,7 +60,7 @@ class LoginController extends Controller
         //when user exists
         //$my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/");
         $my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/index.php");
-        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);	var_dump($my_login);
+        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);
         @$token = $logintoken[1][0];
 
         if(!empty($logintoken[1])){
@@ -94,13 +94,18 @@ class LoginController extends Controller
         $_SESSION["MoodleSession"] = $headers['Set-Cookie'];
 	
         $data = array("error" => "0","secure"=>$headers['Set-Cookie'], "ruta" => "");
-	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
-	$ss = explode(";", $headers['Set-Cookie']);
-	$cookies_s = explode("=", $ss[0]);
+    	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
+    	$ss = explode(";", $headers['Set-Cookie']);
+    	$cookies_s = explode("=", $ss[0]);
 
-	//dd($data['secure']);
-	//Cookie::queue("text", "123",12);
-        return back()->withCookie(cookie("text", "ok", 20));
+        $nueva_cookie = cookie('moodle', 'true', 20);
+        $nueva_cookie = cookie('moodle', 'true', 20);
+
+        return $nueva_cookie;
+
+    	//dd($data['secure']);
+    	//Cookie::queue("text", "123",12);
+        //return back()->withCookie(cookie("text", "ok", 20));
 
 	}
 
