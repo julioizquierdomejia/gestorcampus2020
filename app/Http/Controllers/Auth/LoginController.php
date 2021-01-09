@@ -100,7 +100,7 @@ class LoginController extends Controller
 
 	//dd($data['secure']);
 	//Cookie::queue("text", "123",12);
-        return back()->withCookie(Cookie::make("text", "ok", 20));
+        return back()->withCookie(cookie("text", "ok", 20));
 
 	}
 
