@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class LoginController extends Controller
 {
@@ -98,8 +99,10 @@ class LoginController extends Controller
 	$cookies_s = explode("=", $ss[0]);
 
 	//dd($data['secure']);
-        return redirect("/")->withCookie(cookie("test_cookie", "ok"));
-    }
+	//Cookie::queue("text", "123",12);
+        return back()->withCookie(Cookie::make("text", "ok", 20));
+
+	}
 
     /**
      * Create a new controller instance.
