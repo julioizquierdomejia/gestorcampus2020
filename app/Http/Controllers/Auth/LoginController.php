@@ -48,6 +48,7 @@ class LoginController extends Controller
         return $headers;
     }
 
+
     protected function authenticated(Request $request, $user)
     {
  	
@@ -89,10 +90,15 @@ class LoginController extends Controller
 
 
         $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
-
+        $_SESSION["MoodleSession"] = $headers['Set-Cookie'];
+	
         $data = array("error" => "0","secure"=>$headers['Set-Cookie'], "ruta" => "");
+	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
+	$ss = explode(";", $headers['Set-Cookie']);
+	$cookies_s = explode("=", $ss[0]);
 
-        return redirect(RouteServiceProvider::HOME);
+	//dd($data['secure']);
+        return redirect("/")->withCookie(cookie("test_cookie", "ok"));
     }
 
     /**
