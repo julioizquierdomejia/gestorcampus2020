@@ -50,16 +50,15 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        
+ 	
         $username = $user->email;
-        $password = $user->password;
+        $password = $request->password;
 
 
         //when user exists
         //$my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/");
         $my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/index.php");
-        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);
-
+        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);	var_dump($my_login);
         @$token = $logintoken[1][0];
 
         if(!empty($logintoken[1])){
@@ -88,7 +87,6 @@ class LoginController extends Controller
         $info = curl_getinfo($ch);
         $headers = self::get_headers_from_curl_response($response);
 
-        dd($my_login);
 
         $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
 
