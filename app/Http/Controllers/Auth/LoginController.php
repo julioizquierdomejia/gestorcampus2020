@@ -7,7 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Cookie;
+//use Symfony\Component\HttpFoundation\Cookie;
 
 class LoginController extends Controller
 {
@@ -60,7 +60,8 @@ class LoginController extends Controller
         //when user exists
         //$my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/");
         $my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/index.php");
-        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);	var_dump($my_login);
+        preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);	
+
         @$token = $logintoken[1][0];
 
         if(!empty($logintoken[1])){
@@ -92,15 +93,23 @@ class LoginController extends Controller
 
         $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
         $_SESSION["MoodleSession"] = $headers['Set-Cookie'];
-	
+
         $data = array("error" => "0","secure"=>$headers['Set-Cookie'], "ruta" => "");
 	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
+	
 	$ss = explode(";", $headers['Set-Cookie']);
+	
 	$cookies_s = explode("=", $ss[0]);
+
 
 	//dd($data['secure']);
 	//Cookie::queue("text", "123",12);
-        return back()->withCookie(cookie("text", "ok", 20));
+	
+$cookie = \Cookie::make('MoodleSession', $cookies_s[1], 100, "/", "www.desarrollo.aspefam.org.pe", true);
+//setcookie("t", "o", ["path"=>"/", "secure"=>true]);
+//dd($_COOKIE);
+
+        return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
 
 	}
 
