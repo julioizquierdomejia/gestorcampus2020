@@ -27,7 +27,6 @@ class CreateUserMoodlesTable extends Migration
             $table->string('name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('mothers_last_name')->nullable();
-            $table->string('mothers_last_name')->nullable();
             $table->integer('cod_nivel')->nullable();
 
             $table->string('sexo')->nullable();
