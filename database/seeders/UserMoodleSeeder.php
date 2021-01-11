@@ -25,6 +25,7 @@ class UserMoodleSeeder extends Seeder
         $user->name = 'JULIO JORGE';
         $user->last_name = 'IZQUIERDO';
         $user->mothers_last_name = 'MEJIA';
+        $user->cod_nivel = 1;
 
         $user->sexo = '1';
         $user->avatar = 'avatar_man.png';
