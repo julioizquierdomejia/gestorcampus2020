@@ -22,6 +22,7 @@ class User extends Authenticatable
         'document',
         'email',
         'status',
+        'cod_nivel',
         'password',
     ];
 
