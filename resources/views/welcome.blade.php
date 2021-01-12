@@ -175,7 +175,7 @@
                               <div class="col mb-4">
                                 <div class="card card-about" id="card_about_2">
                                     <div class="card-over"></div>
-                                    <img class="img-card-info" src="{{ asset('/images/image_02.png') }}">
+                                    <img class="img-card-info" src="{{ asset('/images/image_01.png') }}">
                                   <div class="card-body">
                                   </div>
                                 </div>
