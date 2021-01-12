@@ -38,19 +38,19 @@
                     <div class="row row-cols-1 row-cols-md-3 mt-3">
                       <div class="col mb-4">
                         <div class="card">
-                          <img src="/images/curso02.png" class="card-img-top" alt="...">
+                          <img src="{{ asset('/images/curso02.png') }}" class="card-img-top" alt="...">
                           
                         </div>
                       </div>
                       <div class="col mb-4">
                         <div class="card">
-                          <img src="/images/curso03.png" class="card-img-top" alt="...">
+                          <img src="{{ asset('/images/curso03.png') }}" class="card-img-top" alt="...">
                           
                         </div>
                       </div>
                       <div class="col mb-4">
                         <div class="card">
-                          <img src="/images/curso04.png" class="card-img-top" alt="...">
+                          <img src="{{ asset('/images/curso04.png') }}" class="card-img-top" alt="...">
                           
                         </div>
                       </div>
