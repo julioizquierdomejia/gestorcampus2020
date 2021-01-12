@@ -53,7 +53,6 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
  	
-        /*
         $username = $user->email;
         $password = $request->password;
 
@@ -97,8 +96,21 @@ class LoginController extends Controller
         $_SESSION["MoodleSession"] = $headers['Set-Cookie'];
 
         $data = array("error" => "0","secure"=>$headers['Set-Cookie'], "ruta" => "");
-        */
 
+        preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
+        $ss = explode(";", $headers['Set-Cookie']);
+        $cookies_s = explode("=", $ss[0]);
+
+        //dd($data['secure']);
+        //Cookie::queue("text", "123",12);
+        
+        $cookie = \Cookie::make('MoodleSession', $cookies_s[1], 100, "/", "www.desarrollo.aspefam.org.pe", true);
+        //setcookie("t", "o", ["path"=>"/", "secure"=>true]);
+        //dd($_COOKIE);
+
+        return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
+
+        
         /*
     	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
     	$ss = explode(";", $headers['Set-Cookie']);
@@ -115,20 +127,7 @@ class LoginController extends Controller
 
         */
 
-        /*
-    	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
-    	$ss = explode(";", $headers['Set-Cookie']);
-    	$cookies_s = explode("=", $ss[0]);
 
-    	//dd($data['secure']);
-    	//Cookie::queue("text", "123",12);
-    	
-        $cookie = \Cookie::make('MoodleSession', $cookies_s[1], 100, "/", "www.desarrollo.aspefam.org.pe", true);
-        //setcookie("t", "o", ["path"=>"/", "secure"=>true]);
-        //dd($_COOKIE);
-
-        return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
-        */
 
 	}
 

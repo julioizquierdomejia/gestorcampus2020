@@ -3,24 +3,58 @@
 @section('content')
 
 
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Matrícula - {{$curso->fullname}}</h5>
+        <!--button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button-->
       </div>
       <div class="modal-body">
-        ...
+        <h6 class="mt-2 mb-2"><i class="fal fa-user-chart mr-2 mt-3"></i> Profesor : {{$curso->instructor}}</h6>
+        <p class="mt-3">
+          {{$curso->introduccion}}
+        </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Lo quiero</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal_sincosto" tabindex="-1" aria-labelledby="modal_sincosto" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_sincosto">Terminos y condiciones para los Cursos sin costo</h5>
+        <!--button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button-->
+      </div>
+      <div class="modal-body">
+        <p class="mt-3">
+          El curso enmención tiene una categoría de sin costo, lo cual indica que se puede llevar el curso sin hacer algun tipo de pago previo
+          si Ud estudiante logra terminar el curso con notas aprobatorias, puede generar un ceretificado el cual va a dar constancia que ud
+          terminó y el curso y aprobo
+        </p>
+
+        <p>
+          Dicho Certificado, tienen un costo de S/. 2.50 Soles
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Lo quiero</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
    <div class="container mt-5">
           <div class="row">
@@ -63,12 +97,14 @@
                           <i class="fal fa-wallet"></i> - S/. {{$curso->price}} Soles
                         @endif
                     </div>
+
+                    <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto"><i class="far fa-question-circle"></i></a>
                     
                     <p class="mt-3">
                       {{$curso->introduccion}}
                     </p>
                     @if($curso->type == 1)
-                      <a href="" class="btn btn-success"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
+                      <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
                     @else
                       <a href="" class="btn btn-danger"><i class="fal fa-shopping-cart mr-3"></i>Agregar a Carrito</a>
                     @endif
