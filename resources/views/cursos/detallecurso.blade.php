@@ -32,7 +32,7 @@
               <div class="row">
                 <div class="col-sm-6 p-4">
                     <div class="row">
-                        <img src="/images/curso01.png" class="img-fluid" alt="Responsive image">
+                        <img src="{{ asset('/images/curso01.png') }}" class="img-fluid" alt="Responsive image">
                     </div>
 
                     <div class="row row-cols-1 row-cols-md-3 mt-3">
