@@ -166,7 +166,7 @@
                               <div class="col mb-4">
                                 <div class="card card-about" id="card_about_1">
                                     <div class="card-over"></div>
-                                    <img class="img-card-info" src="images/image_01.png">
+                                    <img class="img-card-info" src="{{ asset('/images/image_01.png') }}">
                                   <div class="card-body">
                                   </div>
                                 </div>
@@ -175,7 +175,7 @@
                               <div class="col mb-4">
                                 <div class="card card-about" id="card_about_2">
                                     <div class="card-over"></div>
-                                    <img class="img-card-info" src="images/image_02.png">
+                                    <img class="img-card-info" src="{{ asset('/images/image_02.png') }}">
                                   <div class="card-body">
                                   </div>
                                 </div>
@@ -184,7 +184,7 @@
                               <div class="col mb-4">
                                 <div class="card card-about" id="card_about_3">
                                     <div class="card-over"></div>
-                                    <img class="img-card-info" src="images/image_03.png">
+                                    <img class="img-card-info" src="{{ asset('/images/image_03.png') }}">
                                   <div class="card-body">
                                   </div>
                                 </div>
