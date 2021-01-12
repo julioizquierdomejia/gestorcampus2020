@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome']);
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
 Auth::routes();
 
@@ -35,7 +35,6 @@ Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::cl
 
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
 
-
 Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail'])->name('curso.detail');
 //Route::resource('/cursos', App\Http\Controllers\CourseController::class);
 
@@ -45,11 +44,16 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active'])->name('curso.active');
 	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('curso.store');
 
-
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);
+
+	//routas para ver el perfil del usuario
+	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
 
 
 });
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
 
 //para detalle de cursos
 /*
