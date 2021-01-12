@@ -1,4 +1,5 @@
-app/Http/Controllers/Auth/LoginController
+app/Http/Controllers/Auth/LoginController.php
+config/database.php
 /node_modules
 /public/hot
 /public/storage
