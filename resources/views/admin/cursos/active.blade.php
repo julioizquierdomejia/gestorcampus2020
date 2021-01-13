@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => 'Activar Cursos'])
 
 @section('content')
-
+	
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card card-user">

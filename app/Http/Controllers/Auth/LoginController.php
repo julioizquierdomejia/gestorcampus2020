@@ -110,7 +110,7 @@ class LoginController extends Controller
 
         return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
 
-        
+
         /*
     	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
     	$ss = explode(";", $headers['Set-Cookie']);
