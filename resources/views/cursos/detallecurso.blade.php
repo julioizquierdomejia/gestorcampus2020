@@ -100,8 +100,8 @@
 
                     <p>
                       <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">
-                      Si Ud desea adquirir un certificado al final del curso luego de haber culminado
-                      con notas aprobatorias - hacer click aquí
+                      Para poder adquirir el certificado del curso tomado, luego de haberlo aprobado, deberá de ahcer una inversión
+                      para mas información hacer click Aquí
                     </a>
                     </p>
                     
