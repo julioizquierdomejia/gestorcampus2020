@@ -101,7 +101,7 @@
                     <p>
                       <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">
                       Para poder adquirir el certificado del curso tomado, luego de haberlo aprobado, deberá de ahcer una inversión
-                      para mas información hacer click Aquí
+                      para mas información. Hacer click Aquí
                     </a>
                     </p>
                     
