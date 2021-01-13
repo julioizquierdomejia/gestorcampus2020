@@ -92,13 +92,13 @@
 
                     <div class="badge badge-primary text-wrap p-2 pr-3 pl-3 mt-2 mb-2" style="font-size: 14px;">
                         @if($curso->type == 1)
-                          Sin costo
+                          Sin costo de participación
                         @else
                           <i class="fal fa-wallet"></i> - S/. {{$curso->price}} Soles
                         @endif
                     </div>
 
-                    <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto"><i class="far fa-question-circle"></i></a>
+                    <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">Términos y Condiciones</a>
                     
                     <p class="mt-3">
                       {{$curso->introduccion}}
