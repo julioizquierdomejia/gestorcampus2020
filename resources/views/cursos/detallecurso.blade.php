@@ -98,7 +98,12 @@
                         @endif
                     </div>
 
-                    <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">Términos y Condiciones</a>
+                    <p>
+                      <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">
+                      Si Ud desea adquirir un certificado al final del curso luego de haber culminado
+                      con notas aprobatorias - hacer click aquí
+                    </a>
+                    </p>
                     
                     <p class="mt-3">
                       {{$curso->introduccion}}
