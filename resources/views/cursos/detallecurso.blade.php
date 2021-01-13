@@ -48,8 +48,8 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Lo quiero</button>
+        <!--button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Lo quiero</button-->
       </div>
     </div>
   </div>
@@ -100,8 +100,8 @@
 
                     <p>
                       <a href="" type="button" class="" data-toggle="modal" data-target="#modal_sincosto">
-                      Para poder adquirir el certificado del curso tomado, luego de haberlo aprobado, deberá de ahcer una inversión
-                      para mas información. Hacer click Aquí
+                      Para poder adquirir el certificado del Curso, luego de haberlo aprobado, deberá de hacer una inversión.
+                      Para mas información, hacer click Aquí.
                     </a>
                     </p>
                     
