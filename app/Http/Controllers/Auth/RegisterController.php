@@ -76,6 +76,8 @@ class RegisterController extends Controller
             $json = file_get_contents($url, false );
             $infoUser =  json_decode($json);
 
+            dd($infoUser);
+
             $apellido_paterno = $infoUser[0]->apellido_paterno;
             $apellido_materno = $infoUser[0]->apellido_materno;
             $nombres = $infoUser[0]->nombres;
