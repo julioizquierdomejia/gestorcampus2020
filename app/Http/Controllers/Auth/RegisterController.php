@@ -79,7 +79,7 @@ class RegisterController extends Controller
             if($infoUser == null){
                 crearUsuarioGestor();
             }else{
-                crearUsuarioGestor($infoUser);
+                crearUsuarioGestor_DNI($infoUser);
             }
 
         }else{
