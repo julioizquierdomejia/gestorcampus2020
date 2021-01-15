@@ -77,135 +77,135 @@ class RegisterController extends Controller
             $infoUser =  json_decode($json);
 
             if($infoUser == null){
-                echo 'no hay nada';
-                dd($infoUser);
+                crearUsuarioGestor();
             }else{
-                echo 'no hay nada';
-                dd($infoUser);
+                crearUsuarioGestor($infoUser);
             }
 
-            $apellido_paterno = $infoUser[0]->apellido_paterno;
-            $apellido_materno = $infoUser[0]->apellido_materno;
-            $nombres = $infoUser[0]->nombres;
-            $pais_domicilio = $infoUser[0]->pais_domicilio;
-            $sexo = $infoUser[0]->sexo;
-            
-            $direccion = $infoUser[0]->direccion;
-            $urbanizacion = $infoUser[0]->localidad_domicilio;
-            $distrito = $infoUser[0]->distrito_domicilio;
-            $city = $infoUser[0]->departamento_domicilio;
-            $provincia = $infoUser[0]->provincia_domicilio;
-            $pais = $infoUser[0]->pais_domicilio;
-            
-            if($sexo == 1){
-                $avatar = 'avatar_man.png';
-            }else{
-                $avatar = 'avatar_woman.png';
-            }
-
-            $user = User::create([
-            //return User::create([
-                'document' => $data['document'],
-                'email' => $data['email'],
-                'status' => 1,
-                'password' => Hash::make($data['password']),
-            ]);
-
-            $userMoodle = new UserMoodle();
-            $userMoodle->user_id = $user->id;
-
-            $userMoodle->document = $data['document'];
-            
-            $userMoodle->user = $data['email'];
-            $userMoodle->password = bcrypt($data['password']);
-
-            $userMoodle->name = $nombres;
-            $userMoodle->last_name = $apellido_paterno;
-            $userMoodle->mothers_last_name = $apellido_materno;
-            $userMoodle->sexo = $sexo;
-            $userMoodle->avatar = $avatar;
-
-            $userMoodle->address = $direccion;
-            $userMoodle->urbanizacion = $urbanizacion;
-            $userMoodle->distrito = $distrito;
-            $userMoodle->city = $city;
-            $userMoodle->provincia = $provincia;
-            $userMoodle->country = $pais;
-            
-
-            $userMoodle->save();
-
-            $user->roles()->attach(7);
-
-            //aqui se genera un Log
-            $log = Log::create([
-                //return User::create([
-                'user_id' => $user->id,
-                'section' => 'Usuarios',
-                'action' => 'Creación',
-                'feedback' => 'self',
-                'ip' => 'ip',
-                'device' => 'device',
-                'system' => 'system'
-            ]);
-
-            return $user;
         }else{
 
-            $user = User::create([
-            //return User::create([
-                'document' => $data['document'],
-                'email' => $data['email'],
-                'status' => 1,
-                'password' => Hash::make($data['password']),
-            ]);
+            crearUsuarioGestor();
+        }
+        
+    }
 
-            $userMoodle = new UserMoodle();
-            $userMoodle->user_id = $user->id;
-            
-            $userMoodle->user = $data['email'];
-            $userMoodle->password = bcrypt($data['password']);
-
-            $userMoodle->document = $data['document'];
-            
-            $userMoodle->name = '';
-            $userMoodle->last_name = '';
-            $userMoodle->mothers_last_name = '';
-            $userMoodle->sexo = '';
-            $userMoodle->avatar = 'avatar_man.png';
-
-            $userMoodle->address = '';
-            $userMoodle->urbanizacion = '';
-            $userMoodle->distrito = '';
-            $userMoodle->city = '';
-            $userMoodle->provincia = '';
-            $userMoodle->country = '';
-            
-
-            $userMoodle->save();
-
-            $user->roles()->attach(7);
-
-            //aqui se genera un Log
-            $log = Log::create([
-                //return User::create([
-                'user_id' => $user->id,
-                'section' => 'Usuarios',
-                'action' => 'Creación',
-                'feedback' => 'self',
-                'ip' => 'ip',
-                'device' => 'device',
-                'system' => 'system'
-            ]);
-
-            return $user;
+    public crearUsuarioGestor_DNI($infoUser){
+        $apellido_paterno = $infoUser[0]->apellido_paterno;
+        $apellido_materno = $infoUser[0]->apellido_materno;
+        $nombres = $infoUser[0]->nombres;
+        $pais_domicilio = $infoUser[0]->pais_domicilio;
+        $sexo = $infoUser[0]->sexo;
+        
+        $direccion = $infoUser[0]->direccion;
+        $urbanizacion = $infoUser[0]->localidad_domicilio;
+        $distrito = $infoUser[0]->distrito_domicilio;
+        $city = $infoUser[0]->departamento_domicilio;
+        $provincia = $infoUser[0]->provincia_domicilio;
+        $pais = $infoUser[0]->pais_domicilio;
+        
+        if($sexo == 1){
+            $avatar = 'avatar_man.png';
+        }else{
+            $avatar = 'avatar_woman.png';
         }
 
+        $user = User::create([
+        //return User::create([
+            'document' => $data['document'],
+            'email' => $data['email'],
+            'status' => 1,
+            'password' => Hash::make($data['password']),
+        ]);
+
+        $userMoodle = new UserMoodle();
+        $userMoodle->user_id = $user->id;
+
+        $userMoodle->document = $data['document'];
+        
+        $userMoodle->user = $data['email'];
+        $userMoodle->password = bcrypt($data['password']);
+
+        $userMoodle->name = $nombres;
+        $userMoodle->last_name = $apellido_paterno;
+        $userMoodle->mothers_last_name = $apellido_materno;
+        $userMoodle->sexo = $sexo;
+        $userMoodle->avatar = $avatar;
+
+        $userMoodle->address = $direccion;
+        $userMoodle->urbanizacion = $urbanizacion;
+        $userMoodle->distrito = $distrito;
+        $userMoodle->city = $city;
+        $userMoodle->provincia = $provincia;
+        $userMoodle->country = $pais;
         
 
+        $userMoodle->save();
 
+        $user->roles()->attach(7);
+
+        //aqui se genera un Log
+        $log = Log::create([
+            //return User::create([
+            'user_id' => $user->id,
+            'section' => 'Usuarios',
+            'action' => 'Creación',
+            'feedback' => 'self',
+            'ip' => 'ip',
+            'device' => 'device',
+            'system' => 'system'
+        ]);
+
+        return $user;
+    }
+
+    //grabar en la tabla usuario moodle
+    public function crearUsuarioGestor(){
+        $user = User::create([
+        //return User::create([
+            'document' => $data['document'],
+            'email' => $data['email'],
+            'status' => 1,
+            'password' => Hash::make($data['password']),
+        ]);
+
+        $userMoodle = new UserMoodle();
+        $userMoodle->user_id = $user->id;
+        
+        $userMoodle->user = $data['email'];
+        $userMoodle->password = bcrypt($data['password']);
+
+        $userMoodle->document = $data['document'];
+        
+        $userMoodle->name = '';
+        $userMoodle->last_name = '';
+        $userMoodle->mothers_last_name = '';
+        $userMoodle->sexo = '';
+        $userMoodle->avatar = 'avatar_man.png';
+
+        $userMoodle->address = '';
+        $userMoodle->urbanizacion = '';
+        $userMoodle->distrito = '';
+        $userMoodle->city = '';
+        $userMoodle->provincia = '';
+        $userMoodle->country = '';
         
 
-        
+        $userMoodle->save();
+
+        $user->roles()->attach(7);
+
+        //aqui se genera un Log
+        $log = Log::create([
+            //return User::create([
+            'user_id' => $user->id,
+            'section' => 'Usuarios',
+            'action' => 'Creación',
+            'feedback' => 'self',
+            'ip' => 'ip',
+            'device' => 'device',
+            'system' => 'system'
+        ]);
+
+        return $user;   
     }
 }
