@@ -79,7 +79,7 @@ class RegisterController extends Controller
             if($infoUser == null){
                 self::crearUsuarioGestor();
             }else{
-                self::crearUsuarioGestor_DNI($infoUser);
+                self::crearUsuarioGestor_DNI($infoUser, $data);
             }
 
         }else{
@@ -89,7 +89,7 @@ class RegisterController extends Controller
         
     }
 
-    public function crearUsuarioGestor_DNI($infoUser){
+    public function crearUsuarioGestor_DNI($infoUser, $data){
         $apellido_paterno = $infoUser[0]->apellido_paterno;
         $apellido_materno = $infoUser[0]->apellido_materno;
         $nombres = $infoUser[0]->nombres;
