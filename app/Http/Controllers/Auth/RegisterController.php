@@ -77,14 +77,14 @@ class RegisterController extends Controller
             $infoUser =  json_decode($json);
 
             if($infoUser == null){
-                self::crearUsuarioGestor();
+                self::crearUsuarioGestor($data);
             }else{
                 self::crearUsuarioGestor_DNI($infoUser, $data);
             }
 
         }else{
 
-            self::crearUsuarioGestor();
+            self::crearUsuarioGestor($data);
         }
         
     }
@@ -159,7 +159,7 @@ class RegisterController extends Controller
     }
 
     //grabar en la tabla usuario moodle
-    public function crearUsuarioGestor(){
+    public function crearUsuarioGestor($data){
         $user = User::create([
         //return User::create([
             'document' => $data['document'],
