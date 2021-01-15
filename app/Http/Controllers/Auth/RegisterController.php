@@ -77,14 +77,14 @@ class RegisterController extends Controller
             $infoUser =  json_decode($json);
 
             if($infoUser == null){
-                crearUsuarioGestor();
+                self::crearUsuarioGestor();
             }else{
-                crearUsuarioGestor_DNI($infoUser);
+                self::crearUsuarioGestor_DNI($infoUser);
             }
 
         }else{
 
-            crearUsuarioGestor();
+            self::crearUsuarioGestor();
         }
         
     }
