@@ -89,7 +89,7 @@ class RegisterController extends Controller
         
     }
 
-    public crearUsuarioGestor_DNI($infoUser){
+    public function crearUsuarioGestor_DNI($infoUser){
         $apellido_paterno = $infoUser[0]->apellido_paterno;
         $apellido_materno = $infoUser[0]->apellido_materno;
         $nombres = $infoUser[0]->nombres;
