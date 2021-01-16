@@ -80,16 +80,16 @@ class RegisterController extends Controller
 
             if($infoUser == null){
                 self::crearUsuarioGestor($data);
-                self::crearUsuarioGestorMoodle($data)
+                self::crearUsuarioGestorMoodle($data);
             }else{
                 self::crearUsuarioGestor_DNI($infoUser, $data);
-                self::crearUsuarioGestorMoodle($data)
+                self::crearUsuarioGestorMoodle($data);
             }
 
         }else{
 
             self::crearUsuarioGestor($data);
-            self::crearUsuarioGestorMoodle($data)
+            self::crearUsuarioGestorMoodle($data);
         }
         
     }
