@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\UserCampusMoodle;
 use App\Models\Log;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 
 class RegisterController extends Controller
 {
@@ -78,15 +80,27 @@ class RegisterController extends Controller
 
             if($infoUser == null){
                 self::crearUsuarioGestor($data);
+                self::crearUsuarioGestorMoodle($data)
             }else{
                 self::crearUsuarioGestor_DNI($infoUser, $data);
+                self::crearUsuarioGestorMoodle($data)
             }
 
         }else{
 
             self::crearUsuarioGestor($data);
+            self::crearUsuarioGestorMoodle($data)
         }
         
+    }
+
+    public function crearUsuarioGestorMoodle($data){
+        $usuarioMoodle = UserCampusMoodle::create([
+            'auth' => 'manual',
+            'username' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+        ]);
     }
 
     public function crearUsuarioGestor_DNI($infoUser, $data){
