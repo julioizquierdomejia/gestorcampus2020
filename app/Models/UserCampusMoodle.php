@@ -9,6 +9,27 @@ class UserCampusMoodle extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'auth',
+        'username',
+        'password',
+        'email',
+    ];
+
+    /** 
+    * The name of the "created at" column. 
+    * 
+    * @var string 
+    */ 
+    const CREATED_AT = 'timecreated'; 
+
+    /** 
+    * The name of the "updated at" column. 
+    * 
+    * @var string 
+    */ 
+    const UPDATED_AT = 'timemodified'; 
+
     /**
      * The database connection used by the model.
      *
@@ -22,13 +43,6 @@ class UserCampusMoodle extends Model
      * @var string
      */
      protected $table = 'user';
-
-
-     protected $fillable = [
-        'auth',
-        'username',
-        'password',
-        'email',
-    ];
+     
 
 }
