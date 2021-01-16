@@ -32,6 +32,8 @@
                           <a href="{{ url('/home') }}" class="btn btn-primary">Administrador</a>
                           <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @else
+                          <a href="{{ route('perfil') }}" class="btn btn-success">Mi área personal</a>
+                          <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @endif
                         
                     @else
