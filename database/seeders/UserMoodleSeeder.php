@@ -17,8 +17,9 @@ class UserMoodleSeeder extends Seeder
         //
         $user = new UserMoodle();
         $user->user_id = 1;
-        $user->user = 'julio.izquierdo.mejia@gmail.com';
-        $user->password = bcrypt('M4r14Jul14123456');
+        $user->user = 'campusvirtual@aspefam.org.pe';
+        $user->password = bcrypt('.Campus460..');
+        $user->user_moodle_id = 2;
         
         $user->document = '06813928';
         

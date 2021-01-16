@@ -19,6 +19,8 @@ class CreateUserMoodlesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->unsignedBigInteger('user_moodle_id');
+
             $table->string('user');
             $table->string('password');
 

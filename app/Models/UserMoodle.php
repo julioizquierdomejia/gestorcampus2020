@@ -19,6 +19,7 @@ class UserMoodle extends Model
 
     protected $fillable = [
         'name',
+        'user_moodle_id',
         'last_name',
         'mothers_last_name',
         'sexo',
