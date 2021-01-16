@@ -23,4 +23,12 @@ class UserCampusMoodle extends Model
      */
      protected $table = 'user';
 
+
+     protected $fillable = [
+        'auth',
+        'username',
+        'password',
+        'email',
+    ];
+
 }
