@@ -14,6 +14,8 @@ class UserCampusMoodle extends Model
         'username',
         'password',
         'email',
+        'confirmed',
+        'mnethostid',
     ];
 
     /** 

@@ -100,6 +100,8 @@ class RegisterController extends Controller
             'username' => $data['email'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
+            'confirmed' => 1,
+            'mnethostid' => 1,
         ]);
     }
 
