@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->document = '06813928';
-        $user->email = 'julio.izquierdo.mejia@gmail.com';
+        $user->email = 'campusvirtual@aspefam.org.pe';
         $user->password = bcrypt('.Campus460..');
         $user->cod_nivel = 1;
         $user->status = 1;
