@@ -102,6 +102,8 @@ class RegisterController extends Controller
             'confirmed' => 1,
             'mnethostid' => 1,
         ]);
+
+        $usuarioMoodle->save();
     }
 
     public function crearUsuarioGestor_DNI($infoUser, $data){
