@@ -23,17 +23,17 @@ class UserMoodleSeeder extends Seeder
         
         $user->document = '06813928';
         
-        $user->name = 'JULIO JORGE';
-        $user->last_name = 'IZQUIERDO';
-        $user->mothers_last_name = 'MEJIA';
+        $user->name = 'ASPEFAM';
+        $user->last_name = 'CAMPUS';
+        $user->mothers_last_name = 'VIRTUAL';
         $user->cod_nivel = 1;
 
         $user->sexo = '1';
         $user->avatar = 'avatar_man.png';
 
-        $user->address = 'Mz A2 lote 9 - Calle 12';
-        $user->urbanizacion = 'Santa Ana';
-        $user->distrito = 'LOS OLIVOS';
+        $user->address = '';
+        $user->urbanizacion = '';
+        $user->distrito = '';
         $user->provincia = 'LIMA';
         $user->city = 'LIMA';
         $user->country = 'PERU';
