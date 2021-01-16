@@ -241,4 +241,10 @@ class RegisterController extends Controller
 
         return $user;   
     }
+
+    protected function registered(Request $request, $user)
+    {
+        return redirect()->route('login');
+
+    }
 }
