@@ -80,17 +80,31 @@ class RegisterController extends Controller
 
             if($infoUser == null){
                 self::crearUsuarioGestorMoodle($data);
-                self::crearUsuarioGestor($data);
             }else{
-                self::crearUsuarioGestorMoodle($data);
-                self::crearUsuarioGestor_DNI($infoUser, $data);
+                self::crearUsuarioGestorMoodle_DNI($infoUser,$data);
             }
 
         }else{
             self::crearUsuarioGestorMoodle($data);
-            self::crearUsuarioGestor($data);
         }
         
+    }
+
+    public function crearUsuarioGestorMoodle_DNI($infoUser, $data){
+        $usuarioMoodle = UserCampusMoodle::create([
+            'auth' => 'manual',
+            'username' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'firstname' => $infoUser[0]->nombres,
+            'lastname' => $infoUser[0]->apellido_paterno,
+            'confirmed' => 1,
+            'mnethostid' => 1,
+        ]);
+
+        $usuarioMoodle->save();
+
+        self::crearUsuarioGestor_DNI($infoUser, $data);
     }
 
     public function crearUsuarioGestorMoodle($data){
@@ -104,6 +118,8 @@ class RegisterController extends Controller
         ]);
 
         $usuarioMoodle->save();
+
+        self::crearUsuarioGestor($data);
     }
 
     public function crearUsuarioGestor_DNI($infoUser, $data){
