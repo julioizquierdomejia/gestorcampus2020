@@ -15,7 +15,7 @@ class TagController extends Controller
     public function index()
     {
         //
-        echo "hola tags";
+        echo "hola tags -->>>";
     }
 
     /**
