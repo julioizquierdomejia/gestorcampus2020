@@ -44,13 +44,16 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active'])->name('curso.active');
 	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('curso.store');
 
-	Route::resource('grupos', App\Http\Controllers\GroupController::class);
+	
 
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
 
+	//routes para los Grupos
+	Route::resource('grupos', App\Http\Controllers\GroupController::class);
+
 	//routes para los tags
-	Route::resource('tag', App\Http\Controllers\TagController::class);
+	Route::resource('tags', App\Http\Controllers\TagController::class);
 
 
 });

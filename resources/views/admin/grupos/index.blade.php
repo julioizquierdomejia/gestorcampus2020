@@ -7,11 +7,10 @@
 		  <div class="col">
 		    <div class="card">
 		      <div class="card-body">
-		        <h5 class="card-title">{{ $grupo->name }}</h5>
+		        <h5 class="card-title">{{ $grupo->name }} {{$grupo->id}}</h5>
 		        <p class="card-text">{{ $grupo->description }}</p>
 		        <div>
-		        	<a href="/grupos/{{$grupo->id}}/edit" class="btn btn-warning"><i class="fal fa-edit"></i></a>
-		        	<a href="{{route('grupos.edit', $grupo->id)}}" class="btn btn-warning"><i class="fal fa-edit"></i> editar</a>
+		        	<a href="{{route('grupos.edit', $grupo->id)}}" class="btn btn-warning"><i class="fal fa-edit"></i> Editar</a>
 		        	<a href="" class="btn btn-danger"><i class="fal fa-trash-alt"></i></a>
 		        </div>
 		      </div>

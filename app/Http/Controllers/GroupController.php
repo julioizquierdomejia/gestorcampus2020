@@ -35,8 +35,7 @@ class GroupController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $grupos = Group::all();
-        return view('admin.grupos.create', compact('grupos', 'usuario'));
+        return view('admin.grupos.create', compact('usuario'));
     }
 
     /**
@@ -82,16 +81,7 @@ class GroupController extends Controller
     public function edit(Group $group)
     {
         //
-        $grupo = Group::find($group);
-
-        dd($grupo);
-
-        $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
-
-        $grupo = Group::where('id', $group)->first();
-
-        dd($grupo);
+        dd($group);
     }
 
     /**

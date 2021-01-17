@@ -19,6 +19,13 @@
   </a>
 </li>
 
+<li class="{{ request()->routeIs('tags') ? 'active' : '' }}">
+  <a href=" {{ route('tags.index')}} ">
+    <i class="fal fa-tag"></i>
+    <p>Tags</p>
+  </a>
+</li>
+
 <li class="{{ request()->routeIs('cursos') ? 'active' : '' }}">
   <a href=" {{route('cursos')}} ">
     <i class="fal fa-clipboard-user"></i>

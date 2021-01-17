@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\UserMoodle;
 
 class TagController extends Controller
 {
@@ -15,7 +17,11 @@ class TagController extends Controller
     public function index()
     {
         //
-        echo "hola tags ------>>>";
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        $tags = Tag::all();
+        return view('admin.tags.index', compact('tags', 'usuario'));
     }
 
     /**
@@ -26,6 +32,10 @@ class TagController extends Controller
     public function create()
     {
         //
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        return view('admin.tags.create', compact('usuario'));
     }
 
     /**
@@ -37,6 +47,18 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        Tag::create($request->all());
+
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        $tags = Tag::all();
+        return view('admin.tags.index', compact('tags', 'usuario'));
     }
 
     /**
@@ -59,6 +81,12 @@ class TagController extends Controller
     public function edit(Tag $tag)
     {
         //
+        dd($tag);
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        return view('admin.tags.edit', compact('tag', 'usuario'));
+
     }
 
     /**
@@ -71,6 +99,15 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $tag->update($request->all());
+
+        return redirect()->route('tags.index')
+            ->with('success', 'Project updated successfully');
     }
 
     /**
