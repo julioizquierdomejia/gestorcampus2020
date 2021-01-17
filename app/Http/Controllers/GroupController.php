@@ -32,10 +32,6 @@ class GroupController extends Controller
     public function create()
     {
         //
-        $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
-
-        return view('admin.grupos.create', compact('usuario'));
     }
 
     /**
@@ -47,18 +43,6 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-
-        Group::create($request->all());
-
-        $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
-
-        $grupos = Group::all();
-        return view('admin.grupos.index', compact('grupos', 'usuario'));
     }
 
     /**
