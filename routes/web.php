@@ -49,6 +49,9 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
 
+	//routes para los tags
+	Route::resource('tag', App\Http\Controllers\TagController::class);
+
 
 });
 
