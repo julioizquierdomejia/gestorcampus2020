@@ -53,7 +53,6 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
  	
-        /*
         $username = $user->email;
         $password = $request->password;
 
@@ -111,7 +110,6 @@ class LoginController extends Controller
 
         return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
         
-        */
 
         /*
     	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
