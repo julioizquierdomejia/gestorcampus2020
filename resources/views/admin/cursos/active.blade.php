@@ -55,7 +55,6 @@
 			        
 			        <div class="row">
 			        	<div class="col">
-			        		
 			        		<div class="dropdown">
 							  <button class="btn btn-secondary dropdown-toggle" type="button" id="opc-active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    Seleccione un Grupo
@@ -76,7 +75,6 @@
 
 			        <div class="row">
 			        	<div class="col">
-			        		
 			        		<div class="dropdown">
 							  <button class="btn btn-secondary dropdown-toggle" type="button" id="opc-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    Seleccione tipo de Curso
@@ -93,8 +91,27 @@
 							</div>
 			        	</div>		
 			        </div>
+
+			        <div class="row">
+			        	<div class="col">
+			        		<div class="form-group">
+				                <label>Arreglo de tags</label>
+				                <input name='tags' type="text" class="form-control" value="" id='tags_array'>
+				              </div>
+			        	</div>
+			        </div>
+			        <div class="row mt-3">
+			        	<p>Seleccione etiquetas para este curso</p>
+			        	<div class="col">
+			        		@foreach($tags as $key => $tag)
+			        			<a href="#" id="{{$tag->id}}" class="opc-tag" style="opacity: 0.32">
+			        				<span class="badge badge-pill p-2 px-3" style="background-color: {{$tag->color}}">{{$tag->name}}</span>
+			        			</a>
+			        		@endforeach
+			        	</div>
+			        </div>
 			        
-		          <div class="row">
+		          <div class="row mt-3">
 		            <div class="col-md-7">
 		              <div class="form-group">
 		                <label>Instructor</label>
@@ -200,6 +217,38 @@
 			$('#opc-type').text($(this).text());
 			$('#type').val($(this).data('id'));
 			$('#type_name').val($(this).text());
+		})
+
+		var tags = [];
+		var existe = $.inArray($(this).attr('id'), tags);
+
+		$('.opc-tag').click(function(){
+			
+			existe = $.inArray($(this).attr('id'), tags);
+
+			if(existe == -1){
+				$(this).css('opacity', 1); //cambiamos el CSS opacity
+				tags.push($(this).attr('id'));
+				$("#tags_array").val(tags);
+			}else{
+				$(this).css('opacity', .32); //cambiamos el CSS opacity
+				var obj = $(this).attr('id');
+				
+				function removeItemFromArr ( arr, item ) {
+				    var i = arr.indexOf( item );
+				 
+				    if ( i !== -1 ) {
+				        arr.splice( i, 1 );
+				    }
+				}
+
+				removeItemFromArr(tags, obj);
+				$("#tags_array").val(tags);
+
+			}
+
+
+
 		})
 
 	</script>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\Grupo;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
 
-class TagController extends Controller
+class GrupoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +20,8 @@ class TagController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $tags = Tag::all();
-        return view('admin.tags.index', compact('tags', 'usuario'));
+        $agrupacion = Grupo::all();
+        return view('admin.agrupacion.index', compact('agrupacion', 'usuario'));
     }
 
     /**
@@ -35,7 +35,7 @@ class TagController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        return view('admin.tags.create', compact('usuario'));
+        return view('admin.agrupacion.create', compact('usuario'));
     }
 
     /**
@@ -52,22 +52,22 @@ class TagController extends Controller
             'description' => 'required',
         ]);
 
-        Tag::create($request->all());
+        Grupo::create($request->all());
 
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $tags = Tag::all();
-        return view('admin.tags.index', compact('tags', 'usuario'));
+        $agrupacion = Grupo::all();
+        return view('admin.agrupacion.index', compact('agrupacion', 'usuario'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(Grupo $grupo)
     {
         //
     }
@@ -75,16 +75,16 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Grupo $grupo)
     {
         //
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        return view('admin.tags.edit', compact('tag', 'usuario'));
+        return view('admin.agrupacion.edit', compact('grupo', 'usuario'));
 
     }
 
@@ -92,30 +92,21 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, Grupo $grupo)
     {
         //
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
-
-        $tag->update($request->all());
-
-        return redirect()->route('tags.index')
-            ->with('success', 'Project updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\Grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Grupo $grupo)
     {
         //
     }

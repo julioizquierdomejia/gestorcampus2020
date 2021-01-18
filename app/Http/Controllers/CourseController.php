@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Group;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
@@ -198,8 +199,9 @@ class CourseController extends Controller
         $cursos = Course::where('status', 1)->get();
 
         $grupos = Group::all();
+        $tags = Tag::all();
 
-        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos'));
+        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags'));
     }
 
 

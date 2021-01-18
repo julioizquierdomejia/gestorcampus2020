@@ -52,6 +52,9 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//routes para los tags
 	Route::resource('tags', App\Http\Controllers\TagController::class);
 
+	//routes para los tags
+	Route::resource('agrupacion', App\Http\Controllers\GrupoController::class);
+
 	//routes para los Grupos
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);
 

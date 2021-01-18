@@ -46,6 +46,15 @@
 		              </div>
 		            </div>
 		          </div>
+
+		          <div class="row">
+		          	<div class="col">
+		          		<div class="form-group">
+			          		<label for="favcolor">Elija un color para su etiqueta</label>
+	  						<input type="color" id="favcolor" name="color" value="{{ $tag->color }}"><br><br>
+	  					</div>
+		          	</div>
+		          </div>
 		          
 		          <div class="row">
 		            <div class="update ml-auto mr-auto">
