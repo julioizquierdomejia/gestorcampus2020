@@ -44,7 +44,7 @@
         </p>
 
         <p>
-          Dicho Certificado, tienen un costo de S/. 2.50 Soles
+          Dicho Certificado, tienen un costo de S/. {{$curso->price}} Soles
         </p>
       </div>
       <div class="modal-footer">
@@ -94,16 +94,15 @@
                   @endforeach
 
                   <h4 class="mt-2 mb-2"><i class="fal fa-user-chart mr-2 mt-3"></i> Profesor : {{$curso->instructor}}</h4>
+                    @if($curso->type == 1)
+                      Sin costo de participación
+                    @else
+                      <div class="badge badge-primary text-wrap p-2 pr-3 pl-3 mt-2 mb-2" style="font-size: 14px;">
+                        <i class="fal fa-wallet"></i> - S/. {{$curso->price}} Soles
+                      </div>
+                    @endif
 
-                    <div class="badge badge-primary text-wrap p-2 pr-3 pl-3 mt-2 mb-2" style="font-size: 14px;">
-                        @if($curso->type == 1)
-                          Sin costo de participación
-                        @else
-                          <i class="fal fa-wallet"></i> - S/. {{$curso->price}} Soles
-                        @endif
-                    </div>
-
-                    <p class="text-primary">
+                    <p class="">
                       Para poder adquirir el certificado del Curso, luego de haberlo aprobado, deberá de hacer una inversión.
                       Para mas información, 
                       <p>
@@ -113,13 +112,19 @@
                       </p>
                     </p>
                     
-                    <p class="mt-3">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <h3>Breve Introducción</h3>
+                  <p class="mt-3">
                       {{$curso->introduccion}}
                     </p>
                     @if($curso->type == 1)
                       <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
                     @else
-                      <a href="" class="btn btn-danger"><i class="fal fa-shopping-cart mr-3"></i>Agregar a Carrito</a>
+                      <a href="" class="btn btn-danger "><i class="fal fa-shopping-cart mr-3"></i>Agregar a Carrito</a>
                     @endif
                 </div>
               </div>

@@ -123,6 +123,14 @@
           <div class="row">
             <div class="col p-5">
               <h2 class="title-seccion">Nuestros Cursos</h2>
+
+              <!-- opcion para filtros -->
+              <div class="btn-group" role="group" aria-label="Basic example">
+                @foreach($tags as $key => $tag)
+                  <button type="button" class="btn opc-tag" id='{{$tag->id}}' style="border-color: {{$tag->color}}"> <i class="fas fa-circle" style="color: {{$tag->color}}"></i> {{ $tag->name }} </button>
+                @endforeach
+              </div>
+
               <!-- las pestañas de navegacion de cursos -->
               <nav class="mt-5">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -147,10 +155,10 @@
                                 <div class="card-body">
                                   <div>
                                     <!-- iteramos todos los tag de la tabla -->
-                                    @foreach($tags as $key => $tag)
+                                    @foreach($cuorse_tags as $key => $tag)
                                       <!-- en cada iteraciion filtramos con el id del curso -->
                                       @if($tag->course_id == $curso->id)
-                                        <span class="badge badge-pill p-2 px-3" style="background-color: {{ $tag->color  }}; color: white">{{ $tag->name }}</span>
+                                        <i class="fas fa-circle" style="color: {{$tag->color}}"></i>
                                       @endif
                                     @endforeach
                                   </div>
@@ -291,7 +299,8 @@
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!--script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
@@ -299,5 +308,43 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
+
+    <script type="text/javascript">
+      
+      $('.opc-tag').click(function(){
+        console.log($(this).attr('id'))
+
+
+        $.ajax({
+          type: "post",
+          url: "/curso/" + $(this).attr('id'),
+          data: $(this).attr('id'),
+          success: function (data) {
+            //alert("Se ha realizado el POST con exito "+data);
+            console.log('entro')
+          },
+          error: function (request, status, error) {
+            var data = jQuery.parseJSON(request.responseText);
+            if (data.errors) {
+              if (data.errors.name) {
+                $('.name_message').text(data.errors.name);
+              }
+              if (data.errors.enabled) {
+                $('.enabled_message').text(data.errors.enabled);
+              }
+              /*if (data.errors.area_id) {
+                $('.area_message').text(data.errors.area_id);
+              }*/
+            }
+          }
+      });
+
+
+      })
+      
+
+
+
+    </script>
   </body>
 </html>

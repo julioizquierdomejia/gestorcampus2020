@@ -80,7 +80,7 @@
         </div>
 
         <div class="barheader">
-            la casita
+            <a href=""><i class="fas fa-home p-2" style="color: white; font-size: 20px;"></i></a>
         </div>
 
         <div class="content">

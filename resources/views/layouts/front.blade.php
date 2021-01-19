@@ -68,7 +68,7 @@
         </div>
 
         <div class="barheader">
-            la casita
+            <a href=""><i class="fas fa-home" style="color: white;"></i></a>
         </div>
 
         <div class="slider">

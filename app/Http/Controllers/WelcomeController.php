@@ -26,6 +26,7 @@ class WelcomeController extends Controller
         $categorias = Category::orderBy('name', 'asc')->get();
     	$roles = Role::all();
         $grupos = Group::all();
+        $tags = Tag::all();
 
         $grupos_iterados = [];
         //iteramos los grupos de moodle para ver cuales se estan usando en cursos activos
@@ -39,11 +40,11 @@ class WelcomeController extends Controller
             }
         }
 
-        $tags = DB::table('course_tag')
+        $cuorse_tags = DB::table('course_tag')
                 ->join('tags', 'course_tag.tag_id', '=', 'tags.id')
                 ->orderBy('course_tag.course_id', 'asc')
                 ->get();
         
-        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados', 'tags'));
+        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados', 'cuorse_tags', 'tags'));
     }
 }

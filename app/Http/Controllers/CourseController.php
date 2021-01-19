@@ -270,4 +270,9 @@ class CourseController extends Controller
     {
         //
     }
+
+    public function filtrar($course)
+    {
+        //
+    }
 }

@@ -44,6 +44,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('cursos/{id}/activar', [App\Http\Controllers\CourseController::class, 'active'])->name('curso.active');
 	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('curso.store');
 	Route::get('cursos/{id}/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('curso.edit');	
+	Route::post('cursos/{id}', [App\Http\Controllers\CourseController::class, 'filtrar'])->name('curso.filtra');
 
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
