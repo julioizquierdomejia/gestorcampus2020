@@ -88,6 +88,11 @@
                 </div>
                 <div class="col-sm-6 p-4">
                   <h2 class="title-seccion">{{$curso->fullname}}</h2>
+
+                  @foreach($tags as $tag)
+                    <span class="badge badge-pill p-2 px-3" style="background-color: {{ $tag->color  }}; color: white">{{ $tag->name }}</span>
+                  @endforeach
+
                   <h4 class="mt-2 mb-2"><i class="fal fa-user-chart mr-2 mt-3"></i> Profesor : {{$curso->instructor}}</h4>
 
                     <div class="badge badge-primary text-wrap p-2 pr-3 pl-3 mt-2 mb-2" style="font-size: 14px;">
@@ -101,9 +106,11 @@
                     <p class="text-primary">
                       Para poder adquirir el certificado del Curso, luego de haberlo aprobado, deberá de hacer una inversión.
                       Para mas información, 
-                      <a href="" type="button" class="btn btn-danger p-1" data-toggle="modal" data-target="#modal_sincosto">
-                      hacer click Aquí.
-                    </a>
+                      <p>
+                        <a href="" type="button" class="btn btn-danger p-1 px-2" data-toggle="modal" data-target="#modal_sincosto">
+                          <i class="far fa-engine-warning"></i> Hacer click Aquí.
+                        </a>
+                      </p>
                     </p>
                     
                     <p class="mt-3">

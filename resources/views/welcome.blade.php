@@ -20,7 +20,7 @@
     <title>Campus Aspefam</title>
   </head>
   <body>
-    <div class="contenedor navheader d-flex justify-content-end">
+    <div class="contenedor navheader d-flex justify-content-end mt-3">
         <nav>
 
             @if (Route::has('login'))

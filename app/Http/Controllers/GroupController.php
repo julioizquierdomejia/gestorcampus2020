@@ -78,8 +78,10 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit($group_id)
-    {
+    public function edit(Group $group_id)
+    {   
+
+        dd($group_id);
         $group = Group::findOrFail($group_id);
         return $group;
     }

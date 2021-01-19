@@ -199,7 +199,11 @@ class CourseController extends Controller
         $cursos = Course::all();
         $curso = Course::findorFail($course);
 
-        return view('cursos.detallecurso', compact('curso', 'cursos'));
+        $tags = DB::table('course_tag')->where('course_id', $curso->id)
+                ->join('tags', 'course_tag.tag_id', '=', 'tags.id')
+                ->get();
+
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags'));
     }
 
     public function active($course)
