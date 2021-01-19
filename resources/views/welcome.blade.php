@@ -309,7 +309,6 @@
 
     <script type="text/javascript">
       $(document).ready(function () {
-        $('.opc-tag:first').trigger('click');
 
       $('.opc-tag').click(function(){
         var tagId = $(this).data('id');
@@ -370,6 +369,7 @@
 
 
       })
+      $('.opc-tag:first').trigger('click');
       })
     </script>
   </body>
