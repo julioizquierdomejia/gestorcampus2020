@@ -123,6 +123,7 @@
           <div class="row">
             <div class="col p-5">
               <h2 class="title-seccion">Nuestros Cursos</h2>
+              <!-- las pestañas de navegacion de cursos -->
               <nav class="mt-5">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   @foreach($grupos_iterados as $grupo)
@@ -130,6 +131,9 @@
                   @endforeach
                 </div>
               </nav>
+              <!-- Fin de las pestañas de navegacion de cursos -->
+              
+              <!-- Contenido de las pestañas lista de cursos -->
               <div class="tab-content p-4" id="nav-tabContent">
                 @foreach($grupos_iterados as $grupo)
                   <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -141,6 +145,15 @@
                               <a href=" {{ route('curso.detail', $curso->id) }}">
                                 <img src="images/curso01.png" class="card-img-top" alt="...">
                                 <div class="card-body">
+                                  <div>
+                                    <!-- iteramos todos los tag de la tabla -->
+                                    @foreach($tags as $key => $tag)
+                                      <!-- en cada iteraciion filtramos con el id del curso -->
+                                      @if($tag->course_id == $curso->id)
+                                        <span class="badge badge-pill p-2 px-3" style="background-color: {{ $tag->color  }}; color: white">{{ $tag->name }}</span>
+                                      @endif
+                                    @endforeach
+                                  </div>
                                   <h5 class="card-title">{{ $curso->shortname  }}</h5>
                                   <p class="card-text"></p>
                                 </div>  
@@ -153,6 +166,8 @@
                   </div>
                 @endforeach
               </div>
+              <!-- Fin de Contenido de las pestañas lista de cursos -->
+
             </div>
           </div>
 

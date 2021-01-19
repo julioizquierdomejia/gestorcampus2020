@@ -78,12 +78,15 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group_id)
+    public function edit($group_id)
     {   
 
-        dd($group_id);
-        $group = Group::findOrFail($group_id);
-        return $group;
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        $grupo = Group::findOrFail($group_id);
+
+        return view('admin.grupos.edit', compact('grupo', 'usuario'));
     }
 
     /**
@@ -93,9 +96,20 @@ class GroupController extends Controller
      * @param  \App\Models\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $group)
+    public function update(Request $request, $group_id)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $grupo = Group::findOrFail($group_id);
+        
+        $grupo->update($request->all());
+
+        return redirect()->route('grupos.index')
+            ->with('success', 'Project updated successfully');
     }
 
     /**

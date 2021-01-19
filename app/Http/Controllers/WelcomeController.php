@@ -9,6 +9,7 @@ use App\Models\CourseMoodle;
 use App\Models\CourseCategoryMoodle;
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
 
 
@@ -33,11 +34,16 @@ class WelcomeController extends Controller
             $grupo_activo = Course::where('course_group_id', $item->id)->first();
 
             if ($grupo_activo) {
+
                 array_push($grupos_iterados, [$item->id, $item->name]);
             }
         }
 
+        $tags = DB::table('course_tag')
+                ->join('tags', 'course_tag.tag_id', '=', 'tags.id')
+                ->orderBy('course_tag.course_id', 'asc')
+                ->get();
         
-        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados'));
+        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados', 'tags'));
     }
 }
