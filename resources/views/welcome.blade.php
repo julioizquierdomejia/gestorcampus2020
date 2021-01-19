@@ -132,21 +132,21 @@
               </div>
 
               <!-- las pestañas de navegacion de cursos -->
-             {{--  <nav class="mt-5">
+             <nav class="mt-5">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   @foreach($grupos_iterados as $grupo)
                   <a class="nav-item nav-link @if ($loop->first) active @endif" id="nav-home-tab_" data-toggle="tab" href="#B{{$grupo[0]}}" role="tab" aria-controls="nav-home_" aria-selected="true">{{$grupo[1]}}</a>
                   @endforeach
                 </div>
-              </nav> --}}
+              </nav> 
               <!-- Fin de las pestañas de navegacion de cursos -->
               
               <!-- Contenido de las pestañas lista de cursos -->
-              {{-- <div class="tab-content p-4" id="nav-tabContent">
+              <div class="tab-content p-4" id="nav-tabContent">
                 @foreach($grupos_iterados as $grupo)
-                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab"> --}}
+                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab">
                     <div class="row row-cols-1 row-cols-md-5 row-courses">
-                      {{-- @foreach($cursos as $curso)
+                      @foreach($cursos as $curso)
                         @if($curso->course_group_id == $grupo[0] )
                           <div class="col mb-4 item">
                             <div class="card">
@@ -167,11 +167,11 @@
                             </div>
                           </div>
                         @endif
-                      @endforeach --}}
+                      @endforeach
                     </div>
-                  {{-- </div>
+                  </div>
                 @endforeach
-              </div> --}}
+              </div> 
               <!-- Fin de Contenido de las pestañas lista de cursos -->
 
             </div>
