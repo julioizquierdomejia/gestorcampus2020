@@ -271,8 +271,15 @@ class CourseController extends Controller
         //
     }
 
-    public function filtrar($course)
+    public function filtrar($tag)
     {
-        //
+        $cursos = Course::whereHas('tags', function ($query) use ($tag) {
+                    $query->where("tags.id", "=", $tag);
+                })
+                ->with('tags')
+                ->get();
+
+        return response()->json(['data' => $cursos, 'success' => true]);
+
     }
 }

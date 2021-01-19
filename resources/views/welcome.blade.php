@@ -127,36 +127,34 @@
               <!-- opcion para filtros -->
               <div class="btn-group" role="group" aria-label="Basic example">
                 @foreach($tags as $key => $tag)
-                  <button type="button" class="btn opc-tag" id='{{$tag->id}}' style="border-color: {{$tag->color}}"> <i class="fas fa-circle" style="color: {{$tag->color}}"></i> {{ $tag->name }} </button>
+                  <button type="button" class="btn opc-tag" id='group-{{$tag->id}}' data-id="{{$tag->id}}" style="border-color: {{$tag->color}}"> <i class="fas fa-circle" style="color: {{$tag->color}}"></i> {{ $tag->name }} </button>
                 @endforeach
               </div>
 
               <!-- las pestañas de navegacion de cursos -->
-              <nav class="mt-5">
+             {{--  <nav class="mt-5">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   @foreach($grupos_iterados as $grupo)
                   <a class="nav-item nav-link @if ($loop->first) active @endif" id="nav-home-tab_" data-toggle="tab" href="#B{{$grupo[0]}}" role="tab" aria-controls="nav-home_" aria-selected="true">{{$grupo[1]}}</a>
                   @endforeach
                 </div>
-              </nav>
+              </nav> --}}
               <!-- Fin de las pestañas de navegacion de cursos -->
               
               <!-- Contenido de las pestañas lista de cursos -->
-              <div class="tab-content p-4" id="nav-tabContent">
+              {{-- <div class="tab-content p-4" id="nav-tabContent">
                 @foreach($grupos_iterados as $grupo)
-                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="row row-cols-1 row-cols-md-5">
-                      @foreach($cursos as $curso)
+                  <div class="tab-pane fade @if ($loop->first) show active @endif" id="B{{$grupo[0]}}" role="tabpanel" aria-labelledby="nav-home-tab"> --}}
+                    <div class="row row-cols-1 row-cols-md-5 row-courses">
+                      {{-- @foreach($cursos as $curso)
                         @if($curso->course_group_id == $grupo[0] )
-                          <div class="col mb-4">
+                          <div class="col mb-4 item">
                             <div class="card">
                               <a href=" {{ route('curso.detail', $curso->id) }}">
                                 <img src="images/curso01.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                   <div>
-                                    <!-- iteramos todos los tag de la tabla -->
                                     @foreach($cuorse_tags as $key => $tag)
-                                      <!-- en cada iteraciion filtramos con el id del curso -->
                                       @if($tag->course_id == $curso->id)
                                         <i class="fas fa-circle" style="color: {{$tag->color}}"></i>
                                       @endif
@@ -169,11 +167,11 @@
                             </div>
                           </div>
                         @endif
-                      @endforeach
+                      @endforeach --}}
                     </div>
-                  </div>
+                  {{-- </div>
                 @endforeach
-              </div>
+              </div> --}}
               <!-- Fin de Contenido de las pestañas lista de cursos -->
 
             </div>
@@ -310,18 +308,49 @@
     -->
 
     <script type="text/javascript">
-      
+      $(document).ready(function () {
+        $('.opc-tag:first').trigger('click');
+
       $('.opc-tag').click(function(){
-        console.log($(this).attr('id'))
-
-
+        var tagId = $(this).data('id');
         $.ajax({
           type: "post",
-          url: "/curso/" + $(this).attr('id'),
-          data: $(this).attr('id'),
-          success: function (data) {
+          url: "/cursos/" + tagId + "",
+          data: {
+            _token:'{{csrf_token()}}'
+          },
+          success: function (response) {
             //alert("Se ha realizado el POST con exito "+data);
-            console.log('entro')
+            if(response.success) {
+              var cursos = response.data;
+              $('.row-courses').empty();
+              $.each(cursos, function (id, curso) {
+                var course_id = curso.id;
+                var tags_html = '';
+
+                $.each(curso.tags, function (tag_id, tag) {
+                  tags_html += `<i class="fas fa-circle" style="color: `+tag.color+`"></i>`
+                })
+                $('.row-courses').append(`
+                  <div class="col mb-4 item">
+                    <div class="card">
+                      <a href="/detallecurso/`+course_id+`">
+                        <img src="images/curso01.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <div>
+                            `
+                            +tags_html+
+                            `
+                          </div>
+                          <h5 class="card-title">`+curso.shortname+`</h5>
+                          <p class="card-text"></p>
+                        </div>  
+                      </a>
+                    </div>
+                  </div>
+                  `);
+              });
+            }
           },
           error: function (request, status, error) {
             var data = jQuery.parseJSON(request.responseText);
@@ -341,10 +370,7 @@
 
 
       })
-      
-
-
-
+      })
     </script>
   </body>
 </html>
