@@ -29,4 +29,8 @@ class Tag extends Model
      * @var string
      */
      //protected $table = 'courses';
+
+     public function courses(){
+        return $this->belongsToMany(course::class);
+     }
 }

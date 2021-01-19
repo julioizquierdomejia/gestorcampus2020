@@ -76,13 +76,16 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
-         $request->validate([
+        $tags_string = $request->tags;
+        $tags = explode(",", $tags_string);
+
+        $request->validate([
             'instructor' => 'required',
             'introduccion' => 'required',
             'course_group_id' => 'required',
             'type' => 'required',
         ]);
-        
+
         $catagorias = Category::all();
         $categoria = $request->categoria;
 
@@ -101,6 +104,12 @@ class CourseController extends Controller
             $nuevaCategoria->save();
 
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
+
+            $curso_current = Course::latest('id')->first();
+            
+            foreach ($tags as $key => $tag) {
+                $curso_current->tags()->attach($tag);
+            }
 
         }else{
 
@@ -128,7 +137,11 @@ class CourseController extends Controller
 
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
 
+            $curso_current = Course::latest('id')->first();
             
+            foreach ($tags as $key => $tag) {
+                $curso_current->tags()->attach($tag);
+            }
 
   
         }
@@ -159,7 +172,7 @@ class CourseController extends Controller
         $cursos = Course::all();
         //dd($cursos);
 
-        //Preguntamos si la tala de cursos esta vacia con el modelo cursos
+        //Preguntamos si la tabla de cursos esta vacia con el modelo cursos
         if($cursos->count()){
             $status = 0;
         }else{
@@ -174,7 +187,7 @@ class CourseController extends Controller
             $statusCurso = 'MOODLE';
         }        
 
-        return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status', 'statusCurso'));
+        return view('admin.cursos.info', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'status', 'statusCurso', 'curso_activo'));
     }
 
 
@@ -214,6 +227,20 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         //
+        
+        $curso = Course::where('id', $course)->first();
+        dd($curso);
+
+        $cursos_moodle =CourseMoodle::findorFail($course);
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+        $secciones = CourseSectionMoodle::where('course', $course)->get();
+        $cursos = Course::where('status', 1)->get();
+
+        $grupos = Group::all();
+        $tags = Tag::all();
+
+        return view('admin.cursos.edit', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags'));
 
     }
 

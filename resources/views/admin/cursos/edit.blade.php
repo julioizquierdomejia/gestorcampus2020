@@ -9,7 +9,7 @@
 					<img src="/../assets/img/damir-bosnjak.jpg" alt="...">
 				</div>
 				<div class="card-body">
-					<h5 class="title text-success">{{$cursos_moodle->fullname}}</h5>
+					<h5 class="title text-success">El titulo </h5>
 					
 					<ul class="list-group list-group-flush">
 						@foreach($secciones as $seccion)
@@ -40,10 +40,7 @@
 		      <div class="card-body">
 		      	<form class="form-group" method="POST" action=" {{ route('curso.store') }} " enctype="multipart/form-data">
 		          @csrf
-		          <input name='course_moodle_id' type="hidden" class="form-control" placeholder="" value="{{$course}}">
-		          <input name='categoria' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->category}}">
-		          <input name='fullname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->fullname}}">
-		          <input name='shortname' type="hidden" class="form-control" placeholder="" value="{{$cursos_moodle->shortname}}">
+		          
 
 		          {{-- Campos ocultos de apoyo para los grpos --}}
 		          <input name='course_group_id' type="hidden" class="form-control" placeholder="" value="{{ old('course_group_id') }}" id="course_group_id">

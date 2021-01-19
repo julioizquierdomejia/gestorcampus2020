@@ -19,6 +19,7 @@
 								@endif
 						@endforeach
 					</ul>
+
 					<h3>
 
 						@if($cursos->isEmpty())
@@ -26,7 +27,7 @@
 						@else
 
 							@if($statusCurso == 'ACTIVO')
-								<a href=" {{ route('curso.active', $cursos_moodle->id) }} " class="btn btn-warning">Editar</a>
+								<a href=" {{ route('curso.edit', 1) }} " class="btn btn-warning">Editar</a>
 							@endif
 
 							@if($statusCurso == 'MOODLE')
