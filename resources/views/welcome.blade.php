@@ -125,6 +125,7 @@
               <h2 class="title-seccion">Nuestros Cursos</h2>
 
               <!-- opcion para filtros -->
+              <h5 class="mt-4">Encuéntralos según tu interes</h5>
               <div class="btn-group" role="group" aria-label="Basic example">
                 @foreach($tags as $key => $tag)
                   <button type="button" class="btn opc-tag" id='group-{{$tag->id}}' data-id="{{$tag->id}}" style="border-color: {{$tag->color}}"> <i class="fas fa-circle" style="color: {{$tag->color}}"></i> {{ $tag->name }} </button>

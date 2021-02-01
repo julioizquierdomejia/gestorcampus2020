@@ -58,6 +58,12 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//routes para los Grupos
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);
 
+	//routes para los videos
+	Route::resource('videos', App\Http\Controllers\VideoController::class);
+
+	//routes para los TIPO DE VIDEOS
+	Route::resource('videostipos', App\Http\Controllers\VideoTypeController::class);
+
 
 });
 

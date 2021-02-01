@@ -52,12 +52,21 @@
     <p>Certificados</p>
   </a>
 </li>
-<li>
-  <a href="./user.html">
+<li class="{{ request()->routeIs('videos') ? 'active' : '' }}">
+  <a href="{{ route('videos.index') }}">
     <i class="nc-icon nc-tv-2"></i>
     <p>Video Conferencias</p>
   </a>
 </li>
+
+<li class="{{ request()->routeIs('videostipos') ? 'active' : '' }}">
+  <a href="{{ route('videostipos.index') }}">
+    <i class="nc-icon nc-tv-2"></i>
+    <p>Tipo de Video</p>
+  </a>
+</li>
+
+
 <li>
   <a href="./tables.html">
     <i class="nc-icon nc-money-coins"></i>
