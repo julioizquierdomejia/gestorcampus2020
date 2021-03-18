@@ -37,7 +37,7 @@ Coded by www.creative-tim.com
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
   
   <!-- CSS Files -->
-  <link href="{{ asset('assets/css/paper-dashboard.css?v=2.0.1') }}" rel="stylesheet" />
+  
   <!-- CSS Just for demo purpose, don't include it in your project -->
   @yield('css')
 
