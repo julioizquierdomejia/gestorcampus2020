@@ -18,7 +18,7 @@
 
     <title>Campus Aspefam</title>
   </head>
-  <body style="background: black;">
+  <body style="background-image: url('/assets/img/fondo_body.jpg');">
     <div class="contenedor navheader d-flex justify-content-end mt-3">
         <nav>
 
