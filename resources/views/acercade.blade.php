@@ -93,26 +93,9 @@
             <div class="row">
                 <div class="col-sm-6 p-5">
                     <h2 class="title-seccion">Acerca del Campus</h2>
-                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="mt-4">
+                        El Campus Virtual de Educación Médica de ASPEFAM es una plataforma diseñada para codyuvar al fortalecimiento de una educación médica de calidad, a través de la implementación de programas, cursos, seminarios, conferencias y otras actividades formativas que se desarrollan en la modalidad virtual. Nuestro propósito es diseñar contenidos educativos actualizados y de la más alta calidad, para lo cual, ASPEFAM congrega a profesionales de reconocido prestigio nacional e internacional que ponen su experticia al servicio de la educación médica. 
+                    </p>
                     
                 </div>
                 <div class="col-sm-6 p-5">

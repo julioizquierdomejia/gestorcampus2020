@@ -66,7 +66,7 @@
               </div>
               <div class="col-7 col-md-8">
                 <div class="numbers">
-                  <p class="card-category">Cursos</p>
+                  <p class="card-category">Cursos de Moodle</p>
                   <p class="card-title">{{$courses->count()}}<p>
                 </div>
               </div>
@@ -93,7 +93,7 @@
               <div class="col-7 col-md-8">
                 <div class="numbers">
                   <p class="card-category">Certificados Emitidos</p>
-                  <p class="card-title">69<p>
+                  <p class="card-title">0<p>
                 </div>
               </div>
             </div>
@@ -160,7 +160,7 @@
       <div class="col-md-12">
         <div class="card ">
           <div class="card-header ">
-            <h5 class="card-title">Users Behavior</h5>
+            <h5 class="card-title">Comportamiento de usuarios</h5>
             <p class="card-category">24 Hours performance</p>
           </div>
           <div class="card-body ">

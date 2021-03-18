@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-sm-6 logo d-flex align-items-center">
                     <a href="/">
-                        <img src="https://www.desarrollo.aspefam.org.pe/pluginfile.php/1/theme_mb2nl/logo/1602177358/campus%20virtual.png">
+                        <img src="{{ asset('assets/img/logo_header.png') }}">
                     </a>
                 </div>
                 <div class="col socialButtons">

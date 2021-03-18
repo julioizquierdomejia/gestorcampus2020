@@ -60,6 +60,10 @@ class LoginController extends Controller
 
         //when user exists
         //$my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/");
+
+
+        /* // inicio del codigo para el login con Moodle
+
         $my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/index.php");
 
         preg_match_all('/<input type=\"hidden\" name=\"logintoken\" value=\"(.*?)\">/', $my_login, $logintoken);
@@ -111,6 +115,7 @@ class LoginController extends Controller
 
         return redirect("/")->withCookie(cookie("MoodleSession", $cookies_s[1], 100));
         
+        // FIN del codigo para el login con Moodle */
 
         /*
     	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);

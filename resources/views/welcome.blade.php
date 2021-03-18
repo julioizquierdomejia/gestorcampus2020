@@ -54,7 +54,7 @@
             <div class="row">
                 <div class="col-sm-6 logo d-flex align-items-center">
                     <a href="/">
-                        <img src="https://www.desarrollo.aspefam.org.pe/pluginfile.php/1/theme_mb2nl/logo/1602177358/campus%20virtual.png">
+                        <img src="assets/img/logo_header.png">
                     </a>
                 </div>
                 <div class="col socialButtons">
@@ -124,13 +124,14 @@
             <div class="col p-5">
               <h2 class="title-seccion">Nuestros Cursos</h2>
 
-              <!-- opcion para filtros -->
+              <!-- opcion para filtros 
               <h5 class="mt-4">Encuéntralos según tu interes</h5>
               <div class="btn-group" role="group" aria-label="Basic example">
                 @foreach($tags as $key => $tag)
                   <button type="button" class="btn opc-tag" id='group-{{$tag->id}}' data-id="{{$tag->id}}" style="border-color: {{$tag->color}}"> <i class="fas fa-circle" style="color: {{$tag->color}}"></i> {{ $tag->name }} </button>
                 @endforeach
               </div>
+              -->
 
               <!-- las pestañas de navegacion de cursos -->
              <nav class="mt-5">
@@ -152,7 +153,7 @@
                           <div class="col mb-4 item">
                             <div class="card">
                               <a href=" {{ route('curso.detail', $curso->id) }}">
-                                <img src="images/curso01.png" class="card-img-top" alt="...">
+                                <img src="images/curso0{{$curso->id}}.png" class="card-img-top" alt="...">
                                 <div class="card-body">
                                   <div>
                                     @foreach($cuorse_tags as $key => $tag)
@@ -182,12 +183,9 @@
             <div class="row">
                 <div class="col-sm-6 p-5">
                     <h2 class="title-seccion">Acerca del Campus</h2>
-                    <p class="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p class="mt-4">
+                      El Campus Virtual de Educación Médica de ASPEFAM es una plataforma diseñada para codyuvar al fortalecimiento de una educación médica de calidad, a través de la implementación de programas, cursos, seminarios, conferencias y otras actividades formativas que se desarrollan en la modalidad virtual. Nuestro propósito es diseñar contenidos educativos actualizados y de la más alta calidad, para lo cual, ASPEFAM congrega a profesionales de reconocido prestigio nacional e internacional que ponen su experticia al servicio de la educación médica. 
+                    </p>
                     <a href="/acercade" class="btn btn-info text-white mt-5 px-3 py-2 btn-campus-call">Mayor información</a>
                     
                 </div>
