@@ -49,7 +49,7 @@ Coded by www.creative-tim.com
       <div class="logo">
         <a href="" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="{{ asset('/../assets/img/{{$usuario->avatar}}') }}">
+            <img src="{{ asset('/../assets/img/$usuario->avatar') }}">
           </div>
           <!-- <p>CT</p> -->
         </a>
