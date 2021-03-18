@@ -32,7 +32,7 @@ Coded by www.creative-tim.com
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css"/>
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/../css/app.css') }}">
   
   <!-- CSS Files -->
   
@@ -41,8 +41,7 @@ Coded by www.creative-tim.com
 
 </head>
 
-<body class=""
-style="background-image: url( {{ asset('/../assets/img/fondo_body.jpg') }} )">
+<body style="background: black;">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
