@@ -41,7 +41,8 @@ Coded by www.creative-tim.com
 
 </head>
 
-<body class="">
+<body class=""
+style="background-image: url( {{ asset('/../assets/img/fondo_body.jpg') }} )">
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
