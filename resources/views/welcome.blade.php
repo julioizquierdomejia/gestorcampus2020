@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-sm-6 logo d-flex align-items-center">
                     <a href="/">
-                        <img src=" {{ 'aset(assets/img/logo_header.png' ) }} ">
+                        <img src=" {{ aset('assets/img/logo_header.png' ) }} ">
                     </a>
                 </div>
                 <div class="col socialButtons">
