@@ -18,7 +18,7 @@
 
     <title>Campus Aspefam</title>
   </head>
-  <body>
+  <body style="background: black;">
     <div class="contenedor navheader d-flex justify-content-end mt-3">
         <nav>
 

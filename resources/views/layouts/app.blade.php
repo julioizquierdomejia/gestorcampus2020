@@ -41,7 +41,7 @@ Coded by www.creative-tim.com
 
 </head>
 
-<body style="background: black;">
+<body>
   <div class="wrapper ">
     <div class="sidebar" data-color="white" data-active-color="danger">
       <div class="logo">
