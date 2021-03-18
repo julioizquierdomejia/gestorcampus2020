@@ -28953,6 +28953,10 @@ readers do not read off random characters that represent icons */
 
 /* Estilos para los card de los cursos para matriculas */
 
+body {
+  background-image: url("/../assets/img/fondo_body.jpg");
+}
+
 .card_curso {
   text-decoration: none !important;
   overflow: hidden;
