@@ -78,34 +78,55 @@ class RegisterController extends Controller
             $json = file_get_contents($url, false );
             $infoUser =  json_decode($json);
 
-            if($infoUser == null){
-                self::crearUsuarioGestorMoodle($data);
+
+            if($infoUser == null){ // preguntamos si encuentra informacion sobre el DNI
+                //si no encuentra info mandamos null
+                //self::crearUsuarioGestorMoodle($data);
+                self::crearUsuarioGestorMoodle(null,$data);
             }else{
-                self::crearUsuarioGestorMoodle_DNI($infoUser,$data);
+                //si, si encuentra el DNI enviamos la info de renec
+                self::crearUsuarioGestorMoodle($infoUser,$data);
             }
 
         }else{
-            self::crearUsuarioGestorMoodle($data);
+            //Si el formato del DNI es distinto enviamos null
+            //self::crearUsuarioGestorMoodle($data);
+            self::crearUsuarioGestorMoodle(null,$data);
         }
         
     }
 
-    public function crearUsuarioGestorMoodle_DNI($infoUser, $data){
+    //Funcion que registra al usuario en la tabla mdl_cvuser de Moodle - remoto
+    public function crearUsuarioGestorMoodle($infoUser, $data){
+
+        if($infoUser == null){
+            $nombre = '';
+            $apellido = '';
+        }else{
+            $nombre = $infoUser[0]->nombres;
+            $apellido = $infoUser[0]->apellido_paterno;
+        }
+
         $usuarioMoodle = UserCampusMoodle::create([
             'auth' => 'manual',
             'username' => $data['email'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
-            'firstname' => $infoUser[0]->nombres,
-            'lastname' => $infoUser[0]->apellido_paterno,
+            'firstname' => $nombre,
+            'lastname' => $apellido,
             'confirmed' => 1,
             'mnethostid' => 1,
         ]);
 
         $usuarioMoodle->save();
 
-        self::crearUsuarioGestor_DNI($infoUser, $data);
+        //self::crearUsuarioGestor_DNI($infoUser, $data);
     }
+
+    
+
+    /*
+
 
     public function crearUsuarioGestorMoodle($data){
         $usuarioMoodle = UserCampusMoodle::create([
@@ -121,6 +142,7 @@ class RegisterController extends Controller
 
         self::crearUsuarioGestor($data);
     }
+    
 
     public function crearUsuarioGestor_DNI($infoUser, $data){
         $apellido_paterno = $infoUser[0]->apellido_paterno;
@@ -150,10 +172,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+
         $userMoodle = new UserMoodle();
         $userMoodle->user_id = $user->id;
 
         $userMoodle->document = $data['document'];
+        $userMoodle->user_moodle_id = 5;
+
         
         $userMoodle->user = $data['email'];
         $userMoodle->password = bcrypt($data['password']);
@@ -173,6 +198,7 @@ class RegisterController extends Controller
         
 
         $userMoodle->save();
+        
 
         $user->roles()->attach(7);
 
@@ -190,8 +216,9 @@ class RegisterController extends Controller
 
         return $user;
     }
+    
 
-    //grabar en la tabla usuario moodle
+    //grabar en la tabla usuario moodle del gestor laravel
     public function crearUsuarioGestor($data){
         $user = User::create([
         //return User::create([
@@ -225,6 +252,7 @@ class RegisterController extends Controller
 
         $userMoodle->save();
 
+
         $user->roles()->attach(7);
 
         //aqui se genera un Log
@@ -241,6 +269,7 @@ class RegisterController extends Controller
 
         return $user;   
     }
-
+    
+    */
 
 }
