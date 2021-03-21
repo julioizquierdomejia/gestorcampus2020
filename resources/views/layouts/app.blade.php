@@ -32,9 +32,11 @@ Coded by www.creative-tim.com
 
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jszip-2.5.0/dt-1.10.22/b-1.6.5/b-html5-1.6.5/datatables.min.css"/>
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('/../assets/css/app.css') }}">
   
   <!-- CSS Files -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/paper-dashboard.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+
   
   <!-- CSS Just for demo purpose, don't include it in your project -->
   @yield('css')
