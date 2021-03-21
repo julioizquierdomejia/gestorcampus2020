@@ -57,31 +57,10 @@ class LoginController extends Controller
         $username = $user->email;
         $password = $request->password;
 
-        self::loginMoodle();
 
         //when user exists
         //$my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/");
 
-
-        /*
-    	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
-    	$ss = explode(";", $headers['Set-Cookie']);
-    	$cookies_s = explode("=", $ss[0]);
-
-        $nueva_cookie = cookie('moodle', 'true', 20);
-        $nueva_cookie = cookie('moodle', 'true', 20);
-
-        return $nueva_cookie;
-
-    	//dd($data['secure']);
-    	//Cookie::queue("text", "123",12);
-        //return back()->withCookie(cookie("text", "ok", 20));
-
-        */
-
-	}
-
-    public function loginMoodle(){
 
         // inicio del codigo para el login con Moodle
         $my_login = file_get_contents("https://www.desarrollo.aspefam.org.pe/login/index.php");
@@ -137,8 +116,25 @@ class LoginController extends Controller
         
         // FIN del codigo para el login con Moodle
 
+        /*
+    	preg_match_all('/^ModdleSession=*([^;]*)/mi', $headers['Set-Cookie'], $matches);
+    	$ss = explode(";", $headers['Set-Cookie']);
+    	$cookies_s = explode("=", $ss[0]);
 
-    }
+        $nueva_cookie = cookie('moodle', 'true', 20);
+        $nueva_cookie = cookie('moodle', 'true', 20);
+
+        return $nueva_cookie;
+
+    	//dd($data['secure']);
+    	//Cookie::queue("text", "123",12);
+        //return back()->withCookie(cookie("text", "ok", 20));
+
+        */
+
+
+
+	}
 
     /**
      * Create a new controller instance.
