@@ -34,8 +34,8 @@ Coded by www.creative-tim.com
 
   
   <!-- CSS Files -->
-  <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/paper-dashboard.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/paper-dashboard.css') }}">
 
   
   <!-- CSS Just for demo purpose, don't include it in your project -->
