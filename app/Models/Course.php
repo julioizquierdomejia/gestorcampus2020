@@ -43,7 +43,7 @@ class Course extends Model
 
      public function tags(){
         //return $this->belongsToMany(tag::class);
-        return $this->belongsToMany(tag::class, 'course_tag')->withPivot('course_id');
+        return $this->belongsToMany('App\Models\Tag', 'course_tag')->withPivot('course_id');
      }
 
      public function images(){
