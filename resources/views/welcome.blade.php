@@ -152,7 +152,7 @@
                           <div class="col mb-4 item">
                             <div class="card">
                               <a href=" {{ route('curso.detail', $curso->id) }}">
-                                <img src="images/curso0{{$curso->id}}.png" class="card-img-top" alt="...">
+                                <img src="images/images_cursos/{{$curso->img}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                   <div>
                                     @foreach($cuorse_tags as $key => $tag)

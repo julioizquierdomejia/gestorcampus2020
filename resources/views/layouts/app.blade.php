@@ -41,6 +41,8 @@ Coded by www.creative-tim.com
   <!-- CSS Just for demo purpose, don't include it in your project -->
   @yield('css')
 
+  @yield('head')
+
 </head>
 
 <body>

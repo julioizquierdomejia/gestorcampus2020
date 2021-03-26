@@ -2,7 +2,6 @@
 
 @section('content')
 
-<?php phpinfo(); ?>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,9 +59,10 @@
               <div class="row">
                 <div class="col-sm-6 p-4">
                     <div class="row">
-                        <img src="{{ asset('/images/curso01.png') }}" class="img-fluid" alt="Responsive image">
+                        <img src="{{ asset('/images/images_cursos/'.$curso->img) }}" class="img-fluid" alt="Responsive image">
                     </div>
 
+                    {{--
                     <div class="row row-cols-1 row-cols-md-3 mt-3">
                       <div class="col mb-4">
                         <div class="card">
@@ -83,6 +83,7 @@
                         </div>
                       </div>
                     </div>
+                    --}}
                 </div>
                 <div class="col-sm-6 p-4">
                   <h2 class="title-seccion">{{$curso->fullname}}</h2>
@@ -104,7 +105,7 @@
                       Para poder adquirir el certificado del Curso, luego de haberlo aprobado, deberá de hacer una inversión.
                       Para mas información, 
                       <p>
-                        <a href="" type="button" class="btn btn-danger p-1 px-2" data-toggle="modal" data-target="#modal_sincosto">
+                        <a href="" type="button" class="btn btn-success p-1 px-2" data-toggle="modal" data-target="#modal_sincosto">
                           <i class="far fa-engine-warning"></i> Hacer click Aquí.
                         </a>
                       </p>

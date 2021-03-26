@@ -78,14 +78,19 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
+        //Capturamos la imagen que viene por el fomrulario
         $imagen = request()->file('img');
-        $nombre =  time()."_".$imagen->getClientOriginalName();
-        
-        Image::make($imagen)->resize(300, 200)->save('foo.jpg');
+        $nombre_imagen =  time()."_".$imagen->getClientOriginalName();
 
+        //grabamos la imagen en el storage public
+        Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
+
+
+        //Caprutamos todos lso String y explotamos el array
         $tags_string = $request->tags;
         $tags = explode(",", $tags_string);
 
+        //validamos
         $request->validate([
             'instructor' => 'required',
             'introduccion' => 'required',
@@ -100,7 +105,9 @@ class CourseController extends Controller
             'tags.required' => 'Seleccione al menos una categoria',
         ]);
 
+        //Cargamos todas las categorias
         $catagorias = Category::all();
+        //alamcenamos enuna variable la categoria que viene del formulario
         $categoria = $request->categoria;
 
         //primero preguntamos si la tabla esta vacia
@@ -119,11 +126,23 @@ class CourseController extends Controller
 
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
 
+            //Por medio de Id capturamos el curso que acabamos de grabar 
             $curso_current = Course::latest('id')->first();
+            $curso_current->img = $nombre_imagen;
+            $curso_current->save();
+
             
+            //y creamos los tags que vengan del formulario y los amarramos a dicho curso
+            //pero en la tabla de course_tag
             foreach ($tags as $key => $tag) {
                 $curso_current->tags()->attach($tag);
             }
+
+            //creamos el nuevo objeto de imagen para el curso 
+            $imagen_curso = new Courseimage;
+            $imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
+            $imagen_curso->save();
+
 
 
         }else{
@@ -150,6 +169,8 @@ class CourseController extends Controller
             }
 
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
+            $curso_current->img = time()."_".request()->file('img')->getClientOriginalName();
+            $curso_current->save();
 
             $curso_current = Course::latest('id')->first();
             
@@ -157,7 +178,12 @@ class CourseController extends Controller
                 $curso_current->tags()->attach($tag);
             }
 
-  
+            //creamos el nuevo objeto de imagen para el curso 
+            $imagen_curso = new Courseimage;
+            $imagen_curso->url_img = $nombre_imagen;
+            $imagen_curso->course_id = $curso_current->id;
+            $imagen_curso->save();
+
         }
 
   
