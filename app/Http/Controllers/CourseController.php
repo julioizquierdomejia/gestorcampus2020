@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Group;
 use App\Models\Tag;
+use App\Models\Courseimage;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
@@ -79,7 +80,7 @@ class CourseController extends Controller
 
         $imagen = request()->file('img');
         $nombre =  time()."_".$imagen->getClientOriginalName();
-        dd($nombre);
+        
         Image::make($imagen)->resize(300, 200)->save('foo.jpg');
 
         $tags_string = $request->tags;
@@ -124,6 +125,8 @@ class CourseController extends Controller
                 $curso_current->tags()->attach($tag);
             }
 
+            $curso_current->images()->attach($imagen);
+
         }else{
 
             //buscamos el nombre de la categoria en la tabla de moodle 
@@ -147,7 +150,6 @@ class CourseController extends Controller
                 
             }
 
-
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
 
             $curso_current = Course::latest('id')->first();
@@ -155,6 +157,11 @@ class CourseController extends Controller
             foreach ($tags as $key => $tag) {
                 $curso_current->tags()->attach($tag);
             }
+
+            $curso_current->images()->attach($imagen);
+            
+
+
 
   
         }
