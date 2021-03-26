@@ -46,9 +46,5 @@ class Course extends Model
         return $this->belongsToMany('App\Models\Tag', 'course_tag')->withPivot('course_id');
      }
 
-     public function images(){
-        return $this->hasMany('App\Models\Courseimage');
-     }
-
 
 }

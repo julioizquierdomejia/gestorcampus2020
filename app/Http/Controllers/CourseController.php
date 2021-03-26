@@ -125,7 +125,6 @@ class CourseController extends Controller
                 $curso_current->tags()->attach($tag);
             }
 
-            $curso_current->images()->attach($imagen);
 
         }else{
 
@@ -157,11 +156,6 @@ class CourseController extends Controller
             foreach ($tags as $key => $tag) {
                 $curso_current->tags()->attach($tag);
             }
-
-            $curso_current->images()->attach($imagen);
-            
-
-
 
   
         }
