@@ -39,10 +39,15 @@ class Course extends Model
      *
      * @var string
      */
-     protected $table = 'courses';
+     //protected $table = 'courses';
 
      public function tags(){
-        return $this->belongsToMany(tag::class);
+        //return $this->belongsToMany(tag::class);
+        return $this->belongsToMany(tag::class, 'course_tag')->withPivot('course_id');
+     }
+
+     public function images(){
+        return $this->hasMany('App\Models\Courseimage');
      }
 
 

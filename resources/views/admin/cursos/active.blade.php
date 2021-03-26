@@ -6,7 +6,7 @@
 		<div class="col-md-4">
 			<div class="card card-user">
 				<div class="image">
-					<img src="/../assets/img/damir-bosnjak.jpg" alt="...">
+					<img src="{{ asset('/../assets/img/damir-bosnjak.jpg') }}" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="title text-success">{{$cursos_moodle->fullname}}</h5>
@@ -35,7 +35,7 @@
 			<div class="card card-user">
 		      <div class="card-header">
 		        <h5 class="card-title">
-		        Información Complementaria</h5>
+		        Información Complementaria del Curso</h5>
 		      </div>
 		      <div class="card-body">
 		      	<form class="form-group" method="POST" action=" {{ route('curso.store') }} " enctype="multipart/form-data">
@@ -92,7 +92,7 @@
 			        	</div>		
 			        </div>
 
-			        <div class="row">
+			        <div class="row d-none">
 			        	<div class="col">
 			        		<div class="form-group">
 				                <label>Arreglo de tags</label>
@@ -109,6 +109,11 @@
 			        			</a>
 			        		@endforeach
 			        	</div>
+			        	@error('tags')
+			                    <span class="invalid-feedback d-block" role="alert">
+			                        <strong>{{ $message }}</strong>
+			                    </span>
+			                @enderror
 			        </div>
 			        
 		          <div class="row mt-3">
@@ -171,6 +176,23 @@
   						</div>
 		          	</div>
 		          </div>
+
+		          <div class="row">
+		            <div class="col-md-12">
+		              <div class="form-group">
+		              	<div class="custom-file custom-file-browser">
+		              		<input name='img' type="file" class="custom-file-input form-control" id="customFileLang" lang="es">
+		              		<label name='img' class="custom-file-label label-file" for="customFileLang">Seleccionar Archivo</label>
+						</div>
+						@error('images')
+		                    <span class="invalid-feedback d-block" role="alert">
+		                        <strong>{{ $message }}</strong>
+		                    </span>
+		                @enderror
+		              </div>
+		            </div>
+		          </div>
+
 		          
 		          <div class="row">
 		            <div class="update ml-auto mr-auto">

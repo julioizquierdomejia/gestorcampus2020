@@ -15,11 +15,12 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
-
-
+use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class CourseController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -76,6 +77,11 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
+        $imagen = request()->file('img');
+        $nombre =  time()."_".$imagen->getClientOriginalName();
+        dd($nombre);
+        Image::make($imagen)->resize(300, 200)->save('foo.jpg');
+
         $tags_string = $request->tags;
         $tags = explode(",", $tags_string);
 
@@ -84,6 +90,13 @@ class CourseController extends Controller
             'introduccion' => 'required',
             'course_group_id' => 'required',
             'type' => 'required',
+            'tags' => 'required',
+        ],
+        [
+            'course_group_id.required' => 'Debes de elejir un Grupo para el curso a Crear',
+            'type.required' => 'Selecciona la modalidad del cursos (PrePago / PostPago)',
+            'instructor.required' => 'Ingresa el nombre del instructor',
+            'tags.required' => 'Seleccione al menos una categoria',
         ]);
 
         $catagorias = Category::all();
@@ -148,7 +161,7 @@ class CourseController extends Controller
 
   
         return redirect()->route('cursos')
-            ->with('success', 'Project created successfully.');
+            ->with('success', 'Se ah Activado el Curso en el Gestor');
     }
 
     /**
@@ -159,7 +172,8 @@ class CourseController extends Controller
      */
     public function show($course)
     {
-        //
+        //Aqui me trae el id del curso de la tabla de moodle
+
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
@@ -169,8 +183,9 @@ class CourseController extends Controller
         $secciones = CourseSectionMoodle::where('course', $course)->get();
         
 
+        //listamos todos los cursos de la tabla del gestor
         $cursos = Course::all();
-        //dd($cursos);
+
 
         //Preguntamos si la tabla de cursos esta vacia con el modelo cursos
         if($cursos->count()){
@@ -228,14 +243,13 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit( $course)
     {
         //
-        
         $curso = Course::where('id', $course)->first();
-        dd($curso);
 
-        $cursos_moodle =CourseMoodle::findorFail($course);
+        //$cursos_moodle =CourseMoodle::findorFail($course);
+
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
         $secciones = CourseSectionMoodle::where('course', $course)->get();
@@ -244,7 +258,22 @@ class CourseController extends Controller
         $grupos = Group::all();
         $tags = Tag::all();
 
-        return view('admin.cursos.edit', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags'));
+        //aqui obtenemos el nombre y el ID de a que grupo pertenece el grupo 
+        $grupo_curso = Group::all()->where('id', $curso->course_group_id)->first();
+
+        //obtendremos el tipo de curso si es postapago y prepago
+        if ($curso->type == '1') {
+            $nombre_type = "PostPago";
+        }else{
+            $nombre_type = "PrePago";
+        }
+        
+        //recuperamos los tags
+        $curso_current = Course::all()->where('id', $course)->first();
+        $myTags = $curso_current->tags;
+
+
+        return view('admin.cursos.edit', compact('usuario', 'secciones', 'cursos', 'grupos','tags', 'curso', 'grupo_curso', 'nombre_type', 'myTags'));
 
     }
 
@@ -255,9 +284,31 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, Course $course)
     {
         //
+        
+        $cursoCurrent = Course::findorFail($request->course_id);
+
+        $request->validate([
+            'instructor' => 'required',
+            'introduccion' => 'required',
+            'course_group_id' => 'required',
+            'type' => 'required',
+            'tags' => 'required',
+        ],
+        [
+            'course_group_id.required' => 'Debes de elejir un Grupo para el curso a Crear',
+            'type.required' => 'Selecciona la modalidad del cursos (PrePago / PostPago)',
+            'instructor.required' => 'Ingresa el nombre del instructor',
+            'tags.required' => 'Seleccione al menos una categoria',
+        ]);
+
+        $cursoCurrent->update($request->all());
+
+        return redirect()->route('cursos')
+            ->with('success', 'Se actualizo el curso');
     }
 
     /**

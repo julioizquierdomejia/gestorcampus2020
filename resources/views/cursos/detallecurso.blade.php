@@ -2,6 +2,8 @@
 
 @section('content')
 
+<?php phpinfo(); ?>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -120,7 +122,7 @@
                     @if($curso->type == 1)
                       <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
                     @else
-                      <a href="" class="btn btn-danger "><i class="fal fa-shopping-cart mr-3"></i>Agregar a Carrito</a>
+                      <a href="" class="btn btn-danger" id="btn_pagar"><i class="fal fa-shopping-cart mr-3"></i>Comprar Curso</a>
                     @endif
                 </div>
               </div>
@@ -196,6 +198,62 @@
 
 @endsection
 
-@section('content')
+@section('javascript')
   
+  <script type="text/javascript">
+    Culqi.publicKey = 'pk_test_3b370432f6d56e22';
+
+    Culqi.settings({
+      title: 'ENAM',
+      currency: 'PEN',
+      description: 'CURSO ASPEFAM 01',
+      amount: 3500
+    });
+
+    $('#btn_pagar').on('click', function(e) {
+      // Abre el formulario con la configuración en Culqi.settings
+      Culqi.open();
+      e.preventDefault();
+  });
+
+  function culqi() {
+    if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+        var token = Culqi.token.id;
+        var data = { 
+          id:'1', 
+          producto:'Productos varios. Frank Moreno', 
+          precio: 15000, 
+          token:token, 
+          customer_id: "06813928",
+          address: "los olivos",
+          address_city: "Lima",
+          first_name: "Julio",
+          email: 'julio.izquierdo.mejia@gmail.com' 
+        };
+
+        //dataStr = data;
+
+        var url = "/plugins/proceso.php";
+
+        $.post(url,data,function(res){
+          alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
+          if (res=="exito") {
+            //pdf();
+          }else{
+            alert("No se logró realizar el pago.");
+          }
+        });
+
+    
+    
+    } else { // ¡Hubo algún problema!
+        // Mostramos JSON de objeto error en consola
+        console.log(Culqi.error);
+        alert(Culqi.error.user_message);
+    }
+  };
+
+  </script>
+
+
 @endsection

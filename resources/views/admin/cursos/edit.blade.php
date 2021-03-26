@@ -2,11 +2,12 @@
 
 @section('content')
 	
+
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card card-user">
 				<div class="image">
-					<img src="/../assets/img/damir-bosnjak.jpg" alt="...">
+					<img src=" {{ asset('/../assets/img/damir-bosnjak.jpg') }} " alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="title text-success">El titulo </h5>
@@ -38,17 +39,19 @@
 		        Información Complementaria</h5>
 		      </div>
 		      <div class="card-body">
-		      	<form class="form-group" method="POST" action=" {{ route('curso.store') }} " enctype="multipart/form-data">
+		      	<form class="form-group" method="POST" action=" {{ route('cursos.update', 1) }} " enctype="multipart/form-data">
 		          @csrf
-		          
+		          @method('PUT')
 
+		          <input name='course_id' type="hidden" class="form-control" placeholder="" value="{{ $curso->id }}" id="">
+		          
 		          {{-- Campos ocultos de apoyo para los grpos --}}
-		          <input name='course_group_id' type="hidden" class="form-control" placeholder="" value="{{ old('course_group_id') }}" id="course_group_id">
-		          <input name='course_group' type="hidden" class="form-control" placeholder="" value="{{ old('course_group') }}" id="course_group">
+		          <input name='course_group_id' type="hidden" class="form-control" placeholder="" value="{{ $grupo_curso->id }}" id="course_group_id">
+		          <input name='course_group' type="hidden" class="form-control" placeholder="" value="{{ $grupo_curso->name }}" id="course_group">
 
 		          {{-- Campos ocultos de apoyo para el tipo de curso --}}
-		          <input name='type' type="hidden" class="form-control" placeholder="" value="{{ old('type') }}" id="type">
-		          <input name='type_name' type="hidden" class="form-control" placeholder="" value="{{ old('type_name') }}" id="type_name">
+		          <input name='type' type="hidden" class="form-control" placeholder="" value="{{ $curso->type }}" id="type">
+		          <input name='type_name' type="hidden" class="form-control" placeholder="" value=" {{$nombre_type}}" id="type_name">
 			        
 			        <div class="row">
 			        	<div class="col">
@@ -89,7 +92,7 @@
 			        	</div>		
 			        </div>
 
-			        <div class="row">
+			        <div class="row d-none">
 			        	<div class="col">
 			        		<div class="form-group">
 				                <label>Arreglo de tags</label>
@@ -99,12 +102,24 @@
 			        </div>
 			        <div class="row mt-3">
 			        	<p>Seleccione etiquetas para este curso</p>
-			        	<div class="col">
+			        	<div class="col" id="selectores">
+
+			        		{{--
+
+			        		@foreach($myTags as $key => $myTag)
+			        			<a href="#" id="{{$myTag->id}}" class="opc-tag" style="opacity: 1">
+			        				<span class="badge badge-pill p-2 px-3" style="background-color: {{$myTag->color}}">{{$myTag->name}}</span>
+			        			</a>
+			        		@endforeach
+
 			        		@foreach($tags as $key => $tag)
 			        			<a href="#" id="{{$tag->id}}" class="opc-tag" style="opacity: 0.32">
 			        				<span class="badge badge-pill p-2 px-3" style="background-color: {{$tag->color}}">{{$tag->name}}</span>
 			        			</a>
 			        		@endforeach
+
+			        		--}}
+
 			        	</div>
 			        </div>
 			        
@@ -112,7 +127,7 @@
 		            <div class="col-md-7">
 		              <div class="form-group">
 		                <label>Instructor</label>
-		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}">
+		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{$curso->instructor}}">
 
 		                @error('instructor')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -126,7 +141,7 @@
 		            <div class="col-md-5">
 		              <div class="form-group">
 		                <label>Precio</label>
-		                <input name='price' type="text" class="form-control" placeholder="Ingrese Precio" value="">
+		                <input name='price' type="text" class="form-control" placeholder="Ingrese Precio" value="{{$curso->price}}">
 		              </div>
 		            </div>
 		          </div>
@@ -134,7 +149,7 @@
 		          	<div class="col">
 		          		<div class="form-group">
     						<label for="exampleFormControlTextarea1">Introducción</label>
-    						<textarea class="form-control" id="introduccion" name="introduccion" rows="3">{{old('introduccion') }}</textarea>
+    						<textarea class="form-control" id="introduccion" name="introduccion" rows="3">{{$curso->introduccion}}</textarea>
 
     						@error('introduccion')
 			                    <span class="invalid-feedback d-block" role="alert">
@@ -148,7 +163,7 @@
 		          	<div class="col">
 		          		<div class="form-group">
     						<label for="exampleFormControlTextarea1">Descripción</label>
-    						<textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    						<textarea class="form-control" id="description" name="description" rows="3">{{$curso->description}}</textarea>
   						</div>
 		          	</div>
 		          </div>
@@ -156,7 +171,7 @@
 		          	<div class="col">
 		          		<div class="form-group">
     						<label for="exampleFormControlTextarea1">Información Adicional</label>
-    						<textarea class="form-control" id="Informacion_adicional" name="Informacion_adicional" rows="3"></textarea>
+    						<textarea class="form-control" id="Informacion_adicional" name="Informacion_adicional" rows="3">{{$curso->informacion_adicional}}</textarea>
   						</div>
 		          	</div>
 		          </div>
@@ -164,14 +179,14 @@
 		          	<div class="col">
 		          		<div class="form-group">
     						<label for="exampleFormControlTextarea1">Novedades</label>
-    						<textarea class="form-control" id="novedades" name="novedades" rows="3"></textarea>
+    						<textarea class="form-control" id="novedades" name="novedades" rows="3">{{$curso->novedades}}</textarea>
   						</div>
 		          	</div>
 		          </div>
 		          
 		          <div class="row">
 		            <div class="update ml-auto mr-auto">
-		              <button type="submit" class="btn btn-primary btn-round">Grabar</button>
+		              <button type="submit" class="btn btn-primary btn-round">Actualizar Curso</button>
 		            </div>
 		          </div>
 		        </form>
@@ -217,6 +232,22 @@
 		})
 
 		var tags = [];
+
+
+		<?php foreach ($tags as $key => $tag): ?>
+			$('#selectores').append('<a href="#" id="{{$tag->id}}" class="opc-tag" style="opacity: .32"><span class="badge badge-pill p-2 px-3" style="background-color: {{$tag->color}}">{{$tag->name}}</span></a>')
+		<?php endforeach ?>
+
+
+		<?php foreach ($myTags as $key => $myTag): ?>
+			tags.push('{{$myTag->id}}');
+			//$(#'{{$myTag->id}}').css('opacity', 1);
+			
+		<?php endforeach ?>
+
+
+		$("#tags_array").val(tags);
+
 		var existe = $.inArray($(this).attr('id'), tags);
 
 		$('.opc-tag').click(function(){

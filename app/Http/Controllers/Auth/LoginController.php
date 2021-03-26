@@ -31,7 +31,8 @@ class LoginController extends Controller
      * @var string
      */
     
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
 
     function get_headers_from_curl_response($response)

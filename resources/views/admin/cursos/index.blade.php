@@ -2,6 +2,12 @@
 
 @section('content')
 	
+	@if(session()->has('success'))
+	    <div class="alert alert-warning text-black">
+	        {{ session()->get('success') }}
+	    </div>
+	@endif
+
 	<div class="row">
 		<div class="col">
 			@foreach($categorias as $categoria)

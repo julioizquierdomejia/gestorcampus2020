@@ -6,7 +6,7 @@
 		<div class="col-md-4">
 			<div class="card card-user">
 				<div class="image">
-					<img src="../assets/img/damir-bosnjak.jpg" alt="...">
+					<img src="{{ asset('../assets/img/damir-bosnjak.jpg') }}" alt="...">
 				</div>
 				<div class="card-body">
 					<h5 class="title text-success">{{$cursos_moodle->fullname}}</h5>
@@ -27,7 +27,7 @@
 						@else
 
 							@if($statusCurso == 'ACTIVO')
-								<a href=" {{ route('curso.edit', 1) }} " class="btn btn-warning">Editar</a>
+								<a href=" {{ route('curso.edit', $curso_activo->id) }} " class="btn btn-warning">Editar</a>
 							@endif
 
 							@if($statusCurso == 'MOODLE')

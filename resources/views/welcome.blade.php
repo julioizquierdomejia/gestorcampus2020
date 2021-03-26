@@ -24,7 +24,7 @@
 
             @if (Route::has('login'))
                     @auth
-                        <span> Bienvenido : {{ Auth::user()->email }} </span>
+                        <span> Bienvenido : {{ Auth::user()->email }}</span>
                         {{-- Verificamos si es super admin irole_id = 9 --}}
                         @if(Auth::user()->roles->first()->pivot->role_id == 9)
                           <a href="{{ route('perfil') }}" class="btn btn-success">Mi área personal</a>
@@ -157,11 +157,11 @@
                                   <div>
                                     @foreach($cuorse_tags as $key => $tag)
                                       @if($tag->course_id == $curso->id)
-                                        <i class="fas fa-circle" style="color: {{$tag->color}}"></i>
+                                        <i class="fas fa-circle" style="color: {{$tag->color}}"> <span style="font-family: Arial">{{ $tag->name }}</span> </i>
                                       @endif
                                     @endforeach
                                   </div>
-                                  <h5 class="card-title">{{ $curso->shortname  }}</h5>
+                                  <h5 class="card-title mt-2">{{ $curso->shortname  }}</h5>
                                   <p class="card-text"></p>
                                 </div>  
                               </a>

@@ -20,6 +20,13 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/foto', function () {
+    
+	$img = Image::make('https://fondosmil.com/fondo/25194.jpg');
+    return $img->response('jpg');
+
+});
+
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
 
 Auth::routes();
@@ -48,6 +55,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::post('cursos', [App\Http\Controllers\CourseController::class, 'store'])->name('curso.store');
 	Route::get('cursos/{id}/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('curso.edit');	
 	Route::post('cursos/{id}', [App\Http\Controllers\CourseController::class, 'filtrar'])->name('curso.filtra');
+	Route::put('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('cursos.update');
 
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
