@@ -123,7 +123,8 @@
                     @if($curso->type == 1)
                       <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
                     @else
-                      <a href="" class="btn btn-danger" id="btn_pagar"><i class="fal fa-shopping-cart mr-3"></i>Comprar Curso</a>
+                      <a href="" class="btn btn-primary" id="btn_pagar"><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
+                      <a href="" class="btn btn-danger" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
                     @endif
                 </div>
               </div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
 use App\Models\CourseMoodle;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -34,6 +36,14 @@ class HomeController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        return view('home', compact('users', 'courses', 'usuario'));
+        $role = DB::table('role_user')->where('user_id', $user_id)->first();
+
+        if ($role->id == 1 |  $role->id == 9) {
+            return view('home', compact('users', 'courses', 'usuario'));    
+        }else{
+            return redirect('/');
+        }
+
+        
     }
 }

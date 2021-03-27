@@ -48,4 +48,8 @@ class UserMoodle extends Model
         return $this->belongsToMany(Role::class);
 
      }
+
+     public function user(){
+        return $this->hasOne(User::class);
+    }
 }

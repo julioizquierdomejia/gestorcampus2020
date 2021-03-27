@@ -24,14 +24,14 @@
 
             @if (Route::has('login'))
                     @auth
-                        <span> Bienvenido : {{ Auth::user()->email }}</span>
+                        {{--<span> Bienvenido : {{ Auth::user()->email }}</span>--}}
                         {{-- Verificamos si es super admin irole_id = 9 --}}
                         @if(Auth::user()->roles->first()->pivot->role_id == 9)
-                          <a href="{{ route('perfil') }}" class="btn btn-success">Mi área personal</a>
+                          <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
                           <a href="{{ url('/home') }}" class="btn btn-primary">Administrador</a>
                           <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @else
-                          <a href="{{ route('perfil') }}" class="btn btn-success">Mi área personal</a>
+                          <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
                           <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @endif
                         

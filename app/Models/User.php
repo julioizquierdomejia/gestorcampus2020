@@ -52,4 +52,14 @@ class User extends Authenticatable
     public function logs(){
         return $this->belongsToMany(Log::class);
     } 
+
+
+    public function userMoodle(){
+        return $this->hasOne(UserMoodle::class);
+    }
+
+
+
+
+    //aqui es jalar los datos del usuario
 }

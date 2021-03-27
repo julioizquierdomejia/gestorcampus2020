@@ -27,18 +27,26 @@
 
   </head>
   <body style="background-image: url( {{ asset('/assets/img/fondo_body.jpg')  }} );">
-    <div class="contenedor navheader d-flex justify-content-end">
+    <div class="contenedor navheader d-flex justify-content-end mt-3">
         <nav>
 
             @if (Route::has('login'))
                     @auth
-                        <span> Bienvenido : {{ Auth::user()->email }} </span>
+                        {{--<span> Bienvenido : {{ Auth::user()->email }}</span>--}}
                         {{-- Verificamos si es super admin irole_id = 9 --}}
                         @if(Auth::user()->roles->first()->pivot->role_id == 9)
-                          <a href="{{ route('perfil') }}" class="btn btn-success">Mi área personal</a>
+                          <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
                           <a href="{{ url('/home') }}" class="btn btn-primary">Administrador</a>
                           <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @else
+                          <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
+
+                            <a type="button" class="btn btn-primary">
+                                <i class="fal fa-shopping-cart mr-2"></i> <span class="badge badge-light">9</span>
+                                <span class="sr-only">unread messages</span>
+                            </a>
+
+                          <a href="{{ route('logout') }}" class="btn btn-danger">Cerrar Sessión</a>
                         @endif
                         
                     @else

@@ -228,8 +228,6 @@ class RegisterController extends Controller
         //self::crearUsuarioGestor_DNI($infoUser, $data);
     }
 
-    
-
     /*    
 
     public function crearUsuarioGestor_DNI($infoUser, $data){
