@@ -60,7 +60,7 @@ Coded by www.creative-tim.com
         </a>
       </div>
       <div class="sidebar-wrapper">
-        @include('layouts.sidebar')
+        @include('components.sidebar')
       </div>
     </div>
     <div class="main-panel">

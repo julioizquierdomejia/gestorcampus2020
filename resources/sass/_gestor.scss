@@ -1,3 +1,207 @@
+body{
+	background-image: url(http://www.desarrollo.aspefam.org.pe/pluginfile.php/1/theme_mb2nl/pbgimage/1602177358/Fondo_Campus.jpg);
+	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+}
+
+.contenedor{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.navheader{
+	
+	height: 48px;
+}
+
+.containerBody{
+}
+
+.header{
+	background-color: #fff;
+	width: 100%;
+}
+
+.barheader{
+	background-color: #27323A;
+	height: 32px;
+	width: 100%;
+
+}
+
+h2{
+	font-family: 'Roboto', sans-serif!important;
+}
+
+.title-seccion{
+	font-family: 'Roboto', sans-serif!important;
+	font-weight: 400;
+}
+
+/*
+.title-seccion::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    border-bottom: solid 3px #1565c0;
+}*/
+
+.slider{
+	width: 100%;
+}
+
+.slider img{
+	width: 100%;
+}
+
+.logo img{
+	width: 40%;
+	margin: 0;
+	padding: 12px 18px;
+}
+
+.socialButtons{
+	padding: 10px 16px;
+}
+
+.socialButtons ul{
+	list-style: none;
+	margin: 0;
+}
+
+.socialButtons ul li{
+	float: left;
+	margin-right: 8px;
+}
+
+.socialButtons ul li a{
+	text-decoration: none;
+	display: block;
+	border-radius: 2px;
+	width: 32px;
+	height: 32px;
+	text-align: center;
+}
+
+.socialButtons ul li a i{
+	color: white;
+	margin-top: 10px;
+}	
+
+.bg-facebook{
+	background-color: #3B5998;
+}
+
+.bg-twitter{
+	background-color: #1DA1F2;
+}
+
+.bg-fliker{
+	background-color: #0063DC;
+}
+
+.bg-youtube{
+	background-color: #CD201F;
+}
+
+.bg-aspefam{
+	background-color: #1665C0;
+}
+
+.bg-blueaspefam{
+	background-color: #1A197F;
+}
+
+
+
+
+.card-about{
+	height: 170px;
+	border-radius: 0!important;
+}
+
+#card_about_1 .card-over{
+	background-color: orange;
+}
+
+#card_about_2 .card-over{
+	background-color: blue;
+}
+
+#card_about_3 .card-over{
+	background-color: green;
+}
+
+.card-over{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: .6;
+	width: 100%;
+	height: 100%;
+	z-index: 20;
+}
+
+.img-card-info{
+	width: 100%;
+	height: 100%;
+}
+
+.card-about:hover .img-card-info {-webkit-transform:scale(1.3);transform:scale(1.3); transition:all .5s ease-in-out;}
+.card-about {overflow:hidden;}
+
+footer{
+	background-color: #212A31;
+	
+}
+
+/* Contenedores para los componentes*/
+.components_content{
+	width: 100%;
+	margin: auto 0px!important;
+	padding: 10px 0;
+}
+
+/*Iconos de info del home*/
+.row-icons-info{
+	
+}
+
+
+.col-icons-info{
+	text-align: center;
+	background-color: #F4F4F4;
+}
+
+.col-icons-info .box-icon-info{
+	width: 90px;
+	height: 90px;
+	margin: auto auto;
+	background-color: #E1E1E1;
+}
+
+
+.col-icons-info .box-icon-info i{
+	font-size: 48px;
+	color: #1665C0;
+}
+
+.btn-campus-call{
+	font-size: 20px!important;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+
+
+
+
+
 /* Estilos para los card de los cursos para matriculas */
 
 .card_curso{

@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasOne(UserMoodle::class);
     }
 
+    public function carritos(){
+        return $this->hasMany(ShoppingCart::class);
+    }
+
+
 
 
 

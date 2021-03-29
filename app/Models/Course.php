@@ -51,5 +51,10 @@ class Course extends Model
         return $this->belongsToMany('App\Models\Courseimage');
      }
 
+     public function carrito(){
+        //return $this->belongsToMany(tag::class);
+        return $this->hasOne('App\Models\ShoppingCart');
+     }
+
 
 }

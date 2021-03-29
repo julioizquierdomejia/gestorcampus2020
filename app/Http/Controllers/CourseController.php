@@ -78,9 +78,12 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
+
         //Capturamos la imagen que viene por el fomrulario
         $imagen = request()->file('img');
         $nombre_imagen =  time()."_".$imagen->getClientOriginalName();
+
+        
 
         //grabamos la imagen en el storage public
         Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
@@ -145,7 +148,7 @@ class CourseController extends Controller
 
 
 
-        }else{
+        }else{ //Si categorias tiene registros...entonces
 
             //buscamos el nombre de la categoria en la tabla de moodle 
             $categoria_request = CategoryCourseMoodle::findorFail($request->categoria);
@@ -165,10 +168,40 @@ class CourseController extends Controller
 
                 $nuevaCategoria->save();
             }else{
+                //buscamos el nombre de la categoria en la tabla de moodle 
+                $categoria_request = CategoryCourseMoodle::findorFail($request->categoria);
+                $nombre_categoria = $categoria_request->name;
+
+                $nuevaCategoria = new Category;
+                $nuevaCategoria->category_id = $request->categoria;
+                $nuevaCategoria->name = $nombre_categoria;
+                $nuevaCategoria->status = 1;
+
+                $nuevaCategoria->save();
+
+                Course::create($request->all()); //grabamos todos los datos del form a la tabla
+
+                //Por medio de Id capturamos el curso que acabamos de grabar 
+                $curso_current = Course::latest('id')->first();
+                $curso_current->img = $nombre_imagen;
+                $curso_current->save();
+
                 
+                //y creamos los tags que vengan del formulario y los amarramos a dicho curso
+                //pero en la tabla de course_tag
+                foreach ($tags as $key => $tag) {
+                    $curso_current->tags()->attach($tag);
+                }
+
+                //creamos el nuevo objeto de imagen para el curso 
+                $imagen_curso = new Courseimage;
+                $imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
+                $imagen_curso->save();
             }
 
+            /*
             Course::create($request->all()); //grabamos todos los datos del form a la tabla
+            dd($curso_current->img);
             $curso_current->img = time()."_".request()->file('img')->getClientOriginalName();
             $curso_current->save();
 
@@ -183,9 +216,8 @@ class CourseController extends Controller
             $imagen_curso->url_img = $nombre_imagen;
             $imagen_curso->course_id = $curso_current->id;
             $imagen_curso->save();
-
+            */
         }
-
   
         return redirect()->route('cursos')
             ->with('success', 'Se ah Activado el Curso en el Gestor');
@@ -244,6 +276,7 @@ class CourseController extends Controller
         $tags = DB::table('course_tag')->where('course_id', $curso->id)
                 ->join('tags', 'course_tag.tag_id', '=', 'tags.id')
                 ->get();
+
 
         return view('cursos.detallecurso', compact('curso', 'cursos', 'tags'));
     }

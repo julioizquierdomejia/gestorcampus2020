@@ -75,6 +75,9 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//routes para los TIPO DE VIDEOS
 	Route::resource('videostipos', App\Http\Controllers\VideoTypeController::class);
 
+	//routes para el carrito de compras
+	Route::resource('carrito', App\Http\Controllers\ShoppingCartController::class);
+
 
 });
 

@@ -1,4 +1,4 @@
-@extends('layouts.interna', ['title' => 'Detalle del Curso'])
+@extends('layouts.frontend', ['title' => 'Detalle del Curso'])
 
 @section('content')
 
@@ -120,12 +120,28 @@
                   <p class="mt-3">
                       {{$curso->introduccion}}
                     </p>
-                    @if($curso->type == 1)
-                      <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
-                    @else
-                      <a href="" class="btn btn-primary" id="btn_pagar"><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
-                      <a href="" class="btn btn-danger" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
-                    @endif
+                    
+                    {{-- Primero vamos a revisar si el usuario esta logeado --}}
+                      @if (Route::has('login'))
+                        @auth
+                          @if($curso->type == 1) {{-- Si esta logeado preguntamos si es un curso postPago --}}
+                            <a href="" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"><i class="fal fa-sticky-note mr-3"></i>Matriculatme</a>
+                          @else {{-- Si es Prepago mostrmaos los botones de compra y carrito --}}
+                            <form id="form_info_cart">
+                              @csrf
+                              <input type="hidden" name="course_id" value="{{$curso->id}}">
+                              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            </form>
+                            <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito | {{$curso->id}} | {{ Auth::user()->id }}</a>
+                            <a href="" class="btn btn-primary" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                          @endif
+                        @else {{-- Si no estas logeado sale una advertencia --}}
+                          <div class="alert alert-danger" role="alert">
+                            Para poder Matricularte necesitas estar Logeado <a href="{{ route('login') }}" class="btn btn-primary mx-2">Acceder</a> si no estas registrado, regístrate <a href="{{ route('register') }}" class="btn btn-danger mx-2">Aquí</a>
+                          </div>
+                        @endif
+                      @endif
+                    {{-- End of if login--}}
                 </div>
               </div>
 
@@ -161,8 +177,6 @@
                         </div>
                         <!-- END Detalle TAB OTROS -->
 
-
-
                     </div>
 
                     <!-- end Tabs -->
@@ -182,15 +196,11 @@
                 @endforeach
 
                 <h3 class="mt-5 mb-3">Nuevos Cursos</h3>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                </p>
+                @foreach($cursos as $item)
+                    @if($item->categoria == $curso->categoria)
+                        <p>{{$item->shortname}}</p>
+                    @endif
+                @endforeach
 
 
             </div>
@@ -203,6 +213,7 @@
 @section('javascript')
   
   <script type="text/javascript">
+    
     Culqi.publicKey = 'pk_test_3b370432f6d56e22';
 
     Culqi.settings({
@@ -254,6 +265,31 @@
         alert(Culqi.error.user_message);
     }
   };
+
+  //Ajax ShoopingCarts
+  $('#addCart').click(function(){
+
+    //definimos las variables con el valor de los inputs hidden del form
+    //necesario para grabar en el carrito de compras 
+    //ShopingCarts
+    var input_curso_id = $('input[name=course_id]').val();
+    var input_user_id = $('input[name=user_id]').val();
+
+    $.ajax({
+      url: "/carrito",
+      method: 'POST',
+      data:{
+        _token:$('input[name="_token"]').val(),
+        course_id : input_curso_id,
+        user_id : input_user_id,
+      }
+    }).done(function(res){
+      alert(res);
+    })
+
+
+  })
+
 
   </script>
 
