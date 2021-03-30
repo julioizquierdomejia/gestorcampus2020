@@ -6,8 +6,8 @@
 
 	<div class="row components_content p-5">
 		<div class="col">
-			<h2>Datos del comprador</h2>
-			<div class="alert alert-primary" role="alert">
+			<h2><i class="fas fa-user-tag text-success"></i> Datos del comprador</h2>
+			<div class="alert alert-primary mt-4" role="alert">
 			  <p><span style="font-weight: bold;">Nombre :</span> {{ $usuario->name }}</p>
 			  <p>Apellidos : {{ $usuario->last_name }} {{ $usuario->mothers_last_name }}</p>
 			  <p>Dirección : {{ $usuario->address }}</p>
@@ -21,7 +21,7 @@
 
 	<div class="row components_content p-5">
 		<div class="col">
-			<h2>Mis productos</h2>
+			<h2><i class="fas fa-cart-arrow-down text-success"></i> Mis productos</h2>
 			<table class="table table-hover mt-4">
 			  <thead class="thead-dark">
 			    <tr>
@@ -34,26 +34,38 @@
 			    </tr>
 			  </thead>
 			  <tbody>
-			  	@foreach($cursos as $curso)
+			  	@forelse($cursos as $curso)
 				    <tr>
 				      <th scope="row"><span style="font-size: 24px; font-weight: bold;">{{ $curso->id }}</span></th>
 				      <td><img src="{{ asset('/images/images_cursos/'.$curso->img) }}" class="card-img-top" alt="Imagen del curso"></td>
 				      <td>{{ $curso->fullname }}</td>
 				      <td>{{ $curso->instructor }}</td>
 				      <td><a href="" class="btn btn-success btn_pagar">Pagar S/.{{ $curso->price }}</a></td>
-				      <td><a href="" class="btn btn-danger"><i class="fas fa-times"></i></a></td>
+				      <td><a href="#" class="btn btn-danger btn_delete_course" data-id='{{$curso->id}}' ><i class="fas fa-times"></i></a></td>
 				    </tr>
-			    @endforeach
+            @empty
+              <p>No existen registros que mostrar</p>
+            @endforelse
 			  </tbody>
 			</table>		
 		</div>
+
+		<div class="alert alert-success mt-5" role="alert">
+			<span>Pagar el total de S/ {{$precio_total}}.00 Soles</span> <a href="" class="btn btn-success btn_pagar mr-5">Aquí</a>
+		</div>
+
+
 	</div>
 
-	<form id="form_info_cart">
-      @csrf
-      <input type="hidden" name="course_id" value="{{$curso->id}}">
-      <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+  @if ($curso->id == null)
+    
+  @else
+    <form id="form_info_cart">
+        @csrf
+        <input type="hidden" name="course_id" value="{{$curso->id}}">
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
     </form>
+  @endif
 
 	
 @endsection
@@ -66,10 +78,24 @@
     Culqi.publicKey = 'pk_test_3b370432f6d56e22';
 
     Culqi.settings({
-      title: 'ENAM',
+      title: 'ASPEFAM - Campus',
       currency: 'PEN',
-      description: 'CURSO ASPEFAM 01',
+      description: '{{$curso->fullname}}',
       amount: 3500
+    });
+
+    Culqi.options({
+        //lang: 'auto',
+        modal: true,
+        //installments: true,
+        //customButton: 'Donar',
+        style: {
+          logo: "{{ asset('/images/isotipo.png') }}",
+          maincolor: '#1D1FE7',
+          buttontext: '#ffffff',
+          maintext: '#4A4A4A',
+          desctext: '#4A4A4A'
+        }
     });
 
     $('.btn_pagar').on('click', function(e) {
@@ -136,6 +162,24 @@
       alert(res);
     })
 
+
+  })
+
+  //Eliminar producto dle carrito
+  $('.btn_delete_course').click(function(){
+  	
+  	id = $(this).data('id');
+
+  	$.ajax({
+      url: "/carrito/" + id,
+      method: 'DELETE',
+      data:{
+        _token : $('input[name="_token"]').val(),
+        course_id : id,//$(this).attr(data-id),
+      }
+    }).done(function(res){
+      alert(res);
+    })
 
   })
 

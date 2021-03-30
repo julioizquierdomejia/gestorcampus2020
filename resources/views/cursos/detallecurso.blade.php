@@ -129,10 +129,10 @@
                           @else {{-- Si es Prepago mostrmaos los botones de compra y carrito --}}
                             <form id="form_info_cart">
                               @csrf
-                              <input type="hidden" name="course_id" value="{{$curso->id}}">
-                              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="course_id" value="{{$curso->id}}">
+                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">                            
                             </form>
-                            <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito | {{$curso->id}} | {{ Auth::user()->id }}</a>
+                            <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
                             <a href="" class="btn btn-primary" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
                           @endif
                         @else {{-- Si no estas logeado sale una advertencia --}}
@@ -217,11 +217,26 @@
     Culqi.publicKey = 'pk_test_3b370432f6d56e22';
 
     Culqi.settings({
-      title: 'ENAM',
+      title: 'ASPEFAM - Campus',
       currency: 'PEN',
-      description: 'CURSO ASPEFAM 01',
-      amount: 3500
+      description: '{{$curso->fullname}}',
+      email : "test@culqi.com",
+      amount: '{{$curso->price}}'+'00',
     });
+
+    Culqi.options({
+      //lang: 'auto',
+      modal: true,
+      //installments: true,
+      //customButton: 'Donar',
+      style: {
+        logo: "{{ asset('/images/isotipo.png') }}",
+        maincolor: '#1D1FE7',
+        buttontext: '#ffffff',
+        maintext: '#4A4A4A',
+        desctext: '#4A4A4A'
+      }
+  });
 
     $('#btn_pagar').on('click', function(e) {
       // Abre el formulario con la configuración en Culqi.settings
@@ -235,7 +250,7 @@
         var data = { 
           id:'1', 
           producto:'Productos varios. Frank Moreno', 
-          precio: 15000, 
+          precio: '{{$curso->precio}}',
           token:token, 
           customer_id: "06813928",
           address: "los olivos",

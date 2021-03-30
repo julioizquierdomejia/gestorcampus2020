@@ -36,7 +36,18 @@ class ShoppingCartController extends Controller
             ->select('courses.*', 'shopping_carts.id')
             ->get();
 
-        return view('carrito.index', compact('productos', 'cursos', 'usuario'));
+        $precio_total = 0;
+
+        foreach ($cursos as $key => $curso) {
+            $precio_total = $precio_total + $curso->price;
+        }
+
+        if ($productos->count() == null) {
+            return redirect('/');
+        }else{
+            return view('carrito.index', compact('productos', 'cursos', 'usuario', 'precio_total'));
+        }
+
     }
 
     /**
@@ -122,8 +133,13 @@ class ShoppingCartController extends Controller
      * @param  \App\Models\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShoppingCart $shoppingCart)
+    public function destroy($request)
     {
         //
+        $carrito = ShoppingCart::where('course_id', $request)->first();
+        //$carrito = ShoppingCart::findOrFail($id);
+        $carrito->delete();
+
+        return 'Eliminado';
     }
 }
