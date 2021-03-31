@@ -15,6 +15,7 @@ use App\Models\CourseSectionMoodle;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
+use App\Models\Shopping;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -272,6 +273,8 @@ class CourseController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
+        $curso_comprado = Shopping::where('user_id', $user_id)->first();
+
         //join para los datos del usuario
         $user = DB::table('users')
                 ->join('usermoodles', 'users.id', 'usermoodles.user_id')
@@ -287,7 +290,7 @@ class CourseController extends Controller
                 ->get();
 
 
-        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user'));
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado'));
     }
 
     public function active($course)

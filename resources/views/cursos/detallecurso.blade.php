@@ -136,6 +136,9 @@
                             <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
                             --}}
                             <a href="" class="btn btn-primary" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                              <div class="alert alert-success" id="status-curso" role="alert">
+                              
+                              </div>
                           @endif
                         @else {{-- Si no estas logeado sale una advertencia --}}
                           <div class="alert alert-danger" role="alert">
@@ -215,6 +218,8 @@
 @section('javascript')
   
   <script type="text/javascript">
+
+    $('#status-curso').hide()
     
     Culqi.publicKey = 'pk_test_3b370432f6d56e22';
 
@@ -223,7 +228,7 @@
       currency: 'PEN',
       description: 'Julio Izquierdo',
       email : "test@culqi.com",
-      amount: '{{$curso->price}}',
+      amount: parseInt('{{$curso->price}}'+'00'),
     });
 
     Culqi.options({
@@ -255,12 +260,12 @@
           precio: parseInt('{{$curso->price}}'+'00'),
           token:token,
           customer_id: parseInt('{{$user->document}}'),
-          address: "{{$user->user}}",
+          address: "{{$user->address}}",
           address_city: "{{$user->address}}",
           first_name: "{{$user->name}}",
           last_name: "{{$user->last_name}}",
           email: "{{$user->user}}",
-          telephone: "{{$user->telephone}}"
+          telephone: 998913140 //"{{$user->telephone}}"
         };
 
         //dataStr = data;
@@ -268,7 +273,34 @@
         var url = "/plugins/proceso.php";
 
         $.post(url,data,function(res){
-          alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
+          $('#btn_pagar').hide();
+          $('#status-curso').show()
+          $('#status-curso').html('Curso comprado')
+          //alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
+
+
+
+          //definimos las variables con el valor de los inputs hidden del form
+          //necesario para grabar en el carrito de compras 
+          //ShopingCarts
+          var input_curso_id = $('input[name=course_id]').val();
+          var input_user_id = $('input[name=user_id]').val();
+
+          $.ajax({
+            url: "/shopping",
+            method: 'POST',
+            data:{
+              _token:$('input[name="_token"]').val(),
+              course_id : input_curso_id,
+              user_id : input_user_id,
+            }
+          }).done(function(res){
+            alert(res);
+          })
+
+
+
+
           if (res=="exito") {
             //pdf();
           }else{
