@@ -38,4 +38,10 @@ class Video extends Model
      * @var string
      */
      //protected $table = 'courses';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'fecha'
+    ];
 }

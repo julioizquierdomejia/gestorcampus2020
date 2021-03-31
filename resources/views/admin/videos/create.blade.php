@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => 'Crear Videos'])
 @section('content')
 	
-	<a href="grupos" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Lista de Videos</a>
+	<a href="/videos" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Lista de Videos</a>
 	
 	<div class="row">
 		<div class="col-md-8">
@@ -15,7 +15,6 @@
 		          @csrf
 		          <input type="hidden" name="status" value="1">
 		          <input type="hidden" name="video_types_id" value="1">
-		          <input type="hidden" name="tags" value="1">
 
 		          <div class="row">
 		            <div class="col-md-8">
@@ -183,8 +182,8 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="far fa-key"></i> Palabras Claves - Keys</label>
-		                <input name='keys' type="text" class="form-control" placeholder="Ingrese palabras claves separadas por coma(,), por ejemplo, | Doctores, Medicina, Covid..." value="{{ old('keys') }}">
-		                @error('keys')
+		                <input name='tags' type="text" class="form-control" placeholder="Ingrese palabras claves separadas por coma(,), por ejemplo, | Doctores, Medicina, Covid..." value="{{ old('tags') }}">
+		                @error('tags')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
 		                    </span>

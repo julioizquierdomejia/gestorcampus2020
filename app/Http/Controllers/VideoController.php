@@ -59,6 +59,18 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         $rules = [
+            'name' => 'required|string',
+            'especialidad' => 'required|string',
+            'tema' => 'required|string',
+            'video_types_id' => 'required|string',
+            'resumen' => 'required|string',
+            'contenido' => 'required|string',
+            'fecha' => 'required',
+            'lugar' => 'required|string',
+            'duracion' => 'required|string',
+            'url' => 'required|string',
+            'tipo_licencia' => 'required|string',
+            'keys' => 'nullable|string',
             'competitor' => 'required|array',
         ];
 
