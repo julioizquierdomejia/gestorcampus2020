@@ -10,24 +10,33 @@
 
 	$culqi->Charges->create(
 		array(
-			"amount" => $_POST['precio'],
+            "amount" => $_POST['precio'],
 			"capture" => true,
-			"currency_code" => "PEN",
+            "currency_code" => "PEN",
 			"description" => $_POST['producto'],
 			"customer_id" => $_POST['customer_id'],
 			"address" => $_POST['address'],
-			"address_city" => $_POST['address_city'],
-			"first_name" => $_POST['first_name'],
-			"last_name" => $_POST['last_name'],
-			"email" => $_POST['email'],
-			"telephone" => $_POST['telephone'],
-			"installments" => 0,
-			"source_id" => $_POST['token']
-		)
+            "email" => $_POST['email'],
+            "installments" => 0,
+
+            "antifraud_details" => array(
+                "address" => $_POST['address'],
+                "address_city" => "LIMA",
+                "country_code" => "PE",
+                "first_name" => $_POST['first_name'],
+                "last_name" => $_POST['last_name'],
+                "phone_number" => $_POST['telephone'],
+            ),
+
+            "source_id" => $_POST['token']
+        )
+
 	);
 
 	echo "exito";
 
 	exit();
 ?>
+
+
 
