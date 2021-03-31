@@ -7,6 +7,24 @@ use Illuminate\Http\Request;
 
 class UserMoodleController extends Controller
 {
+    
+
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    protected function validator(array $data)
+    {   
+
+        return Validator::make($data, [
+            'document' => ['required', 'string', 'min:8' ,'max:20', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+    }
+    
     /**
      * Display a listing of the resource.
      *

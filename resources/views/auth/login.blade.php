@@ -1,11 +1,11 @@
-@extends('layouts.login')
+@extends('layouts.frontend', ['title' => 'Identificaté'])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
+    <div class="row justify-content-center my-5 py-5">
+        <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header bg-primary text-white"> <i class="fas fa-sign-in-alt"></i> {{ __('Login') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -69,5 +69,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @endsection

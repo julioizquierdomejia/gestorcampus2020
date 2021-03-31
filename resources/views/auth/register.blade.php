@@ -1,18 +1,18 @@
-@extends('layouts.login')
+@extends('layouts.frontend', ['title' => 'Regiítrate'])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+
+    <div class="row justify-content-center my-5 py-5">
+        <div class="col-md-5">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header bg-primary text-white"><i class="far fa-registered"></i> {{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="document" class="col-md-4 col-form-label text-md-right">{{ __('User Login') }}</label>
+                            <label for="document" class="col-md-4 col-form-label text-md-right">@extends('layouts.frontend', ['title' => 'Login']) {{ __('User Login') }}</label>
 
                             <div class="col-md-6">
                                 <input id="document" type="text" class="form-control @error('document') is-invalid @enderror" name="document" value="{{ old('document') }}" required autocomplete="document" autofocus>
@@ -73,5 +73,5 @@
             </div>
         </div>
     </div>
-</div>
+
 @endsection

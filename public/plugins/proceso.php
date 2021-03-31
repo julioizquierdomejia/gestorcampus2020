@@ -18,7 +18,9 @@
 			"address" => $_POST['address'],
 			"address_city" => $_POST['address_city'],
 			"first_name" => $_POST['first_name'],
+			"last_name" => $_POST['last_name'],
 			"email" => $_POST['email'],
+			"telephone" => $_POST['telephone'],
 			"installments" => 0,
 			"source_id" => $_POST['token']
 		)

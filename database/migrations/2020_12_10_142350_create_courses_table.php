@@ -28,7 +28,7 @@ class CreateCoursesTable extends Migration
             $table->longText('description')->nullable();
             $table->longText('Informacion_adicional')->nullable();
             $table->longText('novedades')->nullable();
-            $table->string('price')->nullable();
+            $table->integer('price')->nullable();
             $table->string('nuevo')->nullable();
             $table->string('status')->nullable();
             $table->string('type')->nullable();

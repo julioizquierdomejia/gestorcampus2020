@@ -19,6 +19,8 @@ use Illuminate\Support\Arr;
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
 
+
+
 class CourseController extends Controller
 {
 
@@ -267,8 +269,15 @@ class CourseController extends Controller
 
     public function detail($course){
 
-        //$user_id = \Auth::user()->id; //auth()->id();
-        //$usuario = usermoodle::where('id', $user_id)->first();
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
+        //join para los datos del usuario
+        $user = DB::table('users')
+                ->join('usermoodles', 'users.id', 'usermoodles.user_id')
+                ->select('users.*', 'usermoodles.*')
+                ->first();
+
 
         $cursos = Course::all();
         $curso = Course::findorFail($course);
@@ -278,7 +287,7 @@ class CourseController extends Controller
                 ->get();
 
 
-        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags'));
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user'));
     }
 
     public function active($course)
@@ -292,6 +301,7 @@ class CourseController extends Controller
 
         $grupos = Group::all();
         $tags = Tag::all();
+
 
         return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags'));
     }

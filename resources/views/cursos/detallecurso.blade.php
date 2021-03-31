@@ -132,7 +132,9 @@
                                 <input type="hidden" name="course_id" value="{{$curso->id}}">
                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">                            
                             </form>
+                            {{--
                             <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
+                            --}}
                             <a href="" class="btn btn-primary" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
                           @endif
                         @else {{-- Si no estas logeado sale una advertencia --}}
@@ -219,9 +221,9 @@
     Culqi.settings({
       title: 'ASPEFAM - Campus',
       currency: 'PEN',
-      description: '{{$curso->fullname}}',
+      description: 'Julio Izquierdo',
       email : "test@culqi.com",
-      amount: '{{$curso->price}}'+'00',
+      amount: '{{$curso->price}}',
     });
 
     Culqi.options({
@@ -250,13 +252,15 @@
         var data = { 
           id:'1', 
           producto:'Productos varios. Frank Moreno', 
-          precio: '{{$curso->precio}}',
-          token:token, 
-          customer_id: "06813928",
-          address: "los olivos",
-          address_city: "Lima",
-          first_name: "Julio",
-          email: 'julio.izquierdo.mejia@gmail.com' 
+          precio: parseInt('{{$curso->price}}'+'00'),
+          token:token,
+          customer_id: parseInt('{{$user->document}}'),
+          address: "{{$user->user}}",
+          address_city: "{{$user->address}}",
+          first_name: "{{$user->name}}",
+          last_name: "{{$user->last_name}}",
+          email: "{{$user->user}}",
+          telephone: "{{$user->telephone}}"
         };
 
         //dataStr = data;
@@ -283,7 +287,6 @@
 
   //Ajax ShoopingCarts
   $('#addCart').click(function(){
-
     //definimos las variables con el valor de los inputs hidden del form
     //necesario para grabar en el carrito de compras 
     //ShopingCarts

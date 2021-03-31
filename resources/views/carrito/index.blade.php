@@ -81,7 +81,7 @@
       title: 'ASPEFAM - Campus',
       currency: 'PEN',
       description: '{{$curso->fullname}}',
-      amount: 3500
+      amount: 350000
     });
 
     Culqi.options({
@@ -110,7 +110,7 @@
         var data = { 
           id:'1', 
           producto:'Productos varios. Frank Moreno', 
-          precio: 15000, 
+          precio: 350000, 
           token:token, 
           customer_id: "06813928",
           address: "los olivos",
