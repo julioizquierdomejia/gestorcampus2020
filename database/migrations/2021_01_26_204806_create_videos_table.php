@@ -29,6 +29,7 @@ class CreateVideosTable extends Migration
             $table->string('duracion');
             $table->string('url');
             $table->string('tags');
+            $table->string('tipo_licencia');
             $table->string('status');
             $table->timestamps();
 

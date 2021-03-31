@@ -72,7 +72,7 @@ return [
         'password'   => env('MOODLE_PASSWORD', ''),
         'charset'    => 'utf8',
         'collation'  => 'utf8_unicode_ci',
-        'prefix'     => 'mdl_cv',
+        'prefix'     => 'mdl_cv_',
         'strict'     => false,
          ],
         

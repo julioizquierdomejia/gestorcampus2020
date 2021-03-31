@@ -14,11 +14,14 @@ class Video extends Model
         'name',
         'especialidad',
         'tema',
+        'resumen',
         'contenido',
         'fecha',
         'duracion',
         'url',
         'tags',
+        'lugar',
+        'tipo_licencia',
         'status',
     ];
 

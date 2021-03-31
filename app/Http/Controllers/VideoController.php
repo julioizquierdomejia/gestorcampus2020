@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use App\Models\VideoType;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\Competitor;
+use App\Models\CompetitorType;
 
 class VideoController extends Controller
 {
@@ -18,7 +21,7 @@ class VideoController extends Controller
     {
         //
         $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
+        $usuario = UserMoodle::where('id', $user_id)->first();
 
         $videos = Video::all();
 
@@ -37,11 +40,14 @@ class VideoController extends Controller
     {
         //
         $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
+        $usuario = UserMoodle::where('id', $user_id)->first();
 
         $videos = Video::all();
+        $users = UserMoodle::all();
+        $competitor_types = CompetitorType::where('status', 1)->get();
+        $video_types = VideoType::where('status', 1)->get();
 
-        return view('admin.videos.create', compact('videos', 'usuario'));
+        return view('admin.videos.create', compact('videos', 'usuario', 'users', 'video_types', 'competitor_types'));
     }
 
     /**
@@ -52,12 +58,26 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'competitor' => 'required|array',
+        ];
 
-        Video::create($request->all());
+        $this->validate($request, $rules);
+
+        $competitors = $request->input('competitor');
+
+        $video = Video::create($request->except(['competitor']));
+
+        foreach ($competitors as $key => $item) {
+            $competitor = Competitor::create([
+                'user_id' => $item['user_id'],
+                'video_id' => $video->id,
+                'competitor_type_id' => $key
+            ]);
+        }
 
         $user_id = \Auth::user()->id; //auth()->id();
-        $usuario = usermoodle::where('id', $user_id)->first();
+        $usuario = UserMoodle::where('id', $user_id)->first();
 
         $videos = Video::all();
         return view('admin.videos.index', compact('videos', 'usuario'));

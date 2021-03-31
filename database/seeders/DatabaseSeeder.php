@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GroupSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(VideoTypeSeeder::class);
+        $this->call(CompetitorTypeSeeder::class);
     }
 }
