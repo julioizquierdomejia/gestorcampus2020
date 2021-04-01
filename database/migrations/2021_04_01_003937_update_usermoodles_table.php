@@ -14,10 +14,10 @@ class UpdateUsermoodlesTable extends Migration
     public function up()
     {
         Schema::table('usermoodles', function (Blueprint $table) {
-            $table->string('profesion')->after('celular');
-            $table->string('universidad')->after('celular');
-            $table->string('lugar_trabajo')->after('celular');
-            $table->text('resena')->after('celular');
+            $table->string('profesion')->after('celular')->nullable();
+            $table->string('universidad')->after('celular')->nullable();
+            $table->string('lugar_trabajo')->after('celular')->nullable();
+            $table->text('resena')->after('celular')->nullable();
         });
     }
 

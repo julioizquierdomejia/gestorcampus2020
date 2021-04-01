@@ -37,6 +37,10 @@ class UserMoodleSeeder extends Seeder
         $user->provincia = 'LIMA';
         $user->city = 'LIMA';
         $user->country = 'PERU';
+        /*$user->resena = '';
+        $user->lugar_trabajo = '';
+        $user->universidad = '';
+        $user->profesion = '';*/
 
         $user->save();
     }
