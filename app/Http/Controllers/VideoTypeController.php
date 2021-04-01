@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Video_type;
+use App\Models\VideoType;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserMoodle;
@@ -20,7 +20,7 @@ class VideoTypeController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $videoTipos = Video_type::all();
+        $videoTipos = VideoType::all();
         return view('admin.videotype.index', compact('videoTipos', 'usuario'));
     }
 
@@ -52,22 +52,22 @@ class VideoTypeController extends Controller
             'description' => 'required',
         ]);
 
-        Video_type::create($request->all());
+        VideoType::create($request->all());
 
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $videoTipos = Video_type::all();
+        $videoTipos = VideoType::all();
         return view('admin.videotype.index', compact('videoTipos', 'usuario'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Video_type  $video_type
+     * @param  \App\Models\VideoType  $video_type
      * @return \Illuminate\Http\Response
      */
-    public function show(Video_type $video_type)
+    public function show(VideoType $video_type)
     {
         //
     }
@@ -75,13 +75,13 @@ class VideoTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Video_type  $video_type
+     * @param  \App\Models\VideoType  $video_type
      * @return \Illuminate\Http\Response
      */
     public function edit($video_type)
     {
         //
-        $tipoVideo = Video_type::findOrFail($video_type);
+        $tipoVideo = VideoType::findOrFail($video_type);
         
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
@@ -93,10 +93,10 @@ class VideoTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Video_type  $video_type
+     * @param  \App\Models\VideoType  $video_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video_type $video_type)
+    public function update(Request $request, VideoType $video_type)
     {
         //
         dd($video_type);
@@ -114,10 +114,10 @@ class VideoTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Video_type  $video_type
+     * @param  \App\Models\VideoType  $video_type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Video_type $video_type)
+    public function destroy(VideoType $video_type)
     {
         //
     }
