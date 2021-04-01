@@ -92,7 +92,7 @@ class VideoController extends Controller
         $usuario = UserMoodle::where('id', $user_id)->first();
 
         $videos = Video::all();
-        return view('admin.videos.index', compact('videos', 'usuario'));
+        return redirect('videos');
     }
 
     /**
