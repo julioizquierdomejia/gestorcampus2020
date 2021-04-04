@@ -4,7 +4,7 @@
       <div class="col">
         <h2 class="title-seccion">Videoteca</h2>
 
-        Aqui saldran los videos
+        - No hay datos que mostrar -
       </div>
     </div>
       </div>

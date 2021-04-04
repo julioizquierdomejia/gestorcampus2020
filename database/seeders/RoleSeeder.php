@@ -23,37 +23,37 @@ class RoleSeeder extends Seeder
 
         $role = new Role();
         $role->name = 'coursecreator';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Creador de cursos';
         $role->save();
 
         $role = new Role();
         $role->name = 'editingteacher';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Docente Editor';
         $role->save();
 
         $role = new Role();
         $role->name = 'teacher';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Docente';
         $role->save();
 
         $role = new Role();
         $role->name = 'student';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Estudiante';
         $role->save();
 
         $role = new Role();
         $role->name = 'guest';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Usuaio Invitado';
         $role->save();
 
         $role = new Role();
         $role->name = 'user';
-        $role->description = 'Usuario participante';
+        $role->description = 'Usuario';
         $role->save();
 
         $role = new Role();
         $role->name = 'frontpage';
-        $role->description = 'Administrador del sistema';
+        $role->description = 'Front Page';
         $role->save();
 
         $role = new Role();
