@@ -20,7 +20,7 @@ class CreateEnrollmentsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
             $table->unsignedBigInteger('course_id')->nullable();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
+            $table->foreign('course_id')->references('course_moodle_id')->on('courses')->onDelete('set null');
 
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
