@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
 <style type="text/css">
   .table,
   .table tbody,
@@ -6,24 +7,25 @@
     display: block;
   }
 
-    table.cards {
+    table.dataTable.cards {
         background-color: transparent;
         border-bottom: 0 !important;
     }
 
-    .cards tbody {
+    .dataTable.cards tbody {
       display: flex;
       flex-wrap: wrap;
       margin: 0 -1%;
     }
-    .cards tbody tr {
-      width: 48%;
+    .dataTable.cards tbody tr {
+      width: 100%;
+      max-width: 100%;
       margin: 10px 1%;
       border: 1px solid #e3e6f0;
       box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
       background-color: white;
     }
-    .cards tbody td {
+    .dataTable.cards tbody td {
       border: 0;
       display: block;
       width: 100%;
@@ -45,11 +47,11 @@
         font-size: 20px;
     }
 
-    .cards .glyphicon {
+    .dataTable.cards .glyphicon {
         font-size: 75px;
     }
 
-    .cards tbody label {
+    .dataTable.cards tbody label {
         display: inline;
         position: relative;
         font-size: 85%;
@@ -59,20 +61,27 @@
         float: left;
         color: #808080;
     }
-    .cards tbody td:nth-child(1) {
+    .dataTable.cards tbody td:nth-child(1) {
         text-align: center;
     }
     @media (min-width: 768px) {
-      .cards tbody tr {
+      .dataTable.cards tbody tr {
+        width: 48%;
+        max-width: 48%;
+      }
+    }
+    @media (min-width: 1200px) {
+      .dataTable.cards tbody tr {
+        max-width: 31.333%;
         width: 31.333%;
       }
     }
 
     @media (max-width: 480px) {
-      .cards .empresa {
+      .dataTable.cards .empresa {
         font-size: 15px;
       }
-      .cards .name {
+      .dataTable.cards .name {
         font-size: 13px;
       }
     }
@@ -81,7 +90,7 @@
 <div class="row components_content">
 	<div class="col">
 		<table class="table cards w-100" id="competitorsTb">
-			<thead>
+			<thead class="d-none">
 				<tr>
 					<th>Id</th>
 					<th>Nombre</th>
