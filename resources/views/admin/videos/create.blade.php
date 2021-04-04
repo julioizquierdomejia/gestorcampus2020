@@ -1,6 +1,23 @@
 @extends('layouts.app', ['title' => 'Crear Videos'])
 @section('content')
-	
+	<style type="text/css">
+		.competitor-row:nth-child(odd) {
+			background-color: #f7f7f7;
+		}
+		.competitor-row:nth-child(even) {
+			background-color: #f1f1f1;
+		}
+		@media (max-width: 767px) {
+			.btnRemoveRow {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			.btnRemoveRow .fa {
+				font-size: 16px;
+			}
+		}
+	</style>
 	<a href="/videos" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Lista de Videos</a>
 	
 	<div class="row">
@@ -192,34 +209,51 @@
 		            </div>
 
 		            <div class="col-12">
-		            	<h4 class="mb-1">Participantes</h4>
-		            	<div class="row">
-		            	@foreach ($competitor_types as $ctype)
-		            	<div class="col-12 col-md-6">
-			            	<div class="form-group">
-			                <label><i class="far fa-user"></i> {{$ctype->name}}</label>
-			                <select name="competitor[{{$ctype->id}}][user_id]" class="form-control">
-			                	@foreach ($users as $user)
-			                	<option value="{{$user->id}}">{{$user->name . ' ' . $user->last_name}}</option>
-			                	@endforeach
-			                </select>
-
-			                @error('keys')
-			                    <span class="invalid-feedback d-block" role="alert">
-			                        <strong>{{ $message }}</strong>
-			                    </span>
-			                @enderror
-			              </div>
+		            	<div class="d-flex align-items-center justify-content-between my-2">
+		            		<h4 class="my-0">Participantes</h4>
+		            		<button class="btn btn-primary my-0 btnAddRow" type="button">Agregar <i class="fa fa-plus-circle"></i></button>
+		            	</div>
+		            	<div class="competitor-row-list">
+		            	<div class="row competitor-row pt-2 pb-3">
+		            		<div class="col-1 competitor-number align-self-center">1</div>
+			            	<div class="col-5 col-md-5">
+				                <label class="lblCUser mb-0" for="competitorUser"><i class="far fa-user"></i> Usuario</label>
+				                <select name="competitor[1][user_id]" class="form-control selectCUser" id="competitorUser">
+				                	@foreach ($users as $user)
+				                	<option value="{{$user->id}}">{{$user->name . ' ' . $user->last_name}}</option>
+				                	@endforeach
+				                </select>
+				                @error('competitor.1.user_id')
+				                    <span class="invalid-feedback d-block" role="alert">
+				                        <strong>{{ $message }}</strong>
+				                    </span>
+				                @enderror
+				            </div>
+				            <div class="col-5 col-md-5">
+				            	<label class="lblCType mb-0" for="competitorType"><i class="far fa-user"></i> Tipo</label>
+				            	<select name="competitor[1][type_id]" class="form-control selectCType" id="competitorType">
+				            	@foreach ($competitor_types as $ctype)
+				            		<option value="{{$ctype->id}}">{{$ctype->name . ' ' . $ctype->last_name}}</option>
+				            	@endforeach
+				            	</select>
+				            	@error('competitor.1.type_id')
+				                    <span class="invalid-feedback d-block" role="alert">
+				                        <strong>{{ $message }}</strong>
+				                    </span>
+				                @enderror
+				            </div>
+				            <span class="col-1 pl-0">
+				            	<br>
+				            	<button class="btn p-1 btn-sm mt-1 my-0 btnRemoveRow" type="button"><i class="fa fa-trash fa-2x"></i></button>
+				            </span>
 			            	</div>
-		            	@endforeach
+			            	<div class="competitor-msg text-center text-danger"></div>
 		            	</div>
 		            </div>
 		          </div>
 
-		          <div class="row">
-		            <div class="update ml-auto mr-auto">
+		          <div class="buttons text-center">
 		              <button type="submit" class="btn btn-primary btn-round">Crear Video</button>
-		            </div>
 		          </div>
 		        </form>
 		      </div>
@@ -232,6 +266,42 @@
 
 	<script type="text/javascript">
 		$( function() {
+			$(document).on('click', '.btnAddRow', function (event) {
+				var user_length = {{$users->count()}};
+				if($('.competitor-row').length < user_length) {
+					$('.competitor-msg').text('')
+					var last = $('.competitor-row:last').clone();
+					last.insertAfter($('.competitor-row:last'));
+					var row_length = $('.competitor-row').length
+					last.find('.competitor-number').text(row_length)
+					last.find('.selectCType').attr({
+						'id': 'competitorType'+row_length,
+						'name': 'competitor['+row_length+'][type_id]',
+					})
+					last.find('.lblCType').attr({
+						'for': 'competitorType'+row_length,
+					})
+					last.find('.selectCUser').attr({
+						'id': 'competitorUser'+row_length,
+						'name': 'competitor['+row_length+'][user_id]',
+					})
+					last.find('.lblCUser').attr({
+						'for': 'competitorUser'+row_length,
+					})
+				} else {
+					$('.competitor-msg').text('Se supera el límite de usuarios')
+				}
+			})
+
+			$(document).on('click', '.btnRemoveRow', function (event) {
+				if($('.competitor-row').length > 1) {
+					$(this).parents('.competitor-row').remove();
+
+					$.each($('.competitor-row'), function (id, item) {
+						$(this).find('.competitor-number').text(id + 1)
+					})
+				}
+			})
 			$( "#fecha_evento" ).datepicker();
 		} );
 	</script>

@@ -10,6 +10,7 @@ use App\Models\CourseCategoryMoodle;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Tag;
+use App\Models\Video;
 use Illuminate\Support\Facades\DB;
 
 
@@ -27,6 +28,7 @@ class WelcomeController extends Controller
     	$roles = Role::all();
         $grupos = Group::all();
         $tags = Tag::all();
+        $videos = Video::all();
 
         $grupos_iterados = [];
         //iteramos los grupos de moodle para ver cuales se estan usando en cursos activos
@@ -45,6 +47,6 @@ class WelcomeController extends Controller
                 ->orderBy('course_tag.course_id', 'asc')
                 ->get();
         
-        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados', 'cuorse_tags', 'tags'));
+        return view('welcome', compact('cursos', 'roles', 'categorias', 'grupos_iterados', 'cuorse_tags', 'tags', 'videos'));
     }
 }

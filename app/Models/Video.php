@@ -44,4 +44,9 @@ class Video extends Model
         'updated_at',
         'fecha'
     ];
+
+    public function competitors()
+    {
+        return $this->hasMany(Competitor::class, 'video_id');
+    }
 }
