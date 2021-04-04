@@ -70,6 +70,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);
 
 	//routes para los videos
+	Route::get('videos/list', [App\Http\Controllers\VideoController::class, 'list'])->name('videos.list');
 	Route::resource('videos', App\Http\Controllers\VideoController::class);
 
 	//routes para los TIPO DE VIDEOS

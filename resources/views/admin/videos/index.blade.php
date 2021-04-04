@@ -27,10 +27,12 @@
 				<p class="card-text">Tipo de licencia: {{ $video->tipo_licencia }}</p>
 
 				<p class="mb-0">Participantes</p>
-				<ul class="list-inline">
-					{{-- @foreach ($tags as $tag)
-					<li class="d-inline-block"><span class="badge badge-primary px-2">{{$tag}}</span></li>
-					@endforeach --}}
+				<ul class="list-inline bg-light p-2">
+					@forelse ($video->competitors as $competitor)
+					<li class=""> - {{$competitor->user->name .' '.$competitor->user->last_name}} ({{$competitor->type->name}})</li>
+					@empty
+					<li class="text-muted">No hay participantes.</li>
+					@endforelse
 				</ul>
 
 				@if ($tags)

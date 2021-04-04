@@ -18,4 +18,7 @@ class Competitor extends Model
     public function type(){
         return $this->hasOne(CompetitorType::class, 'id', 'competitor_type_id');
     }
+    public function user(){
+        return $this->hasOne(UserMoodle::class, 'id', 'user_id');
+    }
 }
