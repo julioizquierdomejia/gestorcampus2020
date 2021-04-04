@@ -80,13 +80,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-
-
+        
         //Capturamos la imagen que viene por el fomrulario
         $imagen = request()->file('img');
         $nombre_imagen =  time()."_".$imagen->getClientOriginalName();
-
-        
 
         //grabamos la imagen en el storage public
         Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
@@ -130,7 +127,14 @@ class CourseController extends Controller
 
             $nuevaCategoria->save();
 
-            Course::create($request->all()); //grabamos todos los datos del form a la tabla
+            //guardamos los datos del request en una variable
+            $dataForm = $request->all();
+
+            //convertimos el request instructor en string
+            $dataForm['instructor'] = implode(',', $request->instructor);
+
+            Course::create($dataForm);
+            //Course::create($request->all()); //grabamos todos los datos del form a la tabla
 
             //Por medio de Id capturamos el curso que acabamos de grabar 
             $curso_current = Course::latest('id')->first();
@@ -182,7 +186,14 @@ class CourseController extends Controller
 
                 $nuevaCategoria->save();
 
-                Course::create($request->all()); //grabamos todos los datos del form a la tabla
+                //guardamos los datos del request en una variable
+                $dataForm = $request->all();
+
+                //convertimos el request instructor en string
+                $dataForm['instructor'] = implode(',', $request->instructor);
+
+                Course::create($dataForm);
+                //Course::create($request->all()); //grabamos todos los datos del form a la tabla
 
                 //Por medio de Id capturamos el curso que acabamos de grabar 
                 $curso_current = Course::latest('id')->first();
@@ -295,7 +306,8 @@ class CourseController extends Controller
 
     public function active($course)
     {
-        //
+        // 
+
         $cursos_moodle =CourseMoodle::findorFail($course);
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
@@ -304,9 +316,11 @@ class CourseController extends Controller
 
         $grupos = Group::all();
         $tags = Tag::all();
+ 
+        //listamos a todos os usuarios para la asignacion de maestros
+        $usuarios = usermoodle::all();
 
-
-        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags'));
+        return view('admin.cursos.active', compact('usuario', 'cursos_moodle', 'secciones', 'cursos', 'course', 'grupos','tags', 'usuarios'));
     }
 
 
@@ -327,6 +341,7 @@ class CourseController extends Controller
         $usuario = usermoodle::where('id', $user_id)->first();
         $secciones = CourseSectionMoodle::where('course', $course)->get();
         $cursos = Course::where('status', 1)->get();
+
 
         $grupos = Group::all();
         $tags = Tag::all();

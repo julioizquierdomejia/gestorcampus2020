@@ -120,14 +120,21 @@
 		            <div class="col-md-7">
 		              <div class="form-group">
 		                <label>Instructor</label>
-		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}">
+	                
+						<select class="custom-select select_search_multiple" name="instructor[]" multiple="multiple">
+							@foreach($usuarios as $usuario)
+								<option value="{{$usuario->id}}">{{$usuario->last_name}} {{$usuario->mothers_last_name}}, {{$usuario->name}}</option>
+							@endforeach
+							
+						</select>
+		                
+		                <!--input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}"-->
 
 		                @error('instructor')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
 		                    </span>
 		                @enderror
-
 
 		              </div>
 		            </div>
@@ -212,6 +219,12 @@
 @section('javascript')
 
 	<script type="text/javascript">
+
+		$('.select_search_multiple').select2({
+			theme: 'bootstrap4',
+		});
+
+		$('select_search').select2();
 
 		//verificamos si antes de la validacion se selecciono algua opcion con mi input de apoyo
 		if($('#course_group').val() == ''){

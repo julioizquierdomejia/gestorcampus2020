@@ -304,7 +304,7 @@
           if (res=="exito") {
             //pdf();
           }else{
-            alert("No se logró realizar el pago.");
+            //alert("No se logró realizar el pago.");
           }
         });
 

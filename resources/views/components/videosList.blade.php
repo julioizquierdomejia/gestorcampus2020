@@ -88,6 +88,20 @@
 
 </style>
 <div class="row components_content">
+
+  <div class="col">
+    <div class="row px-5 pt-3">
+      <div class="col">
+        <h2 class="title-seccion">Videoteca</h2>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{--
 	<div class="col">
 		<table class="table cards w-100" id="competitorsTb">
 			<thead class="d-none">
@@ -108,7 +122,9 @@
 			</thead>
 		</table>
 	</div>
-</div>
+
+--}}
+
 @section('javascript')
 <script type="text/javascript">
   competitorsTb = $('#competitorsTb').DataTable({
@@ -122,7 +138,9 @@
 		{ data: "name", class: 'text-left'},
 		{ data: "description", class: 'text-left'},
 		{ data: "url", class: 'text-left py-0'},
-		{ data: "especialidad", class: 'text-left'},
+		/*
+
+    { data: "especialidad", class: 'text-left'},
 		{ data: "tema", class: 'text-left'},
 		{ data: "contenido", class: 'text-left'},
 		{ data: "fecha", class: 'text-left'},
@@ -130,6 +148,8 @@
 		{ data: "tipo_licencia", class: 'text-left'},
 		{ data: "competitors", class: 'text-left'},
 		{ data: "tags", class: 'text-left'},
+    */
+    
     ],
     "createdRow": function( row, data, dataIndex){
       $(row).addClass('card card-body');
@@ -139,3 +159,4 @@
   });
 </script>
 @endsection
+
