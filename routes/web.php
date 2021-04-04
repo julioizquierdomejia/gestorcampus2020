@@ -44,7 +44,7 @@ Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'
 
 Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail'])->name('curso.detail');
 //Route::resource('/cursos', App\Http\Controllers\CourseController::class);
-
+Route::get('videos/list', [App\Http\Controllers\VideoController::class, 'list'])->name('videos.list');
 Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(function () {
 
 	Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -70,7 +70,6 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::resource('grupos', App\Http\Controllers\GroupController::class);
 
 	//routes para los videos
-	Route::get('videos/list', [App\Http\Controllers\VideoController::class, 'list'])->name('videos.list');
 	Route::resource('videos', App\Http\Controllers\VideoController::class);
 
 	//routes para los TIPO DE VIDEOS
