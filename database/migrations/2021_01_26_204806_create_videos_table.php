@@ -22,8 +22,8 @@ class CreateVideosTable extends Migration
             $table->string('name');
             $table->string('especialidad');
             $table->string('tema');
-            $table->string('contenido');
-            $table->longText('resumen');
+            $table->mediumText('contenido');
+            $table->mediumText('resumen');
             $table->date('fecha');
             $table->string('lugar');
             $table->string('duracion');
