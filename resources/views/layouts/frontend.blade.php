@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <title>{{isset($title) ? $title . ' | ' : ''}} SigeCampus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/campus.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}">
 
@@ -28,16 +29,31 @@
 
       <!-- Cabecera con redes sociales y barrita Home -->
       @include('components.headerSocial')
-
+      
       @yield('content')
 
       @include('components.footer')
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script type="text/javascript">
+      //new Splide( '.splide' ).mount();
+
+      var splide = new Splide( '.splide' );
+
+      splide.on( 'autoplay:playing', function ( rate ) {
+        console.log( rate ); // 0-1
+      } );
+
+      splide.mount();
+
+    </script>
     <script src="https://checkout.culqi.com/js/v3"></script>
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper 

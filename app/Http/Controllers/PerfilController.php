@@ -24,11 +24,14 @@ class PerfilController extends Controller
     	$user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
-        $misCursos = DB::table('shopping_carts')
+        /*$misCursos = DB::table('shopping_carts')
             ->where('shopping_carts.user_id', '=', $user_id)
             ->join('courses', 'shopping_carts.course_id', '=', 'courses.id')
             ->select('courses.*', 'shopping_carts.id')
             ->get();
+        */
+
+        $misCursos = Course::all();
 
         return view('perfil.index', compact('usuario', 'misCursos'));
     }

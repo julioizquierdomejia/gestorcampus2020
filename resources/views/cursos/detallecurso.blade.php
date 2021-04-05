@@ -92,7 +92,14 @@
                     <span class="badge badge-pill p-2 px-3" style="background-color: {{ $tag->color  }}; color: white">{{ $tag->name }}</span>
                   @endforeach
 
-                  <h4 class="mt-2 mb-2"><i class="fal fa-user-chart mr-2 mt-3"></i> Profesor : {{$curso->instructor}}</h4>
+                  <h4 class="mt-2 mb-2"><i class="fal fa-user-chart mr-2 mt-3"></i> Profesor : 
+
+                    @foreach($instructores as $ins)
+                    <br>
+                      {{ $ins->name }}
+                    @endforeach
+
+                    </h4>
                     @if($curso->type == 1)
                       Sin costo de participación
                     @else
@@ -135,10 +142,66 @@
                             {{--
                             <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
                             --}}
-                            <a href="" class="btn btn-primary" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
-                              <div class="alert alert-success" id="status-curso" role="alert">
+                            <a class="btn btn-primary" id="btn_comprar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                              <div class="alert alert-danger mt-3" id="status-curso" style="display: none;" role="alert">
                               
                               </div>
+
+                              {{-- Al darle click a comprar le mostramos sus datos previamente con la opcion que los pueda modificar --}}
+
+                              <div class="row" id="form_datos" style="display: none;">
+                                <div class="col">
+                                  <h4 class="mt-3">Confirma tus datos para la compra</h4>
+                                    <span>Recuerda que todos los campos deben estar llenos</span>
+
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
+                                      <strong>Opps</strong> Debemos de tener todos los datos completos para poder inciar con la compra.
+                                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+
+                                    <form id="form_input">
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="campo_email">Email</label>
+                                          <input type="email" class="form-control" id="campo_email" value="{{$user->email}}" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="campo_nombre">Nombre</label>
+                                          <input type="text" class="form-control" id="campo_nombre" value="{{$usuario->name}}" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="campo_apellidos">Apellidos</label>
+                                          <input type="text" class="form-control" id="campo_apellidos" value="{{$usuario->last_name}} {{$usuario->mothers_last_name}}">
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="campo_direccion">Dirección</label>
+                                        <input type="text" class="form-control" id="campo_direccion" value="{{$usuario->adress}}" required>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label for="campo_ciudad">Ciudad</label>
+                                          <input type="text" class="form-control" id="campo_ciudad" value="{{$usuario->city}}" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="campo_provincia">Provincia</label>
+                                          <input type="text" class="form-control" id="campo_provincia" value="{{$usuario->provincia}}" required>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                          <label for="campo_telefono">Teléfono / Celular</label>
+                                          <input type="text" class="form-control" id="campo_telefono" value="{{$usuario->celular}}" required>
+                                        </div>
+                                      </div>
+                                      <!--button type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Pagar - CheckOut</button-->
+                                      <a class="btn btn-success" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Pagar - CheckOut</a>
+
+                                      <a class="btn btn-danger" id="btn_cancelar"><i class="far fa-trash-alt"></i> Cancelar</a>
+                                    </form>
+                                </div>
+                              </div>
+
                           @endif
                         @else {{-- Si no estas logeado sale una advertencia --}}
                           <div class="alert alert-danger" role="alert">
@@ -216,106 +279,178 @@
 @endsection
 
 @section('javascript')
-  
+
   <script type="text/javascript">
-
-    $('#status-curso').hide()
     
-    Culqi.publicKey = 'pk_test_3b370432f6d56e22';
+    $(document).ready(function(){
 
-    Culqi.settings({
-      title: 'ASPEFAM - Campus',
-      currency: 'PEN',
-      description: 'Julio Izquierdo',
-      email : "test@culqi.com",
-      amount: parseInt('{{$curso->price}}'+'00'),
-    });
-
-    Culqi.options({
-      //lang: 'auto',
-      modal: true,
-      //installments: true,
-      //customButton: 'Donar',
-      style: {
-        logo: "{{ asset('/images/isotipo.png') }}",
-        maincolor: '#1D1FE7',
-        buttontext: '#ffffff',
-        maintext: '#4A4A4A',
-        desctext: '#4A4A4A'
-      }
-  });
-
-    $('#btn_pagar').on('click', function(e) {
-      // Abre el formulario con la configuración en Culqi.settings
-      Culqi.open();
-      e.preventDefault();
-  });
-
-  function culqi() {
-    if (Culqi.token) { // ¡Objeto Token creado exitosamente!
-        var token = Culqi.token.id;
-        var data = { 
-          id:'1', 
-          producto:'Productos varios. Frank Moreno', 
-          precio: parseInt('{{$curso->price}}'+'00'),
-          token:token,
-          customer_id: parseInt('{{$user->document}}'),
-          address: "{{$user->address}}",
-          address_city: "{{$user->address}}",
-          first_name: "{{$user->name}}",
-          last_name: "{{$user->last_name}}",
-          email: "{{$user->user}}",
-          telephone: 998913140 //"{{$user->telephone}}"
-        };
-
-        //dataStr = data;
-
-        var url = "/plugins/proceso.php";
-
-        $.post(url,data,function(res){
-          $('#btn_pagar').hide();
-          $('#status-curso').show()
-          $('#status-curso').html('Curso comprado')
-          //alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
+      //inicializando variables
+      Culqi.publicKey = 'pk_test_3b370432f6d56e22';
+      //Variables de lso inputs 
+      email = $('#campo_email').val();
+      nombre = $('#campo_nombre').val();
+      apellidos = $('#campo_apellidos').val();
+      direccion = $('#campo_direccion').val();
+      telefono = $('#campo_telefono').val();
 
 
+      $('#status-curso').hide()
 
-          //definimos las variables con el valor de los inputs hidden del form
-          //necesario para grabar en el carrito de compras 
-          //ShopingCarts
-          var input_curso_id = $('input[name=course_id]').val();
-          var input_user_id = $('input[name=user_id]').val();
-
-          $.ajax({
-            url: "/shopping",
-            method: 'POST',
-            data:{
-              _token:$('input[name="_token"]').val(),
-              course_id : input_curso_id,
-              user_id : input_user_id,
-            }
-          }).done(function(res){
-            alert(res);
-          })
-
-
-
-
-          if (res=="exito") {
-            //pdf();
-          }else{
-            //alert("No se logró realizar el pago.");
-          }
+      //Le damos actividad al boton para mostrar y/o oculatar el fomulario de datos
+      $( "#btn_comprar" ).click(function() {
+        $( "#form_datos" ).toggle( "slow", function() {
+        // Animation complete.
         });
+      });
 
-    
-    
-    } else { // ¡Hubo algún problema!
-        // Mostramos JSON de objeto error en consola
-        console.log(Culqi.error);
-        alert(Culqi.error.user_message);
-    }
-  };
+      $( "#btn_cancelar" ).click(function() {
+        $( "#form_datos" ).toggle( "slow", function() {
+        // Animation complete.
+        });
+      });
+
+
+      //configuración y functions para CULQUI
+
+      $('#btn_pagar').on('click', function(e) {
+
+          $('#status-curso').hide("slow");
+          
+          //hacemos primero la validacion de los campos del input
+          email = $('#campo_email').val();
+          nombre = $('#campo_nombre').val();
+          apellidos = $('#campo_apellidos').val();
+          direccion = $('#campo_direccion').val();
+          telefono = $('#campo_telefono').val();
+
+          if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == ""){
+            $('#status-curso').show("slow");
+            $('#status-curso').html('Para continuar debes de llenar todos los datos')
+          }else{
+            // Abre el formulario con la configuración en Culqi.settings
+            Culqi.open();
+            e.preventDefault();
+          }
+
+      });
+
+      Culqi.settings({
+        title: 'ASPEFAM - Campus',
+        currency: 'PEN',
+        description: '{{$curso->fullname}}',
+        email : "test@culqi.com",
+        amount: parseInt('{{$curso->price}}'+'00'),
+      });
+
+      Culqi.options({
+        //lang: 'auto',
+        modal: true,
+        //installments: true,
+        //customButton: 'Donar',
+        style: {
+          logo: "{{ asset('/images/isotipo.png') }}",
+          maincolor: '#1D1FE7',
+          buttontext: '#ffffff',
+          maintext: '#4A4A4A',
+          desctext: '#4A4A4A'
+        }
+      });
+
+      //Listeners para el onchage de losinputs para cuando se actualicen
+      $( "#campo_direccion" ).change(function() {
+        direccion = $(this).val();
+      });
+
+      $( "#campo_telefono" ).change(function() {
+        telefono = $(this).val();
+      });
+
+      $( "#campo_email" ).change(function() {
+        email = $(this).val();
+      });
+
+      $( "#campo_nombre" ).change(function() {
+        nombre = $(this).val();
+      });
+
+
+    }) //aqui acaba el $(document).ready()
+
+
+
+    function culqi() {
+      if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+          var token = Culqi.token.id;
+          var data = { 
+            id:'1', 
+            producto:'{{$curso->fullname}}',
+            precio: parseInt('{{$curso->price}}'+'00'),
+            token:token,
+            customer_id: parseInt('{{$user->document}}'),
+            address: 'Mz A2 Lote 9 - Santa Ana - Los olivos', //direccion, //"{{$usuario->address}}",
+            address_city: "{{$user->address}}",
+            first_name: nombre, //"{{$user->name}}",
+            last_name: apellidos, //"{{$user->last_name}}",
+            email: email,
+            telephone: telefono, //"{{$usuario->celular}}",
+          };//Aquí termina la DATA
+
+          //dataStr = data;
+
+          var url = "/plugins/proceso.php";
+
+          $.post(url,data,function(res){ //Envio de informacion por AJAX al proceso de pago de Culqui
+            
+            //alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
+            //definimos las variables con el valor de los inputs hidden del form
+            //necesario para grabar en el carrito de compras 
+            //ShopingCarts
+            var input_curso_id = $('input[name=course_id]').val();
+            var input_user_id = $('input[name=user_id]').val();
+
+            $.ajax({
+              url: "/shopping",
+              method: 'POST',
+              data:{
+                _token:$('input[name="_token"]').val(),
+                course_id : input_curso_id,
+                user_id : input_user_id,
+              }
+            }).done(function(res){
+              alert(res);
+            })
+            if (res=="exito") {
+              //pdf();
+              //alert(res);
+              $('#btn_pagar').hide("slow");
+              $('#status-curso').show("slow");
+              $('#status-curso').html('Curso comprado');
+
+              $( "#form_datos" ).hide("slow");
+
+            }else{
+              //alert(res);
+              $('#btn_pagar').hide("slow");
+              $('#status-curso').show("slow");
+              $('#status-curso').html('No se logró comprar el curso, intentelo nuevamente');
+              
+            }
+          }); //Aquí termna el AJAX de Culqui
+
+      
+      
+      } else { // ¡Hubo algún problema!
+          // Mostramos JSON de objeto error en consola
+          console.log(Culqi.error);
+          alert(Culqi.error.user_message);
+      }
+    };
+
+
+
+    /*
+  $("#form_input").validate();
+
 
   //Ajax ShoopingCarts
   $('#addCart').click(function(){
@@ -338,10 +473,12 @@
     })
 
 
-  })
+  }) // Aqui acaba el ajax del carrito
 
+
+  
+*/
 
   </script>
-
 
 @endsection

@@ -300,8 +300,22 @@ class CourseController extends Controller
                 ->join('tags', 'course_tag.tag_id', '=', 'tags.id')
                 ->get();
 
+        //iteramos los instructores
+        $ids_instructores = explode(',', $curso->instructor);
 
-        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado'));
+        $instructores = [];
+
+        foreach ($ids_instructores as $key => $id_instructor) {
+            $id = $id_instructor;
+            $instructor = UserMoodle::where('user_id',$id)->first();
+
+            //$instructores = Arr::add($instructores, $instructor);
+            array_push($instructores, $instructor );
+
+        }
+
+
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario'));
     }
 
     public function active($course)

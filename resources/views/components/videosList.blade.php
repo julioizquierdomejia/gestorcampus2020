@@ -101,7 +101,7 @@
 </div>
 
 
-{{--
+
 	<div class="col">
 		<table class="table cards w-100" id="competitorsTb">
 			<thead class="d-none">
@@ -123,7 +123,7 @@
 		</table>
 	</div>
 
---}}
+
 
 @section('javascript')
 <script type="text/javascript">

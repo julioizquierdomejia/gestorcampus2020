@@ -1,3 +1,19 @@
+<div class="splide" data-splide='{"type":"loop","perPage":1, "autoplay":true, "speed":1300, "interval":5000}'>
+  <div class="splide__track">
+    <ul class="splide__list">
+      <li class="splide__slide"><img src="images/portada1.jpg" class="d-block w-100" alt="..."></li>
+      <li class="splide__slide"><img src="images/portada2.jpg" class="d-block w-100" alt="..."></li>
+      <li class="splide__slide"><img src="images/portada3.jpg" class="d-block w-100" alt="..."></li>
+    </ul>
+  </div>
+</div>
+
+<div class="splide__progress">
+  <div class="splide__progress__bar">
+  </div>
+</div>
+
+{{--
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -24,3 +40,4 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+--}}
