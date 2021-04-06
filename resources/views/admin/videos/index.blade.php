@@ -42,7 +42,7 @@
 				</ul>
 				@endif
 		        <div>
-		        	<a href="{{route('tags.edit', $video->id)}}" class="btn btn-warning"><i class="fal fa-edit"></i> Editar</a>
+		        	<a href="{{route('videos.edit', $video->id)}}" class="btn btn-warning"><i class="fal fa-edit"></i> Editar</a>
 		        	<a href="" class="btn btn-danger"><i class="fal fa-trash-alt"></i></a>
 		        </div>
 		      </div>

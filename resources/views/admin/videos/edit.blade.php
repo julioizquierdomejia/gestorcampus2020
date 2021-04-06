@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Crear Videos'])
+@extends('layouts.app', ['title' => 'Editar Video #'.$video->id])
 @section('content')
 	<style type="text/css">
 		.competitor-row:nth-child(odd) {
@@ -18,18 +18,19 @@
 			}
 		}
 	</style>
-	<a href="/videos" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Lista de Videos</a>
+	<a href="/videos" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Lista de Vídeos</a>
 	
 	<div class="row">
 		<div class="col-md-8">
 		    <div class="card card-user">
 		      <div class="card-header">
 		        <h5 class="card-title">
-		        Crear video</h5>
+		        Editar vídeo #{{$video->id}}</h5>
 		      </div>
 		      <div class="card-body">
-		        	<form class="form-group" method="POST" action="{{ route('videos.store') }}" enctype="multipart/form-data">
+		        	<form class="form-group" method="POST" action="{{ route('videos.update', $video) }}" enctype="multipart/form-data">
 		          @csrf
+		          {{ method_field('PUT') }}
 		          <input type="hidden" name="status" value="1">
 		          <input type="hidden" name="video_types_id" value="1">
 
@@ -37,7 +38,7 @@
 		            <div class="col-md-8">
 		              <div class="form-group">
 		                <label><i class="fas fa-user"></i>  Nombre del Video</label>
-		                <input name='name' type="text" class="form-control" placeholder="Ingrese Nombre del grupo" value="{{ old('name') }}">
+		                <input name='name' type="text" class="form-control" placeholder="Ingrese Nombre del grupo" value="{{ old('name', $video->name) }}">
 		                @error('name')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
@@ -50,7 +51,7 @@
 		            <div class="col-md-4">
 		              <div class="form-group">
 		                <label><i class="fas fa-briefcase"></i> Especialidad</label>
-		                <input name='especialidad' type="text" class="form-control" placeholder="Ingrese especialidad" value="{{ old('especialidad') }}">
+		                <input name='especialidad' type="text" class="form-control" placeholder="Ingrese especialidad" value="{{ old('especialidad', $video->especialidad) }}">
 		                @error('especialidad')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
@@ -65,7 +66,7 @@
 		                <select class="form-control" name="video_types_id" id="video_types">
 		                	<option value="">Seleccionar</option>
 		                	@foreach ($video_types as $type)
-		                		<option value="{{$type->id}}">{{$type->description}}</option>
+		                		<option value="{{$type->id}}" {{old('video_types_id', $video->video_types_id) == $type->id ? 'selected' : ''}}>{{$type->description}}</option>
 		                	@endforeach
 		                </select>
 		                @error('especialidad')
@@ -81,11 +82,11 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="fas fa-biohazard"></i> Contenido o Tema</label>
-		                <input name='tema' type="text" class="form-control" placeholder="Ingrese tema" value="{{ old('tema') }}">
+		                <input name='tema' type="text" class="form-control" placeholder="Ingrese tema" value="{{ old('tema', $video->tema) }}">
 		                @error('tema')
-		                    <span class="invalid-feedback d-block" role="alert">
-		                        <strong>{{ $message }}</strong>
-		                    </span>
+	                    <span class="invalid-feedback d-block" role="alert">
+	                        <strong>{{ $message }}</strong>
+	                    </span>
 		                @enderror
 		              </div>
 		            </div>
@@ -96,7 +97,7 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="fal fa-file-spreadsheet"></i> Reseña del contenido o tema</label>
-		                <textarea name="resumen" rows="10" cols="50" type="text" class="form-control" placeholder="Ingrese reseña" value="">{{ old('resumen') }}</textarea>
+		                <textarea name="resumen" rows="10" cols="50" type="text" class="form-control" placeholder="Ingrese reseña" value="">{{ old('resumen', $video->resumen) }}</textarea>
 		                
 		                @error('resumen')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -108,7 +109,7 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="fal fa-file-spreadsheet"></i> Contenido o tema</label>
-		                <textarea name="contenido" rows="10" cols="50" type="text" class="form-control" placeholder="Ingrese contenido" value="">{{ old('contenido') }}</textarea>
+		                <textarea name="contenido" rows="10" cols="50" type="text" class="form-control" placeholder="Ingrese contenido" value="">{{ old('contenido', $video->contenido) }}</textarea>
 		                
 		                @error('contenido')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -119,13 +120,11 @@
 		            </div>
 		          </div>
 
-
 		          <div class="row">
 		            <div class="col-md-4">
 		              <div class="form-group">
 		                <label><i class="far fa-calendar-alt"></i> Fecha de ejecución</label>
-		                <input name='fecha' type="date" class="form-control" placeholder="Ingrese fecha" value="{{ old('fecha') }}" id="fecha_evento">
-
+		                <input name='fecha' type="date" class="form-control" placeholder="Ingrese fecha" value="{{ old('fecha', $video->fecha->format('Y-m-d')) }}" id="fecha_evento">
 		                @error('fecha')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
@@ -138,8 +137,7 @@
 		            <div class="col-md-4">
 		              <div class="form-group">
 		                <label><i class="fas fa-map-marker-check"></i> Lugar del evento</label>
-		                <input name='lugar' type="text" class="form-control" placeholder="Ingrese Fecha del evento" value="{{ old('lugar') }}">
-
+		                <input name='lugar' type="text" class="form-control" placeholder="Ingrese Fecha del evento" value="{{ old('lugar', $video->lugar) }}">
 		                @error('lugar')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
@@ -152,7 +150,7 @@
 		            <div class="col-md-4">
 		              <div class="form-group">
 		                <label><i class="far fa-hourglass-half"></i> Duración</label>
-		                <input name='duracion' type="text" class="form-control" placeholder="Ingrese duracion" value="{{ old('duracion') }}">
+		                <input name='duracion' type="text" class="form-control" placeholder="Ingrese duracion" value="{{ old('duracion', $video->duracion) }}">
 
 		                @error('duracion')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -170,7 +168,7 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="fab fa-youtube"></i> URL del Video</label>
-		                <input name='url' type="text" class="form-control" placeholder="Ingrese url" value="{{ old('url') }}">
+		                <input name='url' type="text" class="form-control" placeholder="Ingrese url" value="{{ old('url', $video->url) }}">
 
 		                @error('url')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -186,7 +184,7 @@
 		          	<div class="col-md-4">
 		              <div class="form-group">
 		                <label><i class="fas fa-map-marker-check"></i> Tipo de licencia</label>
-		                <input name='tipo_licencia' type="text" class="form-control" placeholder="Tipo de licencia" value="{{ old('tipo_licencia') }}">
+		                <input name='tipo_licencia' type="text" class="form-control" placeholder="Tipo de licencia" value="{{ old('tipo_licencia', $video->tipo_licencia) }}">
 
 		                @error('tipo_licencia')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -199,7 +197,7 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		                <label><i class="far fa-key"></i> Palabras Claves - Keys</label>
-		                <input name='tags' type="text" class="form-control" placeholder="Ingrese palabras claves separadas por coma(,), por ejemplo, | Doctores, Medicina, Covid..." value="{{ old('tags') }}">
+		                <input name='tags' type="text" class="form-control" placeholder="Ingrese palabras claves separadas por coma(,), por ejemplo, | Doctores, Medicina, Covid..." value="{{ old('tags', $video->tags) }}">
 		                @error('tags')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
@@ -214,13 +212,17 @@
 		            		<button class="btn btn-dark my-0 btnAddRow" type="button">Agregar <i class="fa fa-plus-circle"></i></button>
 		            	</div>
 		            	<div class="competitor-row-list">
-		            	<div class="row competitor-row pt-2 pb-3">
-		            		<div class="col-1 competitor-number align-self-center">1</div>
+		            		@foreach ($competitors as $key => $competitor)
+		            		@php
+		            			$_key = $key + 1;
+		            		@endphp
+		            		<div class="row competitor-row pt-2 pb-3">
+		            		<div class="col-1 competitor-number align-self-center">{{$_key}}</div>
 			            	<div class="col-5 col-md-5">
 				                <label class="lblCUser mb-0" for="competitorUser"><i class="far fa-user"></i> Usuario</label>
-				                <select name="competitor[1][user_id]" class="form-control selectCUser" id="competitorUser">
+				                <select name="competitor[{{$_key}}][user_id]" class="form-control selectCUser" id="competitorUser">
 				                	@foreach ($users as $user)
-				                	<option value="{{$user->id}}">{{$user->name . ' ' . $user->last_name}}</option>
+				                	<option value="{{$user->id}}" {{$competitor->user_id == $user->id ? 'selected' : ''}}>{{$user->name . ' ' . $user->last_name}}</option>
 				                	@endforeach
 				                </select>
 				                @error('competitor.1.user_id')
@@ -231,9 +233,9 @@
 				            </div>
 				            <div class="col-5 col-md-5">
 				            	<label class="lblCType mb-0" for="competitorType"><i class="far fa-user"></i> Tipo</label>
-				            	<select name="competitor[1][type_id]" class="form-control selectCType" id="competitorType">
+				            	<select name="competitor[{{$_key}}][type_id]" class="form-control selectCType" id="competitorType">
 				            	@foreach ($competitor_types as $ctype)
-				            		<option value="{{$ctype->id}}">{{$ctype->name . ' ' . $ctype->last_name}}</option>
+				            		<option value="{{$ctype->id}}" {{$competitor->competitor_type_id == $ctype->id ? 'selected' : ''}}>{{$ctype->name . ' ' . $ctype->last_name}}</option>
 				            	@endforeach
 				            	</select>
 				            	@error('competitor.1.type_id')
@@ -247,13 +249,14 @@
 				            	<button class="btn p-1 btn-sm mt-1 my-0 btnRemoveRow" type="button"><i class="fa fa-trash fa-2x"></i></button>
 				            </span>
 			            	</div>
+			            	@endforeach
 			            	<div class="competitor-msg text-center text-danger"></div>
 		            	</div>
 		            </div>
 		          </div>
 
 		          <div class="buttons text-center">
-		              <button type="submit" class="btn btn-primary btn-round">Crear Video</button>
+		              <button type="submit" class="btn btn-primary btn-round">Editar Video</button>
 		          </div>
 		        </form>
 		      </div>
@@ -271,6 +274,7 @@
 				if($('.competitor-row').length < user_length) {
 					$('.competitor-msg').text('')
 					var last = $('.competitor-row:last').clone();
+					last.find('option:selected').removeAttr('selected')
 					last.insertAfter($('.competitor-row:last'));
 					var row_length = $('.competitor-row').length
 					last.find('.competitor-number').text(row_length)

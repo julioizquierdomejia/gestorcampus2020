@@ -230,7 +230,14 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = UserMoodle::where('id', $user_id)->first();
+        $users = UserMoodle::all();
+        $competitors = Competitor::where('video_id', $video->id)->get();
+        $competitor_types = CompetitorType::where('status', 1)->get();
+        $video_types = VideoType::where('status', 1)->get();
+
+        return view('admin.videos.edit', compact('video', 'usuario', 'users', 'video_types', 'competitor_types', 'competitors'));
     }
 
     /**
@@ -240,7 +247,7 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update(Request $request, $video_id)
     {
         $rules = [
             'name' => 'required|string',
@@ -279,21 +286,19 @@ class VideoController extends Controller
 
         $request->url = str_replace("watch?v=", "embed/", $request->url);
 
-        $video = Video::update($request->except(['competitor']));
+        $video = Video::where('id', $video_id)->firstOrFail();
+        $video->update($request->except(['competitor']));
 
+        Competitor::where('video_id', $video_id)->delete();
         foreach ($competitors as $key => $item) {
             $competitor = [
                 'user_id' => $item['user_id'],
-                'video_id' => $video->id,
+                'video_id' => $video_id,
                 'competitor_type_id' => $key
             ];
             Competitor::create($competitor);
         }
 
-        /*$user_id = \Auth::user()->id; //auth()->id();
-        $usuario = UserMoodle::where('id', $user_id)->first();*/
-
-        $videos = Video::all();
         return redirect('videos');
     }
 
