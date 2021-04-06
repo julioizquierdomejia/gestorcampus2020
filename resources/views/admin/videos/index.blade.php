@@ -7,7 +7,7 @@
 		<?php
 
 			
-			$videoKey = $video->url;
+			$videoKey = str_replace("watch", "embed", $video->url);
 			$tags = array_map('trim', explode(',', $video->tags));
 		?>
 
