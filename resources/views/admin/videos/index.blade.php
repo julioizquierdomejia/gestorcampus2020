@@ -5,7 +5,7 @@
 	<div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
 		@foreach($videos as $key => $video)
 		<?php
-			$videoKey = str_replace("watch?v=", "embed/", $video->url);
+			//$videoKey = str_replace("watch?v=", "embed/", $video->url);
 			$tags = array_map('trim', explode(',', $video->tags));
 		?>
 
@@ -15,7 +15,7 @@
 		        <h5 class="card-title"><i class="fas fa-tag"></i> - {{ $video->name }}</h5>
 		        <p class="card-text">{{ $video->description }}</p>
 	      	  	<div class="embed-responsive embed-responsive-16by9 mb-3">
-				  <iframe class="embed-responsive-item bg-dark" src="http://www.youtube.com/embed/{{$videoKey}}" allowfullscreen></iframe>
+				  <iframe class="embed-responsive-item bg-dark" src="{{$video->url}}" allowfullscreen></iframe>
 				</div>
 				<p class="card-text">Especialidad: {{ $video->especialidad }}</p>
 				<p class="card-text"><i class="fa fa-comments" title="Tema"></i> {{ $video->tema }}</p>
