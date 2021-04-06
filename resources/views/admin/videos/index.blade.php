@@ -5,9 +5,7 @@
 	<div class="row row-cols-1 row-cols-md-2 g-4 mt-2">
 		@foreach($videos as $key => $video)
 		<?php
-
-			
-			$videoKey = str_replace("watch", "embed", $video->url);
+			$videoKey = str_replace("watch?v=", "embed/", $video->url);
 			$tags = array_map('trim', explode(',', $video->tags));
 		?>
 
