@@ -93,7 +93,9 @@ class VideoController extends Controller
 
         $competitors = $request->input('competitor');
 
-        $request->url = str_replace("watch?v=", "embed/", $request->url);
+        $request->merge([
+            'url' => str_replace("watch?v=", "embed/", $request->input('url'))
+        ]);
 
         $video = Video::create($request->except(['competitor']));
 
@@ -284,7 +286,9 @@ class VideoController extends Controller
 
         $competitors = $request->input('competitor');
 
-        $request->url = str_replace("watch?v=", "embed/", $request->url);
+        $request->merge([
+            'url' => str_replace("watch?v=", "embed/", $request->input('url'))
+        ]);
 
         $video = Video::where('id', $video_id)->firstOrFail();
         $video->update($request->except(['competitor']));
