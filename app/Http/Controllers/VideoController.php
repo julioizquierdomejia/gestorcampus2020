@@ -146,8 +146,23 @@ class VideoController extends Controller
 
         $rows_array = [];
 
+
+        function YoutubeID($url) {
+            if(strlen($url) > 11) {
+                if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match)) {
+                    return $match[1];
+                }
+                else
+                    return false;
+            }
+            return $url;
+        }
+
+        
         foreach ($records as $key => $video) {
-            $videoKey = $video->url;
+            //$videoKey = $video->url;
+            $videoKey = YoutubeID($video->url);
+
             $map_tags = array_map('trim', explode(',', $video->tags));
 
             $name = '<h5 class="card-title"><i class="fas fa-tag"></i> - '.$video->name.'</h5>';
@@ -204,6 +219,7 @@ class VideoController extends Controller
             "iTotalDisplayRecords" => $totalRecordswithFilter,
             "aaData" => $rows_array
         );
+
 
         echo json_encode($response);
         exit;

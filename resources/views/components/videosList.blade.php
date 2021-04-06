@@ -94,34 +94,29 @@
       <div class="col">
         <h2 class="title-seccion">Videoteca</h2>
 
+        <table class="table cards w-100" id="competitorsTb">
+          <thead class="d-none">
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>URL</th>
+              <th>Especialidad</th>
+              <th>Tema</th>
+              <th>Contenido</th>
+              <th>Fecha</th>
+              <th>Lugar</th>
+              <th>Tipo Licencia</th>
+              <th>Participantes</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+        </table>
         
       </div>
     </div>
   </div>
 </div>
-
-
-
-	<div class="col">
-		<table class="table cards w-100" id="competitorsTb">
-			<thead class="d-none">
-				<tr>
-					<th>Id</th>
-					<th>Nombre</th>
-					<th>Descripción</th>
-					<th>URL</th>
-					<th>Especialidad</th>
-					<th>Tema</th>
-					<th>Contenido</th>
-					<th>Fecha</th>
-					<th>Lugar</th>
-					<th>Tipo Licencia</th>
-					<th>Participantes</th>
-					<th>Tags</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
 
 
 
