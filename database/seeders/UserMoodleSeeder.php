@@ -21,7 +21,7 @@ class UserMoodleSeeder extends Seeder
         $user->password = bcrypt('.Campus460..');
         $user->user_moodle_id = 2;
         
-        $user->document = '06813928';
+        $user->document = '00000000';
         
         $user->name = 'ASPEFAM';
         $user->last_name = 'CAMPUS';

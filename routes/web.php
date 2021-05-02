@@ -20,6 +20,12 @@ Route::get('/', function () {
 });
 */
 
+Route::middleware(['guest:' . config('admin-auth.defaults.guard')])->group(function () {
+	Route::get('/', function () {
+	    return view('auth.login');
+	});
+});
+
 Route::get('/foto', function () {
     
 	$img = Image::make('https://fondosmil.com/fondo/25194.jpg');
@@ -31,21 +37,15 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'welcome'])->nam
 
 Auth::routes();
 
-
-
-Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
-Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
-
-Route::get('/matricula', [App\Http\Controllers\EnrollmentController::class, 'index'])->name('matricula');
-Route::get('/matricula/{id}', [App\Http\Controllers\EnrollmentController::class, 'getcursos'])->name('getcursos');
-Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::class, 'domatricula'])->name('domatricula');
-
 Route::get('/user/{name}', [App\Http\Controllers\UserController::class, 'search'])->name('buscar');
 
-Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail'])->name('curso.detail');
 //Route::resource('/cursos', App\Http\Controllers\CourseController::class);
 Route::get('videos/list', [App\Http\Controllers\VideoController::class, 'list'])->name('videos.list');
+
 Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(function () {
+
+	Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])->name('user');
+	Route::put('/user/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 
 	Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 	
@@ -57,8 +57,16 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::post('cursos/{id}', [App\Http\Controllers\CourseController::class, 'filtrar'])->name('curso.filtra');
 	Route::put('/cursos/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('cursos.update');
 
+	Route::get('/detallecurso/{id}', [App\Http\Controllers\CourseController::class, 'detail'])->name('curso.detail');
+
+	Route::get('/matricula', [App\Http\Controllers\EnrollmentController::class, 'index'])->name('matricula');
+	Route::get('/matricula/{id}', [App\Http\Controllers\EnrollmentController::class, 'getcursos'])->name('getcursos');
+	Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::class, 'domatricula'])->name('domatricula');
+
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
+	Route::put('perfil/{id}', [App\Http\Controllers\PerfilController::class, 'update_datos'])->name('perfil.update.datos');
+	Route::put('perfil_user/{id}', [App\Http\Controllers\PerfilController::class, 'update_user'])->name('perfil.update.user');
 
 	//routes para los tags
 	Route::resource('tags', App\Http\Controllers\TagController::class);

@@ -31,7 +31,11 @@ class UserMoodle extends Model
         'provincia',
         'country',
         'telephone',
-        'celular'
+        'celular',
+        'universidad',
+        'profesion',
+        'lugar_trabajo',
+        'resena'
     ];
 
 

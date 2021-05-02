@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $role_user = Role::where('name', 'user')->first();
 
         $user = new User();
-        $user->document = '06813928';
+        $user->document = '00000000';
         $user->email = 'campusvirtual@aspefam.org.pe';
         $user->password = bcrypt('.Campus460..');
         $user->cod_nivel = 1;

@@ -12,6 +12,24 @@ class Shopping extends Model
      protected $fillable = [
         'user_id',
         'course_id',
+
+        'name',
+        'last_name',
+        'mothers_last_name',
+        'address',
+
+        'document',
+        'telephone',
+        'celular',
+
+        'address',
+        'urbanizacion',
+        'country',
+        'provincia',
+        'city',
+        'distrito',
+
+        'status',
     ];
 
     /**

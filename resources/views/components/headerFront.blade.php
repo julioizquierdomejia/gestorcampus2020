@@ -7,7 +7,15 @@
               <a href="{{ url('/home') }}" class="btn btn-primary"><i class="fas fa-cog"></i></a>
               <a href="{{ route('logout') }}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i></a>
             @else
-              <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
+              
+            @if(Auth::user()->userMoodle->name == null)
+                <a href="{{ route('perfil') }}" class="btn btn-success">Ingresa Aqui para completar tus datos</a>
+            @else
+                <a href="{{ route('perfil') }}" class="btn btn-success">{{ Auth::user()->userMoodle->name }}</a>
+            @endif
+
+              
+
 
                 {{-- Consultamos si el usuario logeado tiene algo en el carrito de compras --}}
                 @if(Auth::user()->carritos->count() == null)

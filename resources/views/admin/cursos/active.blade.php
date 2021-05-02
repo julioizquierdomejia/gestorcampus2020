@@ -110,10 +110,10 @@
 			        		@endforeach
 			        	</div>
 			        	@error('tags')
-			                    <span class="invalid-feedback d-block" role="alert">
-			                        <strong>{{ $message }}</strong>
-			                    </span>
-			                @enderror
+		                    <span class="invalid-feedback d-block" role="alert">
+		                        <strong>{{ $message }}</strong>
+		                    </span>
+		                @enderror
 			        </div>
 			        
 		          <div class="row mt-3">
@@ -121,14 +121,16 @@
 		              <div class="form-group">
 		                <label>Instructor</label>
 	                
-						<select class="custom-select select_search_multiple" name="instructor[]" multiple="multiple">
+						<select class="custom-select select_search_multiple @error('instructor') is-invalid @enderror form-control" name="instructor[]" multiple="multiple">
 							@foreach($usuarios as $usuario)
 								<option value="{{$usuario->id}}">{{$usuario->last_name}} {{$usuario->mothers_last_name}}, {{$usuario->name}}</option>
 							@endforeach
 							
 						</select>
 		                
-		                <!--input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}"-->
+		                {{--
+		                <input name='instructor' type="text" class="form-control" placeholder="Ingrese el nombre del instructor" value="{{ old('instructor') }}">
+		                --}}
 
 		                @error('instructor')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -141,7 +143,15 @@
 		            <div class="col-md-5">
 		              <div class="form-group">
 		                <label>Precio</label>
-		                <input name='price' type="text" class="form-control" placeholder="Ingrese Precio" value="">
+		                <input name='price' type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Ingrese Precio" value="{{ old('price') }}">
+
+		                @error('price')
+		                    <span class="invalid-feedback d-block" role="alert">
+		                        <strong>{{ $message }}</strong>
+		                    </span>
+		                @enderror
+
+
 		              </div>
 		            </div>
 		          </div>
@@ -188,10 +198,10 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		              	<div class="custom-file custom-file-browser">
-		              		<input name='img' type="file" class="custom-file-input form-control" id="customFileLang" lang="es">
+		              		<input name='img' type="file" class="custom-file-input form-control @error('img') is-invalid @enderror" id="customFileLang" lang="es">
 		              		<label name='img' class="custom-file-label label-file" for="customFileLang">Seleccionar Archivo</label>
 						</div>
-						@error('images')
+						@error('img')
 		                    <span class="invalid-feedback d-block" role="alert">
 		                        <strong>{{ $message }}</strong>
 		                    </span>

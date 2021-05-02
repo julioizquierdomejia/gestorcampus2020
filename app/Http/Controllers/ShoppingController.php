@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Shopping;
 use Illuminate\Http\Request;
+use App\Models\Enrollment;
 
 class ShoppingController extends Controller
 {
@@ -35,7 +36,38 @@ class ShoppingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Se registra la matricula
+        Enrollment::create([
+            'user_id' => $request->user_id,
+            'course_id' => $request->course_id,
+            'role_id' => '5',
+            'status' => 1,
+        ]);
+
+        //registramos datos de la compra
+        Shopping::create([
+            
+            'user_id' => $request->user_id,
+            'course_id' => $request->course_id,
+            'status' => 1,
+
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'mothers_last_name' => $request->mothers_last_name,
+            'address' => $request->address,
+
+            'document' => $request->document,
+            'telephone' => $request->telephone,
+            'celular' => $request->celular,
+
+            'address' => $request->address,
+            'urbanizacion' => $request->urbanizacion,
+            'country' => $request->country,
+            'provincia' => $request->provincia,
+            'city' => $request->city,
+            'distrito' => $request->distrito,
+        ]);
+        
         $id = $request->course_id;
         
         if ($productos == null) {
@@ -49,6 +81,8 @@ class ShoppingController extends Controller
         }else{
             return 'Ya esta registrado';
         }
+
+
     }
 
     /**

@@ -80,18 +80,6 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //Capturamos la imagen que viene por el fomrulario
-        $imagen = request()->file('img');
-        $nombre_imagen =  time()."_".$imagen->getClientOriginalName();
-
-        //grabamos la imagen en el storage public
-        Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
-
-
-        //Caprutamos todos lso String y explotamos el array
-        $tags_string = $request->tags;
-        $tags = explode(",", $tags_string);
 
         //validamos
         $request->validate([
@@ -100,13 +88,37 @@ class CourseController extends Controller
             'course_group_id' => 'required',
             'type' => 'required',
             'tags' => 'required',
+            'price' => 'required|int',
+            'img' => 'required',
+            
         ],
         [
             'course_group_id.required' => 'Debes de elejir un Grupo para el curso a Crear',
             'type.required' => 'Selecciona la modalidad del cursos (PrePago / PostPago)',
             'instructor.required' => 'Ingresa el nombre del instructor',
             'tags.required' => 'Seleccione al menos una categoria',
+            'price.required' => 'El curso debe de tener un costo',
+            'img.required' => 'Seleccionar una imagen para el curso',
+
         ]);
+
+        if ($request->hasFile('img')) {
+            //$rules['File'] = ['max:2000','mimes:pdf,docx,doc'];
+
+            //Capturamos la imagen que viene por el fomrulario
+            $imagen = request()->file('img');
+            $nombre_imagen =  time()."_".$imagen->getClientOriginalName();
+
+            //grabamos la imagen en el storage public
+            Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
+        }
+        
+
+
+        //Caprutamos todos lso String y explotamos el array
+        $tags_string = $request->tags;
+        $tags = explode(",", $tags_string);
+
 
         //Cargamos todas las categorias
         $catagorias = Category::all();
@@ -292,7 +304,6 @@ class CourseController extends Controller
                 ->select('users.*', 'usermoodles.*')
                 ->first();
 
-
         $cursos = Course::all();
         $curso = Course::findorFail($course);
 
@@ -314,13 +325,13 @@ class CourseController extends Controller
 
         }
 
-
         return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario'));
     }
 
     public function active($course)
     {
         // 
+
 
         $cursos_moodle =CourseMoodle::findorFail($course);
         $user_id = \Auth::user()->id; //auth()->id();

@@ -22,6 +22,22 @@ class CreateShoppingsTable extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
 
+            $table->string('document')->unique();
+            
+            $table->string('name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('mothers_last_name')->nullable();
+
+            $table->string('address')->nullable();
+            $table->string('urbanizacion')->nullable();
+            $table->string('distrito')->nullable();
+            $table->string('city')->nullable();
+            $table->string('provincia')->nullable();
+            $table->string('country')->nullable();
+
+            $table->string('telephone')->nullable();
+            $table->string('celular')->nullable();
+
             $table->string('status')->nullable();
             
             $table->timestamps();
