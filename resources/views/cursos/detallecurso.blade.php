@@ -450,7 +450,8 @@
               var input_user_id = $('input[name=user_id]').val();
 
               $.ajax({
-                url: "/shopping",
+                //url: "/shopping",
+                url: " {{ route('shopping.store') }} "
                 method: 'POST',
                 data:{
                   _token:$('input[name="_token"]').val(),
