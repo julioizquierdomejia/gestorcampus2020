@@ -12,6 +12,7 @@ use App\Models\Courseimage;
 use App\Models\User;
 use App\Models\UserMoodle;
 use App\Models\ShoppingCart;
+use App\Models\Enrollment;
 
 use Illuminate\Support\Facades\DB;
 
@@ -32,8 +33,16 @@ class PerfilController extends Controller
             ->get();
         */
 
-        //seleccionar los cursos matriculados
-        $misCursos = Course::all();
+
+        //recuperar el ID del usuario de moodle en la DB del gestor
+        $id_user_moodle = $usuario->user_moodle_id;
+        
+        //seleccionar los cursos matriculados de la tabla enroolments
+
+        $misCursos = DB::table('enrollments')
+                    ->join('usermoodles', 'enrollments.user_id', '=', 'usermoodles.user_moodle_id' )
+                    ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
+                    ->get();
 
         return view('perfil.index', compact('usuario', 'misCursos', 'user'));
     }

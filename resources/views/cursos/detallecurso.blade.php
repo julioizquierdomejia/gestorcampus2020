@@ -147,7 +147,19 @@
                               {{--
                               <a href='#' class="btn btn-danger" id="addCart" data-courseTitle={{$curso}}><i class="fal fa-shopping-cart mr-2"></i>Agregar al Carrito</a>
                               --}}
-                              <a class="btn btn-primary" id="btn_comprar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                              
+                              @foreach($misCursos as $miCurso)
+                                @if( $miCurso->course_moodle_id == $curso->course_moodle_id)
+                                  <div class="badge badge-primary text-wrap p-2 pr-3 pl-3 mt-2 mb-2" style="font-size: 14px;">
+                                    Ya te encuentras inscrito en este curso
+                                  </div>
+                                @else
+                                  <a class="btn btn-primary" id="btn_comprar"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                                @endif
+                              @endforeach
+
+                              
+                              
                                 <div class="alert alert-danger mt-3" id="status-curso" style="display: none;" role="alert">
                                 
                                 </div>

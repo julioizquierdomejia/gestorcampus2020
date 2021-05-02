@@ -325,7 +325,12 @@ class CourseController extends Controller
 
         }
 
-        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario'));
+        $misCursos = DB::table('enrollments')
+                    ->join('usermoodles', 'enrollments.user_id', '=', 'usermoodles.user_moodle_id' )
+                    ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
+                    ->get();
+
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos'));
     }
 
     public function active($course)
