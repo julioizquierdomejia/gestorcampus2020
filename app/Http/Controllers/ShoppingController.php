@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Shopping;
 use Illuminate\Http\Request;
 use App\Models\Enrollment;
+use App\Models\CourseMoodle;
+use App\Models\Course;
 
 class ShoppingController extends Controller
 {
@@ -36,9 +38,15 @@ class ShoppingController extends Controller
      */
     public function store(Request $request)
     {
+
+        //buscamos el id del curso de moodle de la tabla de cursos del gestor
+        //para la matriculacion
+
+        $id_curso_moodle = Course::where('course_moodle_id', $request->course_id);
+
         //Se registra la matricula
         Enrollment::create([
-            'user_id' => $request->user_id,
+            'user_id' => $id_curso_moodle, //se registra en la matricula el ID del curso Moodle
             'course_id' => $request->course_id,
             'role_id' => '5',
             'status' => 1,
@@ -47,7 +55,7 @@ class ShoppingController extends Controller
         //registramos datos de la compra
         Shopping::create([
             
-            'user_id' => $request->user_id,
+            'user_id' => $request->user_id, // Se registra en las compras el ID del curso del gestor
             'course_id' => $request->course_id,
             'status' => 1,
 
