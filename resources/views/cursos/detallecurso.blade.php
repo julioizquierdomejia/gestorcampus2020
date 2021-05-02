@@ -451,7 +451,7 @@
 
               $.ajax({
                 //url: "/shopping",
-                url: " {{ route('shopping.store') }} "
+                url: "{{ route('shopping.store') }}",
                 method: 'POST',
                 data:{
                   _token:$('input[name="_token"]').val(),
