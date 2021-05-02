@@ -47,6 +47,7 @@ class ShoppingController extends Controller
 
         $id_user_moodle = UserMoodle::where('user_id', $request->user_id)->first();
         $id_curso_moodle = Course::where('id', $request->course_id)->first();
+        $status = 1;
 
         //Se registra la matricula
         Enrollment::create([
