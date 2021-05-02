@@ -398,20 +398,53 @@
         });
 
         //Listeners para el onchage de losinputs para cuando se actualicen
-        $( "#campo_direccion" ).change(function() {
-          direccion = $(this).val();
-        });
-
-        $( "#campo_telefono" ).change(function() {
-          telefono = $(this).val();
-        });
-
         $( "#campo_email" ).change(function() {
           email = $(this).val();
         });
 
         $( "#campo_nombre" ).change(function() {
           nombre = $(this).val();
+        });
+
+        $( "#campo_apellidos" ).change(function() {
+          nombre = $(this).val();
+        });
+
+
+        $( "#campo_documento" ).change(function() {
+          documento = $(this).val();
+        });
+
+        $( "#campo_telefono" ).change(function() {
+          telefono = $(this).val();
+        });
+
+        $( "#campo_celular" ).change(function() {
+          celular = $(this).val();
+        });
+
+        $( "#campo_direccion" ).change(function() {
+          direccion = $(this).val();
+        });
+
+        $( "#campo_urbanizacion" ).change(function() {
+          urbanizacion = $(this).val();
+        });
+
+        $( "#campo_pais" ).change(function() {
+          pais = $(this).val();
+        });
+
+        $( "#campo_provincia" ).change(function() {
+          provincia = $(this).val();
+        });
+
+        $( "#campo_ciudad" ).change(function() {
+          ciudad = $(this).val();
+        });
+
+        $( "#campo_distrito" ).change(function() {
+          distrito = $(this).val();
         });
 
 
