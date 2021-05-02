@@ -87,7 +87,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::resource('carrito', App\Http\Controllers\ShoppingCartController::class);
 
 	//routes para el registro de compras
-	Route::resource('shopping', App\Http\Controllers\ShoppingController::class);->name('shopping');
+	Route::resource('shopping', App\Http\Controllers\ShoppingController::class)->name('shopping');
 
 
 });
