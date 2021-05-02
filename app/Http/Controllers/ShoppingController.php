@@ -45,14 +45,13 @@ class ShoppingController extends Controller
         //buscamos el id del curso de moodle de la tabla de cursos del gestor
         //para la matriculacion
 
-
-        $id_curso_moodle = Course::where('course_moodle_id', $request->course_id)->first();
-        $id_id_moodle = UserMoodle::where('user_moodle_id', $request->user_id)->first();
+        $id_user_moodle = UserMoodle::where('user_id', $request->user_id)->first();
+        $id_curso_moodle = Course::where('id', $request->course_id)->first();
 
         //Se registra la matricula
         Enrollment::create([
-            'user_id' => $id_curso_moodle, //se registra en la matricula el ID del usuario Moodle
-            'course_id' => $request->course_id, //se registra en la matricula el ID del curso Moodle
+            'user_id' => $id_user_moodle->user_moodle_id, //se registra en la matricula el ID del usuario Moodle
+            'course_id' => $id_curso_moodle->course_moodle_id, //se registra en la matricula el ID del curso Moodle
             'role_id' => 5,
             'status' => 1,
         ]);
