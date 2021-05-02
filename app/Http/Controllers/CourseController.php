@@ -161,9 +161,9 @@ class CourseController extends Controller
             }
 
             //creamos el nuevo objeto de imagen para el curso 
-            $imagen_curso = new Courseimage;
-            $imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
-            $imagen_curso->save();
+            //$imagen_curso = new Courseimage;
+            //$imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
+            //$imagen_curso->save();
 
 
 
@@ -220,9 +220,9 @@ class CourseController extends Controller
                 }
 
                 //creamos el nuevo objeto de imagen para el curso 
-                $imagen_curso = new Courseimage;
-                $imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
-                $imagen_curso->save();
+                //$imagen_curso = new Courseimage;
+                //$imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
+                //$imagen_curso->save();
             }
 
             /*

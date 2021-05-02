@@ -198,8 +198,8 @@
 		            <div class="col-md-12">
 		              <div class="form-group">
 		              	<div class="custom-file custom-file-browser">
-		              		<input name='img' type="file" class="custom-file-input form-control @error('img') is-invalid @enderror" id="customFileLang" lang="es">
-		              		<label name='img' class="custom-file-label label-file" for="customFileLang">Seleccionar Archivo</label>
+		              		<input name='img' type="file" class="custom-file-input form-control @error('img') is-invalid @enderror" id="img_curso" lang="es">
+		              		<label name='img' class="custom-file-label label-file" for="img_curso" id='nombre_imagen'>Seleccionar Archivo</label>
 						</div>
 						@error('img')
 		                    <span class="invalid-feedback d-block" role="alert">
@@ -210,6 +210,7 @@
 		            </div>
 		          </div>
 
+		          
 		          
 		          <div class="row">
 		            <div class="update ml-auto mr-auto">
@@ -229,6 +230,12 @@
 @section('javascript')
 
 	<script type="text/javascript">
+
+		$('#img_curso').onchange = function () {
+			console.log('hola');
+		  console.log(this.value);
+		  $('#nombre_imagen').innerHTML = $('#img_curso').files[0].name;
+		}
 
 		$('.select_search_multiple').select2({
 			theme: 'bootstrap4',
