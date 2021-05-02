@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Enrollment;
 use App\Models\CourseMoodle;
 use App\Models\Course;
+use App\Models\User;
+use App\Models\UserMoodle;
+
 
 class ShoppingController extends Controller
 {
@@ -43,11 +46,12 @@ class ShoppingController extends Controller
         //para la matriculacion
 
         $id_curso_moodle = Course::where('course_moodle_id', $request->course_id);
+        $id_id_moodle = UserMoodle::where('user_moodle_id', $request->user_id)
 
         //Se registra la matricula
         Enrollment::create([
-            'user_id' => $id_curso_moodle, //se registra en la matricula el ID del curso Moodle
-            'course_id' => $request->course_id,
+            'user_id' => $id_curso_moodle, //se registra en la matricula el ID del usuario Moodle
+            'course_id' => $request->course_id, //se registra en la matricula el ID del curso Moodle
             'role_id' => '5',
             'status' => 1,
         ]);
@@ -55,8 +59,8 @@ class ShoppingController extends Controller
         //registramos datos de la compra
         Shopping::create([
             
-            'user_id' => $request->user_id, // Se registra en las compras el ID del curso del gestor
-            'course_id' => $request->course_id,
+            'user_id' => $request->user_id, // Se registra en las compras el ID del usuario del gestor
+            'course_id' => $request->course_id, // Se registra en las compras el ID del curso del gestor
             'status' => 1,
 
             'name' => $request->name,
