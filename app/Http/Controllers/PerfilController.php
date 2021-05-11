@@ -85,13 +85,14 @@ class PerfilController extends Controller
         ]);
 
         //buscamos el usuario en la DB de moodle
-        $id_user_moodle = UserMoodle::where('user_id', $user->id);
+        $id_user_moodle = UserMoodle::where('user_id', $user->id)->first();
+
 
         //ubicamos el usuario moodle del campus
-        $userMoodle = UserCampusMoodle::findOrFail($id_user_moodle);
+        $userMoodle = UserCampusMoodle::findOrFail($id_user_moodle->user_moodle_id);
 
         //actualizamos el pass del usuario del campus
-        $user->update([
+        $userMoodle->update([
             'password' => bcrypt($request->input('password')),
         ]);
 
