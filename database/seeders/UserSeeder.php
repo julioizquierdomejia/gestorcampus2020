@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
         $user->roles()->attach($role_superadmin);
 
 
+        /*
         $user = new User();
         $user->document = '00000001';
         $user->email = 'jcmezagarcia@gmail.com';
@@ -72,7 +73,7 @@ class UserSeeder extends Seeder
         //vamos a relacionar roles con usuarios
         $user->roles()->attach($role_superadmin);
 
-
+        */
         
 
         
