@@ -44,6 +44,7 @@ class PerfilController extends Controller
                     ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
                     ->get();
 
+
         return view('perfil.index', compact('usuario', 'misCursos', 'user'));
     }
 
