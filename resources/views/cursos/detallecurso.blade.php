@@ -137,7 +137,7 @@
 
                         <div class="row">
                           <div class="col">
-                            @if($statusCourse == null)
+                            @if($statusCourse == false)
                                 @if($curso->type == 2)
                                   <a class="btn btn-primary btn_comprar" id=""><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
                                 @else

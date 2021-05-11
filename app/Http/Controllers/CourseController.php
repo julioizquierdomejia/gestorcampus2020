@@ -116,14 +116,32 @@ class CourseController extends Controller
         
 
 
-        //Caprutamos todos lso String y explotamos el array
+        //Caprutamos todos los tags y explotamos el array
         $tags_string = $request->tags;
         $tags = explode(",", $tags_string);
+
+        //registramos a los instructores
+        //en la tabla enrrolments con el valor 4 (teacher)
+        $profes = $request->instructor;
+
+        foreach ($profes as $key => $profe) {
+            //obtenemos el usuario del campus de moodle
+            $id_user_moodle = UserMoodle::where('user_id', $profe)->first();
+
+            Enrollment::create([
+                'user_id' => $id_user_moodle->user_moodle_id,
+                'course_id' => $request->course_moodle_id,
+                'role_id' => 4,
+                'status' => 1,
+            ]);
+
+        }
 
 
         //Cargamos todas las categorias
         $catagorias = Category::all();
-        //alamcenamos enuna variable la categoria que viene del formulario
+        
+        //alamcenamos en una variable la categoria que viene del formulario
         $categoria = $request->categoria;
 
         //primero preguntamos si la tabla esta vacia
@@ -160,11 +178,6 @@ class CourseController extends Controller
             foreach ($tags as $key => $tag) {
                 $curso_current->tags()->attach($tag);
             }
-
-            //creamos el nuevo objeto de imagen para el curso 
-            //$imagen_curso = new Courseimage;
-            //$imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
-            //$imagen_curso->save();
 
 
 
@@ -220,30 +233,10 @@ class CourseController extends Controller
                     $curso_current->tags()->attach($tag);
                 }
 
-                //creamos el nuevo objeto de imagen para el curso 
-                //$imagen_curso = new Courseimage;
-                //$imagen_curso->url_img = time()."_".request()->file('img')->getClientOriginalName();
-                //$imagen_curso->save();
+                
             }
 
-            /*
-            Course::create($request->all()); //grabamos todos los datos del form a la tabla
-            dd($curso_current->img);
-            $curso_current->img = time()."_".request()->file('img')->getClientOriginalName();
-            $curso_current->save();
-
-            $curso_current = Course::latest('id')->first();
             
-            foreach ($tags as $key => $tag) {
-                $curso_current->tags()->attach($tag);
-            }
-
-            //creamos el nuevo objeto de imagen para el curso 
-            $imagen_curso = new Courseimage;
-            $imagen_curso->url_img = $nombre_imagen;
-            $imagen_curso->course_id = $curso_current->id;
-            $imagen_curso->save();
-            */
         }
   
         return redirect()->route('cursos')
@@ -332,10 +325,26 @@ class CourseController extends Controller
                     ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
                     ->get();
 
-        //Pregunto si el curso que estamos visitando ya lo he comprado 
-        //o si ya estoy matriculado
-        //devolveré True si lo tnego y false si no
-        $statusCourse = Enrollment::where('course_id', $curso->course_moodle_id)->first();
+        //preguntamos si el curso que estoy visitando
+        //tiene alumnos matriculados
+        $cursosTomados = Enrollment::where('course_id', $curso->course_moodle_id)->get();
+
+        ///ahora recorremos los cursos tomados y verificamos
+        //si figuro en alguno de esos cursos con mi $usuario->user_moodle_id
+        
+        $statusCourse = false; //adicional creo una variable boolean para el status de true or false
+
+        foreach ($cursosTomados as $key => $cursoTomado) {
+            if ($cursoTomado->user_id == $usuario->user_moodle_id) {
+                $statusCourse = true;
+            }else{
+                $statusCourse = false;
+            }
+        }
+
+        //dd($cursosTomados);
+
+        
 
         return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos', 'statusCourse'));
     }
