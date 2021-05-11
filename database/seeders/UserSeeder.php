@@ -33,5 +33,49 @@ class UserSeeder extends Seeder
         //vamos a relacionar roles con usuarios
         $user->roles()->attach($role_superadmin);
 
+
+        $user = new User();
+        $user->document = '00000001';
+        $user->email = 'jcmezagarcia@gmail.com';
+        $user->password = bcrypt('12345678');
+        $user->cod_nivel = 1;
+        $user->status = 1;
+
+        $user->save();
+
+        //vamos a relacionar roles con usuarios
+        $user->roles()->attach($role_superadmin);
+
+
+        $user = new User();
+        $user->document = '00000002';
+        $user->email = 'josecarlosquispetapia@gmail.com';
+        $user->password = bcrypt('12345678');
+        $user->cod_nivel = 1;
+        $user->status = 1;
+
+        $user->save();
+
+        //vamos a relacionar roles con usuarios
+        $user->roles()->attach($role_superadmin);
+
+
+        $user = new User();
+        $user->document = '00000003';
+        $user->email = 'creaula@gmail.com';
+        $user->password = bcrypt('12345678');
+        $user->cod_nivel = 1;
+        $user->status = 1;
+
+        $user->save();
+
+        //vamos a relacionar roles con usuarios
+        $user->roles()->attach($role_superadmin);
+
+
+        
+
+        
+
     }
 }

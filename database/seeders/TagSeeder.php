@@ -18,6 +18,7 @@ class TagSeeder extends Seeder
         $tag = new Tag();
         $tag->name = 'Doctores';
         $tag->description = 'Doctores';
+        $tag->color = "#6284FF";
         $tag->status = 1;
         $tag->save();
     }

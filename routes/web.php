@@ -63,6 +63,10 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('/matricula/{id}', [App\Http\Controllers\EnrollmentController::class, 'getcursos'])->name('getcursos');
 	Route::get('/matriculacion/{id}', [App\Http\Controllers\EnrollmentController::class, 'domatricula'])->name('domatricula');
 
+	//rutas para asignacion de maestros a los cursos
+	Route::get('/asignacion', [App\Http\Controllers\AssignmentController::class, 'index'])->name('asignacion');
+	
+
 	//routas para ver el perfil del usuario
 	Route::get('perfil', [App\Http\Controllers\PerfilController::class, 'index'])->name('perfil');
 	Route::put('perfil/{id}', [App\Http\Controllers\PerfilController::class, 'update_datos'])->name('perfil.update.datos');

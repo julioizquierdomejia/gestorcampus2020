@@ -1,12 +1,15 @@
 @extends('layouts.app', ['title' => 'Tags'])
 @section('content')
 	
+	<h3>Crear Etiquetas para los cursos</h3>
+
 	<a href="{{ route('tags.create')}}" class="btn btn-primary"><i class="fal fa-layer-group"></i> Crear Nueva Etiqueta</a>
 	<div class="row row-cols-1 row-cols-md-4 g-4 mt-5">
 		@foreach($tags as $key => $tag)
 		  <div class="col">
 		    <div class="card">
 		      <div class="card-body">
+		      	{{ $tag->color  }}
 		        <h5 class="card-title"><i class="fas fa-tag" style="color: {{ $tag->color  }}"></i> - {{ $tag->name }}</h5>
 		        <p class="card-text">{{ $tag->description }}</p>
 		        <span class="badge badge-pill p-2 px-3" style="background-color: {{ $tag->color  }}">{{$tag->name}}</span>

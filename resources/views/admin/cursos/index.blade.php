@@ -10,6 +10,8 @@
 
 	<div class="row">
 		<div class="col">
+		<h3>Activar Cursos moodle en la plataforma</h3>
+
 			@foreach($categorias as $categoria)
 				<h4>{{$categoria->name}}</h4>
 				<table class="table table-hover">
