@@ -11,6 +11,7 @@ use App\Models\Tag;
 use App\Models\Courseimage;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\UserCampusMoodle;
 use App\Models\ShoppingCart;
 use App\Models\Enrollment;
 
@@ -70,13 +71,26 @@ class PerfilController extends Controller
     public function update_user(Request $request, $id){
         //
 
+        //validamos
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-
+        //buscamos el usuario gestor por el ID
         $user = User::findOrFail($id);
 
+        //actualizamos el pass del usuario gestor
+        $user->update([
+            'password' => bcrypt($request->input('password')),
+        ]);
+
+        //buscamos el usuario en la DB de moodle
+        $id_user_moodle = UserMoodle::where('user_id', $user->id);
+
+        //ubicamos el usuario moodle del campus
+        $userMoodle = UserCampusMoodle::findOrFail($id_user_moodle);
+
+        //actualizamos el pass del usuario del campus
         $user->update([
             'password' => bcrypt($request->input('password')),
         ]);
