@@ -180,7 +180,7 @@
 						<img src="{{ asset('/images/images_cursos/'.$miCurso->img) }}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<h5 class="card-title">{{$miCurso->shortname}}</h5>
-							<a href="course/view.php?id=8"></a>
+							<a href="course/view.php?id=8">{{$miCurso->shortname}}</a>
 						</div>
 					</div>
 				</div>
