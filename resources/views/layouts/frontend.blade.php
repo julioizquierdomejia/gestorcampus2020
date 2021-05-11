@@ -36,6 +36,8 @@
 
     </div>
 
+    <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script type="text/javascript">
       //new Splide( '.splide' ).mount();

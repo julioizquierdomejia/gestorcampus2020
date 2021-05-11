@@ -16,6 +16,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use App\Models\Shopping;
+use App\Models\Enrollment;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -293,6 +294,7 @@ class CourseController extends Controller
 
     public function detail($course){
 
+
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
@@ -330,7 +332,12 @@ class CourseController extends Controller
                     ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
                     ->get();
 
-        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos'));
+        //Pregunto si el curso que estamos visitando ya lo he comprado 
+        //o si ya estoy matriculado
+        //devolveré True si lo tnego y false si no
+        $statusCourse = Enrollment::where('course_id', $curso->course_moodle_id)->first();
+
+        return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos', 'statusCourse'));
     }
 
     public function active($course)

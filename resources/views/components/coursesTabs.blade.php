@@ -23,6 +23,16 @@
                   @if($curso->course_group_id == $grupo[0] )
                     <div class="col mb-4 item">
                       <div class="card">
+                        @if (Auth::guest())
+
+                        @else
+                          {{--
+                            Este cintillo debe de aparecer cuando el logeado este matriculado
+                          <img src="images/cinta_matriculado.png" style="position: absolute; width: 100%;">
+                          --}}
+
+                        @endif
+                        
                         <a href=" {{ route('curso.detail', $curso->id) }}">
                           <img src="images/images_cursos/{{$curso->img}}" class="card-img-top" alt="...">
                           <div class="card-body">
