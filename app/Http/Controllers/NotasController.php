@@ -50,9 +50,8 @@ class NotasController extends Controller
         		->get();
 
         $cant_notas = $quiz->count();
-        dd($cant_notas);
+        
 
-
-        return view('notas.index', compact('usuario', 'course', 'quiz'));
+        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas'));
     }
 }

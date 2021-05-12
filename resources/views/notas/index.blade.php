@@ -17,7 +17,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	@foreach($quiz as $nota)
+		  	@foreach($notas as $nota)
 				<tr>
 			      <td>{{ $nota->name}} </td>
 			      
