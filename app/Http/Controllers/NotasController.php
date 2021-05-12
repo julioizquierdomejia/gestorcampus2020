@@ -59,8 +59,19 @@ class NotasController extends Controller
         //variable para el status de generacion de certificados
         $statusCurso = false;
 
-        if ($cant_notas_existente == $cant_notas) {
+        //variable para el promedio
+        $totalNotas = 0;
+
+        if ($totalNotas == $cant_notas) {
         	$statusCurso = true;
+
+        	//we iterate to obtain the sum of all the notes
+        	foreach ($$cant_notas_existente as $key => $nota) {
+        		$totalNotas = $totalNotas + $nota;
+        	}
+
+        	$promedio = $totalNotas / $totalNotas;
+
         }else{
         	$statusCurso = false;
         }
@@ -69,6 +80,6 @@ class NotasController extends Controller
 
         $curso = Course::where('course_moodle_id', $course)->first();
 
-        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso'));
+        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio'));
     }
 }

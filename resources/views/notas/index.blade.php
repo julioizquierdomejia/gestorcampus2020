@@ -46,7 +46,7 @@
 	<div class="row">
 		<div class="col">
 			@if($statusCurso == true)
-				true
+				<p>Promedio = {{$promedio}}</p>
 			@else
 				false
 			@endif
