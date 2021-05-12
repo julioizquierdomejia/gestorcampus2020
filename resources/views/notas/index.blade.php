@@ -8,10 +8,10 @@
 	<div class="row">
 		<div class="col">
 			<h5>Mi progreso</h5>
-			<p>[ {{$cant_notas}} evaluaciones de $cant_notas_existente / {{$percent}}% ]</p>
 			<div class="progress">
 			  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{$percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
+			<p>[ {{$cant_notas}} evaluaciones de {{$cant_notas_existente}} / {{$percent}}% ]</p>
 		</div>
 	</div>
 	<div class="row mt-4">
