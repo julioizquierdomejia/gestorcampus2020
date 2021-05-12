@@ -11,7 +11,7 @@
 			<h3>{{$curso->fullname}}</h3>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row mt-3">
 		<div class="col">
 			<h5>Mi progreso</h5>
 			<div class="progress">
