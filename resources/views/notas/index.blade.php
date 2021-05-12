@@ -44,9 +44,9 @@
 		<div class="col-4">
 			@if($statusCurso == true)
 				<h4>Nota Final </h4>
-				<p>{{$promedio}}</p>
+				<p style="font-size: 32px;">{{$promedio}}</p>
 			@else
-				false
+				<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
 			@endif
 		</div>
 	</div>
