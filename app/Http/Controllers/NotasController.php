@@ -72,6 +72,7 @@ class NotasController extends Controller
         	}
 
         	$promedio = $totalNotas / $totalNotas;
+        	$statusCurso = true;
 
         }else{
         	$statusCurso = false;
