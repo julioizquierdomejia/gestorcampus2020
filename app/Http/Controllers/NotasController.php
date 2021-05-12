@@ -65,10 +65,10 @@ class NotasController extends Controller
         	$statusCurso = false;
         }
 
-
         $percent = ($cant_notas_existente * 100) / $cant_notas;
 
-        dd($notas);
+        $curso = Course::findorFail($course);
+        dd($curso);
 
         return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent'));
     }
