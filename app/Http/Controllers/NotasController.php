@@ -65,6 +65,8 @@ class NotasController extends Controller
         	$statusCurso = false;
         }
 
-        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso'));
+        $percent = ($cant_notas_existente * 100) / $cant_notas;
+
+        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent'));
     }
 }

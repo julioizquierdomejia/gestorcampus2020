@@ -9,6 +9,14 @@
 		<div class="col-4">
 			<h2>Mis notas </h2>
 
+			<div class="progress" style="height: 1px;">
+			<div class="progress-bar" role="progressbar" style="width: {{$percent}}%;" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+			<div class="progress" style="height: 20px;">
+			<div class="progress-bar" role="progressbar" style="width: {{$percent}}%;" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
+
+
 			<table class="table table-striped">
 			  <thead>
 			    <tr>
