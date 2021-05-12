@@ -35,7 +35,7 @@
 			  	@foreach($notas as $nota)
 					<tr>
 				      <td>{{ $nota->name}} </td>
-				      <td>{{ $nota->grade}} </td>
+				      <td>{{ round($nota->grade, 2) }} </td>
 				    </tr>
 				@endforeach
 			  </tbody>
