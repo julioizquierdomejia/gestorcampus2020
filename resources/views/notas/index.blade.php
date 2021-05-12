@@ -30,7 +30,7 @@
 
 	<div class="row">
 		<div class="col">
-			@if(statusCurso == true)
+			@if($statusCurso == true)
 				true
 			@else
 				false
