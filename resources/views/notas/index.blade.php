@@ -9,21 +9,16 @@
 		<div class="col-4">
 			<h2>Mis notas </h2>
 
-			{{$percent}}
-			
-			<div class="progress" style="height: 1px;">
-			<div class="progress-bar" role="progressbar" style="width: {{$percent}}%;" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
-			<div class="progress" style="height: 20px;">
-			<div class="progress-bar" role="progressbar" style="width: {{$percent}}%;" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100"></div>
-			</div>
 
+			<div class="progress">
+			  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{$percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+			</div>
 
 			<table class="table table-striped">
 			  <thead>
 			    <tr>
-			    	<th>Notas</th>
-			    	<th>la nota</th>
+			    	<th>Evaluación</th>
+			    	<th>Nota</th>
 			    </tr>
 			  </thead>
 			  <tbody>
