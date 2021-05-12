@@ -46,7 +46,7 @@ class NotasController extends Controller
 
         $notas=DB::connection('mysql_moodle')->table('quiz')
         		->join('quiz_grades', 'quiz.id', 'quiz_grades.quiz')
-        		->where('quiz_grades.quiz', $usuario->user_moodle_id)
+        		->where('quiz_grades.userid', $usuario->user_moodle_id)
         		->get();
 
 
