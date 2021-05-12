@@ -171,7 +171,7 @@
 	<div class="row components_content p-5">
 		<div class="col">
 			<h3><i class="fal fa-file-certificate"></i> Mis Cursos</h3>
-			
+			<p>Desde auqi podras ver tus notas, ingresar al curso a moodle, asi como ogenerar tu certificado</p>
 			<div class="row row-cols-1 row-cols-md-4 mt-5">
 
 				@forelse ($misCursos as $key => $miCurso)
@@ -179,8 +179,11 @@
 					<div class="card">
 						<img src="{{ asset('/images/images_cursos/'.$miCurso->img) }}" class="card-img-top" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">{{$miCurso->shortname}}</h5>
-							<a href="https://www.desarrollo.aspefam.org.pe/course/view.php?id={{$miCurso->course_id}}">{{$miCurso->shortname}}</a>
+							<p>
+								<a href="https://www.desarrollo.aspefam.org.pe/course/view.php?id={{$miCurso->course_id}}">Ir a mi curso</a>
+							</p>
+							<a href=" {{ route('notas.show', $miCurso->course_id) }} " class="btn btn-primary"><i class="fal fa-file-certificate mr-2"></i> Ver Mis notas - {{ $miCurso->course_id }}</a>
+							<a href="" class="btn btn-secondary mt-3"><i class="fal fa-diploma mr-2"></i> Generar Mis certificados</a>
 						</div>
 					</div>
 				</div>

@@ -42,8 +42,10 @@ class PerfilController extends Controller
 
         $misCursos = DB::table('enrollments')
                     ->join('usermoodles', 'enrollments.user_id', '=', 'usermoodles.user_moodle_id' )
+                    ->where('enrollments.user_id', $id_user_moodle)
                     ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
                     ->get();
+
 
 
         return view('perfil.index', compact('usuario', 'misCursos', 'user'));

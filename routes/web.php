@@ -96,6 +96,10 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::post('/enrollment', [App\Http\Controllers\ShoppingController::class, 'enrollment'])->name('shopping.enrollment');
 
 
+	//rutas para las notas
+	Route::get('notas/{id}', [App\Http\Controllers\NotasController::class, 'show'])->name('notas.show');
+
+
 });
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
