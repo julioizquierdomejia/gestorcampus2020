@@ -20,8 +20,7 @@
 		  	@foreach($notas as $nota)
 				<tr>
 			      <td>{{ $nota->name}} </td>
-			      
-			      
+			      <td>{{ $nota->grade}} </td>
 			    </tr>
 			@endforeach
 		    
