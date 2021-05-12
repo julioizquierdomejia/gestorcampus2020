@@ -61,6 +61,7 @@ class NotasController extends Controller
 
         //variable para el promedio
         $totalNotas = 0;
+        $promedio = 0;
 
         if ($totalNotas == $cant_notas) {
         	$statusCurso = true;
