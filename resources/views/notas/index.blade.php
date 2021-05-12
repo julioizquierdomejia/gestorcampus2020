@@ -7,7 +7,8 @@
 <div class="row components_content p-5">
 	<div class="row">
 		<div class="col">
-			<p>Nombre : {{ $usuario->name }}</p>
+			<h2>Nombre : {{ $usuario->name }}</h2>
+			<h3>{{$curso->fullname}}</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -21,7 +22,6 @@
 	</div>
 	<div class="row mt-4">
 		<div class="col-4">
-			<h1>{{$curso->fullname}}</h1>
 			<h2>Mis notas </h2>
 
 			<table class="table table-striped">
