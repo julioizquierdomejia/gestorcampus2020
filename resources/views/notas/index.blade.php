@@ -44,7 +44,15 @@
 		<div class="col-4">
 			@if($statusCurso == true)
 				<h4>Nota Final </h4>
-				<p style="font-size: 32px;">{{$promedio}}</p>
+				@if($promedio > 11)
+					<div class="alert alert-success" role="alert">
+					  <p style="font-size: 32px;">{{$promedio}}</p>
+					</div>
+				@else
+					<div class="alert alert-danger" role="alert">
+					  <p style="font-size: 32px;">{{$promedio}}</p>
+					</div>
+				@endif
 			@else
 				<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
 			@endif
