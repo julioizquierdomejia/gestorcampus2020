@@ -41,10 +41,7 @@
 			  </tbody>
 			</table>
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="col">
+		<div class="col-4">
 			@if($statusCurso == true)
 				<p>Promedio = {{$promedio}}</p>
 			@else
@@ -52,6 +49,8 @@
 			@endif
 		</div>
 	</div>
+
+	
 </div>
 
 
