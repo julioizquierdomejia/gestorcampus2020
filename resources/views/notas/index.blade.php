@@ -5,7 +5,7 @@
 <img src="{{ asset('/images/header_perfil.png') }}" class="card-img-top" alt="Imagen del curso">
 
 <div class="row components_content p-5">
-	<div class="row mt-4">
+	<div class="row">
 		<div class="col">
 			<h6>Mi progreso</h6>
 			<div class="progress">
@@ -13,7 +13,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row mt-4">
 		<div class="col-4">
 			<h1>{{$curso->fullname}}</h1>
 			<h2>Mis notas </h2>
