@@ -69,14 +69,6 @@ class NotasController extends Controller
         $percent = ($cant_notas_existente * 100) / $cant_notas;
 
 
-        dd($quiz);
-        
-        echo $cant_notas_existente."<br>";
-        echo $cant_notas."<br>";
-        echo $percent."<br>";
-
-        exit;
-
         return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent'));
     }
 }
