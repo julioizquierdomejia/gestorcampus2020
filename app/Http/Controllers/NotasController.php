@@ -68,6 +68,9 @@ class NotasController extends Controller
 
         $percent = ($cant_notas_existente * 100) / $cant_notas;
 
+
+        dd($quiz);
+        
         echo $cant_notas_existente."<br>";
         echo $cant_notas."<br>";
         echo $percent."<br>";
