@@ -50,7 +50,7 @@
 					</div>
 				@else
 					<div class="alert alert-danger" role="alert">
-					  <p>{{$promedio}}</p>
+					  {{$promedio}}
 					</div>
 				@endif
 			@else
