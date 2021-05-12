@@ -6,14 +6,17 @@
 
 <div class="row components_content p-5">
 	<div class="row">
-		<div class="col-4">
-			<h1>{{$curso->fullname}}</h1>
-			<h2>Mis notas </h2>
-
+		<div class="col">
 			<h6>Mi progreso</h6>
 			<div class="progress">
 			  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{$percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4">
+			<h1>{{$curso->fullname}}</h1>
+			<h2>Mis notas </h2>
 
 			<table class="table table-striped">
 			  <thead>
