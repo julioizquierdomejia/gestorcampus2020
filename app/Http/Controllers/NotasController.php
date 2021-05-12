@@ -70,7 +70,7 @@ class NotasController extends Controller
         		$suma_de_notas = $suma_de_notas + $nota->grade;
         	}
 
-        	$promedio = $suma_de_notas / $cant_notas;
+        	$promedio = round($suma_de_notas / $cant_notas, 2);
 
         }else{
         	$statusCurso = false;
