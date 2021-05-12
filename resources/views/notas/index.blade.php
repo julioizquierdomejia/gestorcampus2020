@@ -22,7 +22,7 @@
 	</div>
 	<div class="row mt-4">
 		<div class="col-4">
-			<h2>Mis notas </h2>
+			<h4>Mis notas </h4>
 
 			<table class="table table-striped">
 			  <thead>
