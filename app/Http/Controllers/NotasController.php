@@ -66,7 +66,7 @@ class NotasController extends Controller
         if ($cant_notas_existente == $cant_notas) {
         	$statusCurso = true;
 
-        	foreach ($$notas as $key => $nota) {
+        	foreach ($notas as $key => $nota) {
         		$suma_de_notas = $suma_de_notas + $nota->grade;
         	}
 
