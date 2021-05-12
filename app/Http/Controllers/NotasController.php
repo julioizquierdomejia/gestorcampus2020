@@ -68,8 +68,7 @@ class NotasController extends Controller
         $percent = ($cant_notas_existente * 100) / $cant_notas;
 
         $curso = Course::where('course_moodle_id', $course)->first();
-        dd($curso);
 
-        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent'));
+        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso'));
     }
 }

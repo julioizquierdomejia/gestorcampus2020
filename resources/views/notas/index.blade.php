@@ -7,7 +7,7 @@
 <div class="row components_content p-5">
 	<div class="row">
 		<div class="col-4">
-			<h1>{{$nota->shortname}}</h1>
+			<h1>{{$curso->fullname}}</h1>
 			<h2>Mis notas </h2>
 
 			<h6>Mi progreso</h6>
