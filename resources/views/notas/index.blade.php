@@ -46,11 +46,11 @@
 				<h4>Nota Final </h4>
 				@if($promedio > 11)
 					<div class="alert alert-success" role="alert">
-					  <p style="font-size: 32px;">{{$promedio}}</p>
+					  <p>{{$promedio}}</p>
 					</div>
 				@else
 					<div class="alert alert-danger" role="alert">
-					  <p style="font-size: 32px;">{{$promedio}}</p>
+					  <p>{{$promedio}}</p>
 					</div>
 				@endif
 			@else
