@@ -43,15 +43,28 @@ class NotasController extends Controller
         //creamos la colecion de notas del curso de moodle
         $quiz = QuizCampusMoodle::where('course', $course)->get();
 
-
+        //query para seleccionar las notas que hasta el momento tienen
+        //segun las notas de la tabla quiz
         $notas=DB::connection('mysql_moodle')->table('quiz')
         		->join('quiz_grades', 'quiz.id', 'quiz_grades.quiz')
         		->where('quiz_grades.userid', $usuario->user_moodle_id)
         		->get();
 
+        //Cantidad de notas que deben existir
         $cant_notas = $quiz->count();
-        
 
-        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas'));
+        //Cantidad de notas que hay
+        $cant_notas_existente = $notas->count();
+
+        //variable para el status de generacion de certificados
+        $statusCurso = false;
+
+        if ($cant_notas_existente == $cant_notas) {
+        	$statusCurso = true;
+        }else{
+        	$statusCurso = false;
+        }
+
+        return view('notas.index', compact('usuario', 'course', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso'));
     }
 }
