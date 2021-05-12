@@ -7,6 +7,11 @@
 <div class="row components_content p-5">
 	<div class="row">
 		<div class="col">
+			<p>Nombre : {{ $usuario->name }}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
 			<h5>Mi progreso</h5>
 			<div class="progress">
 			  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{$percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
