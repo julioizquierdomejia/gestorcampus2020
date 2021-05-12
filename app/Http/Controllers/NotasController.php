@@ -49,8 +49,8 @@ class NotasController extends Controller
         		->where('quiz_grades.userid', $usuario->user_moodle_id)
         		->get();
 
-
-        dd($notas);
+        $cant_notas = $quiz->count();
+        dd($cant_notas);
 
 
         return view('notas.index', compact('usuario', 'course', 'quiz'));
