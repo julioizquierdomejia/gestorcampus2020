@@ -43,7 +43,8 @@
 		</div>
 		<div class="col-4">
 			@if($statusCurso == true)
-				<p>Promedio = {{$promedio}}</p>
+				<h4>Nota Final </h4>
+				<p>{{$promedio}}</p>
 			@else
 				false
 			@endif
