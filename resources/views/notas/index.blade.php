@@ -50,11 +50,17 @@
 						  </span><span class="badge badge-success" style="font-size: 20px;">{{$promedio}}</span>
 						</div>
 
+						@if($curso->type == 1)
+							<span>Aqui el texto que yo quiera segun el tipo de curso  -<</span>
+						@else
+							<span>Aqui el texto que yo quiera segun el tipo de curso 2</span>
+						@endif
+
 						<form>
 							@csrf
 							<a class="btn btn-secondary" id="bnt_certificate">Gestionar su Certificado</a>
 						</form>
-						<span>Aqui el texto que yo quiera segun el tipo de curso</span>
+
 						<div class="mt-4" id="loading" style="opacity: 0;">
 							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
 						</div>
