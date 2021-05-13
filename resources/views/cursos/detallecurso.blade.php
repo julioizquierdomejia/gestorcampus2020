@@ -557,6 +557,7 @@
                   //$("#modalProcesando").modal("hide");
                   $('#btn_matricula').hide("slow");
                   $('#status-curso').html('Gracias ya te encuentras Matriculado en este curso');
+                  $('#status-curso').show('slow');
                   
                 })
             }
