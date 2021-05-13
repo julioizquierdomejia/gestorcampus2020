@@ -42,9 +42,9 @@
 				</table>
 			</div>
 			<div class="col-8">
-				@if($statusCurso == true)
+				@if($statusCurso == true) {{--Si ya completo todas las notas puede gestionar su certificado --}}
 					<h4>Nota Final </h4>
-					@if($promedio < 11)
+					@if($promedio < 11) {{--verificamos si aprobo o no el curso--}}
 						<div class="alert alert-success" role="alert">
 						  <span class="font-weight-bold">{{ $usuario->name }}, Ud Aprobó el curso con:
 						  </span><span class="badge badge-success" style="font-size: 20px;">{{$promedio}}</span>
@@ -64,8 +64,10 @@
 						  </span><span class="badge badge-danger" style="font-size: 20px;">{{$promedio}}</span>
 						</div>
 
-
 					@endif
+
+					<p>Aqui el texto que yo quiera segun el tipo de curso</p>
+
 				@else
 					<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
 					
