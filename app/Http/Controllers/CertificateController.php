@@ -70,6 +70,7 @@ class CertificateController extends Controller
         //si es post pago o prepago
         $modalidad = Course::where('course_moodle_id', $request->id)->first();
 
+
         //type 1 = PostPAgo
         //type 2 = Prepago
 
@@ -77,7 +78,7 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            return $usuario->user_moodle_id;
+            return $usuario->user_moodle_id + $requestcourse_moodle_id;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado

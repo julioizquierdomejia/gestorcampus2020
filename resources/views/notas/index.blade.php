@@ -399,6 +399,7 @@
 		        _token:$('input[name="_token"]').val(),
 		        //info para registrar la matriculacion
 		        id : "{{$curso->course_moodle_id}}", //enviamos el ID del curso de moodle
+		        course_moodle_id: "{{$curso->course_moodle_id}}", //enviamos el id del curso moodle
 
 		      }
 		    }).done(function(res){
