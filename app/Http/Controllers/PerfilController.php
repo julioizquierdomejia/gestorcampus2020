@@ -47,7 +47,6 @@ class PerfilController extends Controller
                     ->get();
 
 
-
         return view('perfil.index', compact('usuario', 'misCursos', 'user'));
     }
 

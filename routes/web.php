@@ -94,10 +94,14 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//Route::resource('shopping', App\Http\Controllers\ShoppingController::class);
 	Route::post('/shopping', [App\Http\Controllers\ShoppingController::class, 'store'])->name('shopping.store');
 	Route::post('/enrollment', [App\Http\Controllers\ShoppingController::class, 'enrollment'])->name('shopping.enrollment');
+	Route::post('/shoppingCertificate', [App\Http\Controllers\ShoppingController::class, 'storeCertificate'])->name('shopping.storeCertificate');
 
 
 	//rutas para las notas
 	Route::get('notas/{id}', [App\Http\Controllers\NotasController::class, 'show'])->name('notas.show');
+
+	//rutas para certificados
+	Route::post('/certificados/', [App\Http\Controllers\CertificateController::class, 'searchCertificate'])->name('certificate.searchCertificate');
 
 
 });

@@ -50,6 +50,13 @@ class NotasController extends Controller
         		->where('quiz_grades.userid', $usuario->user_moodle_id)
         		->get();
 
+        //join para los datos del usuario
+        $user = DB::table('users')
+                ->join('usermoodles', 'users.id', 'usermoodles.user_id')
+                ->select('users.*', 'usermoodles.*')
+                ->first();
+
+
         //Cantidad de notas que deben existir
         $cant_notas = $quiz->count();
 
@@ -80,6 +87,6 @@ class NotasController extends Controller
 
         $curso = Course::where('course_moodle_id', $course)->first();
 
-        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio'));
+        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
     }
 }

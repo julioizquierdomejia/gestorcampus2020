@@ -3,6 +3,15 @@
           @section('content')
 
 
+          <!-- Modal -->
+          <div id="miModal" class="modal fade align-middle" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+              <!-- Contenido del modal -->
+              <div class="alert alert-danger" role="alert">
+                <i class="fas fa-spinner fa-spin fa-2x mr-4"></i></i> Procesando Matricua
+              </div>
+            </div>
+          </div>
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -317,7 +326,7 @@
           @section('javascript')
 
             <script type="text/javascript">
-              
+
               $(document).ready(function(){
 
               //inicializando variables
@@ -448,6 +457,9 @@
 
                   //dataStr = data;
 
+                  //aqui lanzamos el cargador
+                  $("#miModal").modal("show");
+
                   var url = "/plugins/proceso.php";
 
                   $.post(url,data,function(res){ //Envio de informacion por AJAX al proceso de pago de Culqui
@@ -458,6 +470,9 @@
                     //ShopingCarts
 
                     registrarLaMatricula();
+
+                    //aqui lanzamos el cargador
+                    $("#miModal").modal("hide");
 
                     if (res=="exito") {
                       //pdf();
@@ -487,6 +502,8 @@
             };
 
             function registrarLaMatricula(){
+
+              
               $.ajax({
                   //url: "/shopping",
                   url: "{{ route('shopping.store') }}",
@@ -521,6 +538,9 @@
 
             //esta funcion solo matricula para cursos PostPago
             function registrarLaEnrollments(){
+              //aqui lanzamos el cargador
+              $("#miModal").modal("show");
+              
               $.ajax({
                   //url: "/shopping",
                   url: "{{ route('shopping.enrollment') }}",
@@ -533,7 +553,10 @@
 
                   }
                 }).done(function(res){
-                  alert(res);
+                  //aqui lanzamos el cargador
+                  $("#miModal").modal("hide");
+                  $('#btn_matricula').hide('slow')
+                  //alert(res);
                   //alert('matriculacion')
                 })
             }

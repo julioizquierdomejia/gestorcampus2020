@@ -84,6 +84,48 @@ class ShoppingController extends Controller
 
     }
 
+    public function storeCertificate(Request $request)
+    {
+
+
+        dd($request->celular);
+        //buscamos el id del curso de moodle de la tabla de cursos del gestor
+        //para la matriculacion
+
+        $id_user_moodle = UserMoodle::where('user_id', $request->user_id)->first();
+        $id_curso_moodle = Course::where('id', $request->course_id)->first();
+        $status = 1;
+
+
+        //registramos datos de la compra
+        Shopping::create([
+            
+            'user_id' => $request->user_id, // Se registra en las compras el ID del usuario del gestor
+            'course_id' => $request->course_id, // Se registra en las compras el ID del curso del gestor
+            'status' => 1,
+
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'mothers_last_name' => $request->mothers_last_name,
+            'address' => $request->address,
+
+            'document' => $request->document,
+            'telephone' => $request->telephone,
+            'celular' => $request->celular,
+
+            'address' => $request->address,
+            'urbanizacion' => $request->urbanizacion,
+            'country' => $request->country,
+            'provincia' => $request->provincia,
+            'city' => $request->city,
+            'distrito' => $request->distrito,
+        ]);
+        
+
+    }
+
+    
+
     public function enrollment(Request $request)
     {
 

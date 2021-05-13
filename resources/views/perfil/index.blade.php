@@ -180,9 +180,9 @@
 						<img src="{{ asset('/images/images_cursos/'.$miCurso->img) }}" class="card-img-top" alt="...">
 						<div class="card-body">
 							<p>
-								<a href="https://www.desarrollo.aspefam.org.pe/course/view.php?id={{$miCurso->course_id}}">Ir a mi curso</a>
+								<a href="https://www.desarrollo.aspefam.org.pe/course/view.php?id={{$miCurso->course_id}}">{{$miCurso->fullname}}</a>
 							</p>
-							<a href=" {{ route('notas.show', $miCurso->course_id) }} " class="btn btn-primary"><i class="fal fa-file-certificate mr-2"></i> Ver Mis notas - {{ $miCurso->course_id }}</a>
+							<a href=" {{ route('notas.show', $miCurso->course_id) }} " class="btn btn-primary"><i class="fal fa-file-certificate mr-2"></i> Ver Mis notas</a>
 							<a href="" class="btn btn-secondary mt-3"><i class="fal fa-diploma mr-2"></i> Generar Mis certificados</a>
 						</div>
 					</div>

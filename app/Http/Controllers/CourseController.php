@@ -108,10 +108,10 @@ class CourseController extends Controller
 
             //Capturamos la imagen que viene por el fomrulario
             $imagen = request()->file('img');
-            $nombre_imagen =  time()."_".$imagen->getClientOriginalName();//aqui se graba
+            $nombre_imagen =  time()."_".$imagen->getClientOriginalName();//Aqui se genera el nombre de la imagen
 
             //grabamos la imagen en el storage public
-            Image::make($imagen)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
+            Image::make($imagen)->encode('jpg', 20)->fit(500, 340)->save('images/images_cursos/'.$nombre_imagen);
         }
         
 
