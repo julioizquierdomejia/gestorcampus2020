@@ -44,7 +44,7 @@
 			<div class="col-8">
 				@if($statusCurso == true)
 					<h4>Nota Final </h4>
-					@if($promedio > 11)
+					@if($promedio < 11)
 						<div class="alert alert-success" role="alert">
 						  <span class="font-weight-bold">{{ $usuario->name }}, Ud Aprobó el curso con:
 						  </span><span class="badge badge-success" style="font-size: 20px;">{{$promedio}}</span>
