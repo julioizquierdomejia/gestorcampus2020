@@ -66,7 +66,7 @@
 
 					@endif
 
-					<p>Aqui el texto que yo quiera segun el tipo de curso</p>
+					<span>Aqui el texto que yo quiera segun el tipo de curso</span>
 
 				@else
 					<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
