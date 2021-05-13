@@ -80,10 +80,10 @@ class CertificateController extends Controller
             //return 1;
 
             $cursoMatriculado = DB::table('enrollments')
-                            ->where('user_id', $usuario->user_moodle_id)
+                            ->where('user_id', 2)
                             ->get();
 
-            return $cursoMatriculado->id;
+            return $cursoMatriculado;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
