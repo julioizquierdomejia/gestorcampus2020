@@ -407,6 +407,7 @@
 		    	if(res == 1){//debe de pagar el certificado
 		    		//$('#form_datos').show('slow');
 		    		alert(res)
+
 		    	}else{//si no solo debe de generarlo
 		    		alert(res);
 		    	}

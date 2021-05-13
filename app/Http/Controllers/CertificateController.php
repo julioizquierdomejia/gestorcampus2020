@@ -77,7 +77,7 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            return 1;
+            return $usuario;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
