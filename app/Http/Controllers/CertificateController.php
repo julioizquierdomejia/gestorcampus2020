@@ -83,7 +83,7 @@ class CertificateController extends Controller
                             ->where('user_id', $usuario->user_moodle_id)
                             ->get();
 
-            return $cursoMatriculado;
+            return $cursoMatriculado->id;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
