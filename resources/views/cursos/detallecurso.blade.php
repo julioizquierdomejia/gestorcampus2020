@@ -555,7 +555,8 @@
                 }).done(function(res){
                   //aqui ocultamos el cargador
                   //$("#modalProcesando").modal("hide");
-                  $('#btn_matricula').hide("slow")
+                  $('#btn_matricula').hide("slow");
+                  $('#status-curso').html('Gracias ya te encuentras Matriculado en este curso');
                   
                 })
             }
