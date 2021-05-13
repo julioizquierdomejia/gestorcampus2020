@@ -51,7 +51,7 @@
 						</div>
 
 						@if($curso->type == 1)
-							<span>Para poder gestionar el certificado, deberás cancelar por medio de nuesta pasarela de pagos el costo de {{ $curso->price }}, para continuar hacer click en el boton Gestionar tu certificado</span>
+							<span>Para poder gestionar el certificado, deberás cancelar por medio de nuesta pasarela de pagos el costo de <b>S/. {{ $curso->price }}</b>, para continuar hacer click en el boton Gestionar tu certificado</span>
 						@else
 							<span>Ahora que has aprobado el curso puedes gestionar tu certificado haciendo click en el boton de abajo isn costo alguno</span>
 						@endif
