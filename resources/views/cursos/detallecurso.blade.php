@@ -539,7 +539,7 @@
             //esta funcion solo matricula para cursos PostPago
             function registrarLaEnrollments(){
               //aqui lanzamos el cargador
-              $("#modalProcesando").modal("show");
+              //$("#modalProcesando").modal("show");
               
               $.ajax({
                   //url: "/shopping",
@@ -554,8 +554,8 @@
                   }
                 }).done(function(res){
                   //aqui ocultamos el cargador
-                  $("#modalProcesando").modal("hide");
-                  //$('#btn_matricula').hide("slow")
+                  //$("#modalProcesando").modal("hide");
+                  $('#btn_matricula').hide("slow")
                   
                 })
             }
