@@ -51,9 +51,9 @@
 						</div>
 
 						@if($curso->type == 1)
-							<span>Aqui el texto que yo quiera segun el tipo de curso  -<</span>
+							<span>Para poder gestionar el certificado, deberás cancelar por medio de nuesta pasarela de pagos el costo de {{ $costo->price }}, para continuar hacer click en el boton Gestionar tu certificado</span>
 						@else
-							<span>Aqui el texto que yo quiera segun el tipo de curso 2</span>
+							<span>Ahora que has aprobado el curso puedes gestionar tu certificado haciendo click en el boton de abajo isn costo alguno</span>
 						@endif
 
 						<form>
