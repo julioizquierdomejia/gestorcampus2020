@@ -50,7 +50,7 @@
 						</div>
 					@else
 						<div class="alert alert-danger" role="alert">
-						  {{$promedio}}
+						  <span>{{ $usuario->name }}, Ud desaprobo el curso con: </span>{{$promedio}}
 						</div>
 
 						<form>
