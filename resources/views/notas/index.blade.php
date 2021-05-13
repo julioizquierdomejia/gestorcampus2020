@@ -58,7 +58,7 @@
 
 						<form>
 							@csrf
-							<a class="btn btn-secondary" id="bnt_certificate">Gestionar su Certificado</a>
+							<a class="btn btn-secondary mt-2" id="bnt_certificate">Gestionar su Certificado</a>
 						</form>
 
 						<div class="mt-4" id="loading" style="opacity: 0;">
