@@ -152,7 +152,7 @@
                                 @else
                                   <form>
                                     @csrf
-                                    <a href="" class="btn btn-success" id="btn_matricula"><i class="fal fa-sticky-note mr-3"></i>Matricularme</a>
+                                    <a class="btn btn-success" id="btn_matricula"><i class="fal fa-sticky-note mr-3"></i>Matricularme</a>
                                   </form>
                                 @endif
                               @else
