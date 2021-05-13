@@ -79,7 +79,9 @@ class CertificateController extends Controller
             //es PostPago //debe de correr la pasrella de pagos
             //return 1;
 
-            $cursoMatriculado = DB::table('enrollments')->get();
+            $cursoMatriculado = DB::table('enrollments')
+                            ->where('user_id', $usuario->user_moodle_id)
+                            ->get();
 
             return $cursoMatriculado;
 
