@@ -336,7 +336,7 @@
                       //alert(res);
                       $('#btn_pagar').hide("slow");
                       $('#status-curso').show("slow");
-                      $('#status-curso').html('Curso comprado');
+                      $('#status-curso').html('ya puedes ir a tu perfil y descargar tu Certificado');
 
                       $( "#form_datos" ).hide("slow");
 

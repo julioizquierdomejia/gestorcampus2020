@@ -90,8 +90,6 @@ class ShoppingController extends Controller
     public function storeCertificate(Request $request)
     {
 
-
-        dd($request->celular);
         //buscamos el id del curso de moodle de la tabla de cursos del gestor
         //para la matriculacion
 
