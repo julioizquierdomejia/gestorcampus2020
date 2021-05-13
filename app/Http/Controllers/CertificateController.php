@@ -77,7 +77,7 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            return $usuario->id;
+            return $usuario->user_moodle_id;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
