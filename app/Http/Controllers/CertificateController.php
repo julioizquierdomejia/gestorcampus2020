@@ -64,6 +64,10 @@ class CertificateController extends Controller
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
+        //variables
+        $course_moodle_id = $request->course_moodle_id;
+        $user_moodle_id = $usuario->user_moodle_id;
+
         //echo $cursoId;
 
         //consultamos la modalidad del curso
@@ -78,15 +82,15 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            return $usuario->user_moodle_id.'-'.$request->course_moodle_id;
+            return 1;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
 
             //Buscamos si el certificado ya se encuentra registrado
-            $message = '';
+            $message = 'El certificado se generó con éxito';
 
-            $cursoMatriculado = DB::table('enrollments')->get();
+            //$cursoMatriculado = DB::table('enrollments')->get();
 
             return $cursoMatriculado;
         }

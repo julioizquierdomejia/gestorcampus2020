@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shopping;
+use App\Models\Certificate;
 use Illuminate\Http\Request;
 use App\Models\Enrollment;
 use App\Models\CourseMoodle;
@@ -80,6 +81,8 @@ class ShoppingController extends Controller
             'city' => $request->city,
             'distrito' => $request->distrito,
         ]);
+
+
         
 
     }
@@ -120,6 +123,19 @@ class ShoppingController extends Controller
             'city' => $request->city,
             'distrito' => $request->distrito,
         ]);
+
+
+        //buscar el ID del usuario y el ID del curso en la tabla Enrollment
+        $enrollment_id = Enrollment::where('course_id', $request->course_id)
+                            ->where('user_id', $request->user_id)
+                            ->first();
+
+        //registrar el certificado
+        Certificate::create([
+            'enrollment_id' => $enrollment_id->id;
+            'status' => 1;
+        ]);
+
         
 
     }

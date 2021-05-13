@@ -353,7 +353,6 @@
             };
 
             function registrarLaMatricula(){
-
               
               $.ajax({
                   //url: "/shopping",
@@ -406,8 +405,7 @@
 		    	$('#loading').css('opacity', 0);
 
 		    	if(res == 1){//debe de pagar el certificado
-		    		//$('#form_datos').show('slow');
-		    		alert(res)
+		    		$('#form_datos').show('slow');
 
 		    	}else{//si no solo debe de generarlo
 		    		alert(res);
