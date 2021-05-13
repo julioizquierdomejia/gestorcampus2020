@@ -4,7 +4,7 @@
 
 
           <!-- Modal -->
-          <div id="miModal" class="modal fade align-middle" role="dialog">
+          <div id="modalProcesando" class="modal fade align-middle" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
               <!-- Contenido del modal -->
               <div class="alert alert-danger" role="alert">
@@ -539,7 +539,7 @@
             //esta funcion solo matricula para cursos PostPago
             function registrarLaEnrollments(){
               //aqui lanzamos el cargador
-              $("#miModal").modal("show");
+              $("#modalProcesando").modal("show");
               
               $.ajax({
                   //url: "/shopping",
@@ -553,11 +553,10 @@
 
                   }
                 }).done(function(res){
-                  //aqui lanzamos el cargador
-                  $("#miModal").modal("hide");
+                  //aqui ocultamos el cargador
+                  $("#modalProcesando").modal("toggle");
                   $('#btn_matricula').hide("slow")
-                  //alert(res);
-                  //alert('matriculacion')
+                  
                 })
             }
 
