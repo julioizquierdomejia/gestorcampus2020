@@ -555,7 +555,7 @@
                 }).done(function(res){
                   //aqui lanzamos el cargador
                   $("#miModal").modal("hide");
-                  $('#btn_matricula').hide('slow')
+                  $('#btn_matricula').hide()
                   //alert(res);
                   //alert('matriculacion')
                 })
