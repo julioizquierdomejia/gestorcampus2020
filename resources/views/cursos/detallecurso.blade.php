@@ -148,7 +148,7 @@
                           <div class="col">
                             @if($statusCourse == false)
                                 @if($curso->type == 2)
-                                  <a class="btn btn-primary btn_comprar" id=""><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
+                                  <a class="btn btn-primary btn_comprar" id="btn_comprar_curso"><i class="fab fa-cc-visa mr-2"></i>Comprar Curso</a>
                                 @else
                                   <form>
                                     @csrf
@@ -486,6 +486,7 @@
                       $('#btn_pagar').hide("slow");
                       $('#status-curso').show("slow");
                       $('#status-curso').html('Curso comprado');
+                      $('#btn_comprar_curso').hide('slow');
 
                       $( "#form_datos" ).hide("slow");
 
