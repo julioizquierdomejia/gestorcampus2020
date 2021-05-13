@@ -46,7 +46,17 @@
 					<h4>Nota Final </h4>
 					@if($promedio > 11)
 						<div class="alert alert-success" role="alert">
-						  <p>{{$promedio}}</p>
+						  <span class="font-weight-bold">{{ $usuario->name }}, Ud Aprobó el curso con:
+						  </span><span class="badge badge-success" style="font-size: 20px;">{{$promedio}}</span>
+						</div>
+
+						<form>
+							@csrf
+							<a class="btn btn-secondary" id="bnt_certificate">Gestionar su Certificado</a>
+
+						</form>	
+						<div class="mt-4" id="loading" style="opacity: 0;">
+							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
 						</div>
 					@else
 						<div class="alert alert-danger" role="alert">
@@ -54,14 +64,6 @@
 						  </span><span class="badge badge-danger" style="font-size: 20px;">{{$promedio}}</span>
 						</div>
 
-						<form>
-							@csrf
-							<a class="btn btn-secondary" id="bnt_certificate">Descargar Certificado</a>
-
-						</form>	
-						<div class="mt-4" id="loading" style="opacity: 0;">
-							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
-						</div>
 
 					@endif
 				@else
