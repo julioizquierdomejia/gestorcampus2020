@@ -169,6 +169,12 @@
                           </div>
                         </div>
 
+                        <div class="row">
+                          <div class="col">
+                            <div class="alert alert-success mt-3" id="status-curso_2" style="display: none;" role="alert"></div>
+                          </div>
+                        </div>
+
                         {{-- Al darle click a comprar le mostramos sus datos previamente con la opcion que los pueda modificar --}}
 
                         <div class="row" id="form_datos" style="display: none;">
@@ -556,8 +562,8 @@
                   //aqui ocultamos el cargador
                   //$("#modalProcesando").modal("hide");
                   $('#btn_matricula').hide("slow");
-                  $('#status-curso').html('Gracias ya te encuentras Matriculado en este curso');
-                  $('#status-curso').show('slow');
+                  $('#status-curso_2').html('Gracias ya te encuentras Matriculado en este curso');
+                  $('#status-curso_2').show('slow');
                   
                 })
             }
