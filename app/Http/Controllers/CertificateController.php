@@ -77,13 +77,7 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            //return 1;
-
-            $cursoMatriculado = DB::table('enrollments')
-                            ->where('user_id', '2')
-                            ->first();
-
-            return $cursoMatriculado;
+            return 1;
 
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
