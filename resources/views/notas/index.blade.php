@@ -17,7 +17,7 @@
 				<div class="progress">
 				  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{$percent}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 				</div>
-				<p>[ {{$cant_notas}} evaluaciones de {{$cant_notas_existente}} / {{round($percent)}}% ]</p>
+				<p>[  {{$cant_notas_existente}} evaluaciones de {{$cant_notas}} / {{round($percent)}}% ]</p>
 			</div>
 		</div>
 		<div class="row mt-4">
@@ -61,7 +61,7 @@
 						<div class="mt-4" id="loading" style="opacity: 0;">
 							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
 						</div>
-						
+
 					@endif
 				@else
 					<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
