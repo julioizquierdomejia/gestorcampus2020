@@ -390,6 +390,7 @@
 
             $('#bnt_certificate').click(function(){
 			$('#loading').css('opacity', 1);
+			
 			$.ajax({
 		      //url: "/shopping",
 		      url: "{{ route('certificate.searchCertificate') }}",
@@ -403,10 +404,10 @@
 		    }).done(function(res){
 		    	$('#loading').css('opacity', 0);
 
-		    	if(res == 1){
+		    	if(res == 1){//debe de pagar el certificado
 		    		$('#form_datos').show('slow');
-		    	}else{
-
+		    	}else{//si no solo debe de generarlo
+		    		
 		    	}
 
 

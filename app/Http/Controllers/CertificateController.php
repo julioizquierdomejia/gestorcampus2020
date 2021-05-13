@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Certificate;
-use App\Models\Course;
 use Illuminate\Http\Request;
 
+use App\Models\Certificate;
+use App\Models\Course;
+use App\Models\User;
+use App\Models\UserMoodle;
+use App\Models\Shopping;
+use App\Models\Enrollment;
+
+use Illuminate\Support\Facades\DB;
 
 class CertificateController extends Controller
 {
@@ -54,6 +60,10 @@ class CertificateController extends Controller
     public function searchCertificate(Request $request)
     {
         //
+
+        $user_id = \Auth::user()->id; //auth()->id();
+        $usuario = usermoodle::where('id', $user_id)->first();
+
         //echo $cursoId;
 
         //consultamos la modalidad del curso
@@ -67,9 +77,14 @@ class CertificateController extends Controller
         
         if ($modalidad->type == 1) {
             //es PostPago //debe de correr la pasrella de pagos
-            return 1;
+            return $user_id;
         }else{
             //es Prepago // el curso ya eta pagado puede descargar su certificado
+
+            //Buscamos si el certificado ya se encuentra registrado
+            $message = '';
+
+
             return 2;
         }
         
