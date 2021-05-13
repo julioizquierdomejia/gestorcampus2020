@@ -50,7 +50,8 @@
 						</div>
 					@else
 						<div class="alert alert-danger" role="alert">
-						  <span class="font-weight-bold">{{ $usuario->name }}, Ud desaprobo el curso con: </span><h4 class="badge badge-danger p-2">{{$promedio}}</h4>
+						  <span class="font-weight-bold">{{ $usuario->name }}, Ud desaprobo el curso con:
+						  </span><span class="badge badge-danger" style="font-size: 16px;">{{$promedio}}</span>
 						</div>
 
 						<form>
