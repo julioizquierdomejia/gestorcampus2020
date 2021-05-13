@@ -22,7 +22,7 @@ class CreateShoppingsTable extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
 
-            $table->string('document')->unique();
+            $table->string('document')->nullable();
             
             $table->string('name')->nullable();
             $table->string('last_name')->nullable();
