@@ -53,8 +53,8 @@
 						<form>
 							@csrf
 							<a class="btn btn-secondary" id="bnt_certificate">Gestionar su Certificado</a>
-
-						</form>	
+						</form>
+						<span>Aqui el texto que yo quiera segun el tipo de curso</span>
 						<div class="mt-4" id="loading" style="opacity: 0;">
 							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
 						</div>
@@ -65,8 +65,6 @@
 						</div>
 
 					@endif
-
-					<span>Aqui el texto que yo quiera segun el tipo de curso</span>
 
 				@else
 					<p>{{ $usuario->name }}, Al finalizar el curso podras ver tu promedio y podras descargar tu Certificado</p>
