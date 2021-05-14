@@ -59,7 +59,6 @@ class CertificateController extends Controller
     {
         //
         $img = Image::make('https://previews.123rf.com/images/flamix/flamix1404/flamix140400001/27898868-fondo-de-garant%C3%ADa-para-el-bono-certificado-diploma-el-grosor-de-las-l%C3%ADneas-se-puede-cambiar-f%C3%A1cilmente.jpg');
-        $img = 
         //$img->blur();
 
         return '<img src="'.$img.'"/>';
