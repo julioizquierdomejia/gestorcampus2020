@@ -134,7 +134,7 @@ class ShoppingController extends Controller
             'status' => 1,
         ]);
 
-        return $enrollment_id;
+        return '$enrollment_id';
         
 
     }
