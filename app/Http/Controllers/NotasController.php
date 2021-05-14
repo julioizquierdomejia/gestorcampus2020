@@ -11,6 +11,8 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\UserMoodle;
 use App\Models\CourseMoodle;
+use App\Models\Certificate;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\DB;
 
 
@@ -86,6 +88,15 @@ class NotasController extends Controller
         $percent = ($cant_notas_existente * 100) / $cant_notas;
 
         $curso = Course::where('course_moodle_id', $course)->first();
+
+        //Verificamos si el curso activo ya tiene certificado
+        //Primero verificamos lso datos de id usuario y id curso en la tabla de matriculas 
+        //enrolloment
+        
+        dd($usuario);
+
+
+
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
     }
