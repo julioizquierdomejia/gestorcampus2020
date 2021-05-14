@@ -14,6 +14,7 @@ use App\Models\UserMoodle;
 use App\Models\UserCampusMoodle;
 use App\Models\ShoppingCart;
 use App\Models\Enrollment;
+use App\Models\Certificate;
 
 use Illuminate\Support\Facades\DB;
 
@@ -45,6 +46,12 @@ class PerfilController extends Controller
                     ->where('enrollments.user_id', $id_user_moodle)
                     ->join('courses', 'enrollments.course_id', '=', 'courses.course_moodle_id')
                     ->get();
+
+        //listar los certificados de este usurio
+        //hacemos un join entre las tablas matricula y tabla certificados
+        $certificados = DB::table('enrollments')->get();
+
+        dd($certificados);
 
 
         return view('perfil.index', compact('usuario', 'misCursos', 'user'));
