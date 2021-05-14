@@ -344,7 +344,7 @@
                       $('#btn_pagar').hide("slow");
                       $('#status-curso').show("slow");
                       $('#status-curso').html('ya puedes ir a tu perfil y descargar tu Certificado');
-
+                      $('#bnt_certificate').hide('slow');
                       $( "#form_datos" ).hide("slow");
 
                     }else{
