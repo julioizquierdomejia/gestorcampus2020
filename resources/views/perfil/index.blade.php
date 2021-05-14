@@ -201,27 +201,19 @@
 			
 			<div class="row mt-5">
 
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title"><b>Curso de Salud Mental</b></h5>
-							<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO</h6>
-							<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de Salud Mental</p>
-							<a href="#" class="btn btn-primary">Ver certificado</a>
+				@foreach($certificados as $certificado)
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title"><b>Curso de Salud Mental</b></h5>
+								<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO</h6>
+								<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de Salud Mental</p>
+								<a href="#" class="btn btn-primary">Ver certificado</a>
+							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title"><b>Curso de Primero Auxilios</b></h5>
-							<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO</h6>
-							<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de Primeros Auxilios</p>
-							<a href="#" class="btn btn-primary">Ver certificado</a>
-						</div>
-					</div>
-				</div>
+				@endforeach
+				
 
 			</div>
 

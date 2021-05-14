@@ -52,10 +52,8 @@ class PerfilController extends Controller
         $certificados = DB::table('enrollments')
                             ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')->get();
 
-        dd($certificados);
 
-
-        return view('perfil.index', compact('usuario', 'misCursos', 'user'));
+        return view('perfil.index', compact('usuario', 'misCursos', 'user', 'certificados'));
     }
 
     public function update_datos(Request $request, $id){
