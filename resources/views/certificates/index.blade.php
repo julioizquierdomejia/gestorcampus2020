@@ -4,7 +4,7 @@
 
 hola soy el certificado
 
-<img src="{{$img}}">
+<img src="{{$img->basename}}">
 
 
 @endsection
