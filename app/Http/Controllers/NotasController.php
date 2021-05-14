@@ -102,7 +102,6 @@ class NotasController extends Controller
                         ->where('user_id', $id_usuario_moodle)
                         ->first();
 
-        dd($id_matricula);
         $statusCertificado = false;
 
         if ($id_matricula == null) {
