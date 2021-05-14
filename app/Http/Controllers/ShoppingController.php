@@ -135,7 +135,7 @@ class ShoppingController extends Controller
         ]);
 
 
-        return ; $id_curso_moodle->course_moodle_id;//$course->course_moodle_id;
+        return $id_curso_moodle->course_moodle_id;//$course->course_moodle_id;
         
 
     }
