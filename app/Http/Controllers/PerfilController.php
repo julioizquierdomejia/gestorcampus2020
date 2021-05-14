@@ -51,7 +51,7 @@ class PerfilController extends Controller
         //hacemos un join entre las tablas matricula y tabla certificados
         $certificados = DB::table('enrollments')
                             ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')
-                            ->join('courses', 'enrollmennts.course_id', 'courses.course_moodle_id')->get();
+                            ->join('courses', 'enrollments.course_id', 'courses.course_moodle_id')->get();
 
         dd($certificados);
 
