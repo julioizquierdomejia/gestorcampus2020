@@ -96,7 +96,7 @@ class NotasController extends Controller
         //id usuario Moodle
         $id_usuario_moodle = $usuario->user_moodle_id;
 
-        dd($curso);
+        dd($course);
 
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
