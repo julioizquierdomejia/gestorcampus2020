@@ -4,5 +4,7 @@
 
 hola soy el certificado
 
+$img = Image::make('public/certificados/base.png');
+
 
 @endsection
