@@ -205,9 +205,9 @@
 					<div class="col-sm-4">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title"><b>Curso de Salud Mental</b></h5>
+								<h5 class="card-title"><b>{{$certificado->fullname}}</b></h5>
 								<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO</h6>
-								<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de Salud Mental</p>
+								<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de {{$certificado->fullname}}</p>
 								<a href="#" class="btn btn-primary">Ver certificado</a>
 							</div>
 						</div>
