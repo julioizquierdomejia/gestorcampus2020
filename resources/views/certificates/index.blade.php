@@ -4,7 +4,15 @@
 
 hola soy el certificado
 
-<img src="{{ asset('/certificados/base.png') }}">
+<div class="container mt-5">
+	<div class="row">
+		<div class="col">
+			<img src="{{ asset('/certificados/base.png') }}">			
+		</div>
+	</div>
+
+</div>
+
 
 
 @endsection
