@@ -102,9 +102,13 @@ class NotasController extends Controller
                         ->where('user_id', $id_usuario_moodle)
                         ->first();
 
+        //ahora buscamos si esa matricula tiene certificado generado
+        $id_certificado = Certificate::where('enrollment_id', $id_matricula);
+        
+
         $statusCertificado = false;
 
-        if ($id_matricula == null) {
+        if ($id_certificado == null) {
             $statusCertificado = false;
         }else{
             $statusCertificado = true;
