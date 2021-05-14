@@ -58,10 +58,10 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
-        $img = Image::make('/certificados/base.png');
+        $img = Image::make('certificados/base.png');
         //$img->blur();
 
-        return '<img src="'.$img.'"/>';
+        return '<img src="asset('.$img.')"/>';
 
         //return view('certificates.index');
         // open an image file
