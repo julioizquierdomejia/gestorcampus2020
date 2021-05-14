@@ -93,9 +93,10 @@ class NotasController extends Controller
         //Primero verificamos lso datos de id usuario y id curso en la tabla de matriculas 
         //enrolloment
         
-        dd($usuario);
+        //id usuario Moodle
+        $id_usuario_moodle = $usuario->user_moodle_id;
 
-
+        dd($curso);
 
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
