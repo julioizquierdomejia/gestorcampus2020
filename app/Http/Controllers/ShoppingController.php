@@ -134,7 +134,10 @@ class ShoppingController extends Controller
             'status' => 1,
         ]);
 
-        return $request->course_id;
+        //obtenemos el id del curso de moodle con el ID del curso gestor
+        $course = Course::findorFail($request->course_id);
+
+        return $course->course_moodle_id;
         
 
     }
