@@ -55,7 +55,7 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
-        return.view('certificates.index');
+        return view('certificates.index');
         // open an image file
     }
 
