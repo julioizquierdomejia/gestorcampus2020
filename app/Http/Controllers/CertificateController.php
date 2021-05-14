@@ -59,7 +59,7 @@ class CertificateController extends Controller
     {
         //
         $img = Image::make('certificados/base.png');
-
+        $img->blur();
 
         return view('certificates.index');
         // open an image file
