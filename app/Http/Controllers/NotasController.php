@@ -94,7 +94,7 @@ class NotasController extends Controller
         //enrolloment
 
         $id_usuario_moodle = $usuario->user_moodle_id;//id usuario Moodle
-        $course //id curso moodle
+        $course; //id curso moodle
 
 
         //ahora buscamos una matricula
