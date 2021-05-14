@@ -408,6 +408,9 @@
 
 		      }
 		    }).done(function(res){
+
+		    	alert(res);
+		    	
 		    	$('#loading').css('opacity', 0);
 
 		    	if(res == 1){//debe de pagar el certificado
