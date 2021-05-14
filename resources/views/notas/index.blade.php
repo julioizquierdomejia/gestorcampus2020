@@ -395,7 +395,7 @@
 
                   }
                 }).done(function(res){
-                  alert(res);
+                  //alert(res);
                 })
             }
 
