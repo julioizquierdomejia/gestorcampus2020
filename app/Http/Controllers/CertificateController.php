@@ -55,7 +55,8 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
-        return "El certificado";
+        return.view('certificates.index');
+        // open an image file
     }
 
     public function searchCertificate(Request $request)
