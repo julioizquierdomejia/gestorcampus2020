@@ -96,6 +96,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::post('/enrollment', [App\Http\Controllers\ShoppingController::class, 'enrollment'])->name('shopping.enrollment');
 	Route::post('/shoppingCertificate', [App\Http\Controllers\ShoppingController::class, 'storeCertificate'])->name('shopping.storeCertificate');
 
+	Route::post('/certificado/{id}', [App\Http\Controllers\CertificateController::class, 'show'])->name('certificate.show');
+
 
 	//rutas para las notas
 	Route::get('notas/{id}', [App\Http\Controllers\NotasController::class, 'show'])->name('notas.show');
