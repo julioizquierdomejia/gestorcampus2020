@@ -55,6 +55,7 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
+        return "El certificado";
     }
 
     public function searchCertificate(Request $request)
