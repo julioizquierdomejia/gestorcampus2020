@@ -13,6 +13,9 @@ use App\Models\Enrollment;
 
 use Illuminate\Support\Facades\DB;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Image;
+
 class CertificateController extends Controller
 {
     /**
