@@ -130,7 +130,7 @@ class ShoppingController extends Controller
 
         //registrar el certificado
         Certificate::create([
-            'enrollment_id' => 2,
+            'enrollment_id' => $enrollment_id->id,
             'status' => 1,
         ]);
 
