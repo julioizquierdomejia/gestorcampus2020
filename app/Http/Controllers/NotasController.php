@@ -98,9 +98,10 @@ class NotasController extends Controller
 
 
         //ahora buscamos una matricula
-        //$id_matricula = Enrollment::where('')
-
-        dd($id_usuario_moodle);
+        $id_matricula = Enrollment::where('course_id', $course)
+                        ->where('user_id', $id_usuario_moodle)
+                        ->first();
+        dd($id_matricula);
 
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
