@@ -103,7 +103,7 @@ class NotasController extends Controller
                         ->first();
 
         //ahora buscamos si esa matricula tiene certificado generado
-        $id_certificado = Certificate::where('enrollment_id', $id_matricula)->first();
+        $id_certificado = Certificate::where('enrollment_id', $id_matricula->id)->first();
         
 
 
