@@ -124,8 +124,8 @@ class ShoppingController extends Controller
 
 
         //buscar el ID del usuario y el ID del curso en la tabla Enrollment
-        $enrollment_id = Enrollment::where('course_id', $request->course_id)
-                            ->where('user_id', $request->user_id)
+        $enrollment_id = Enrollment::where('course_id', $id_curso_moodle->course_moodle_id)
+                            ->where('user_id', $id_user_moodle->user_moodle_id)
                             ->first();
 
         //registrar el certificado
@@ -134,8 +134,8 @@ class ShoppingController extends Controller
             'status' => 1,
         ]);
 
-
-        return $id_curso_moodle->course_moodle_id;//$course->course_moodle_id;
+        return $enrollment_id;
+        
         
 
     }
