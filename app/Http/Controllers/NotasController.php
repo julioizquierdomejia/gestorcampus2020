@@ -102,7 +102,7 @@ class NotasController extends Controller
                         ->where('user_id', $id_usuario_moodle)
                         ->first();
 
-        dd($id_matricula->count());
+        dd($id_matricula);
 
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
