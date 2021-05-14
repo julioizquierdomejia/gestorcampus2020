@@ -49,7 +49,8 @@ class PerfilController extends Controller
 
         //listar los certificados de este usurio
         //hacemos un join entre las tablas matricula y tabla certificados
-        $certificados = DB::table('enrollments')->get();
+        $certificados = DB::table('enrollments')
+                            ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')->get();
 
         dd($certificados);
 
