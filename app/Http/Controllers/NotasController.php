@@ -92,11 +92,15 @@ class NotasController extends Controller
         //Verificamos si el curso activo ya tiene certificado
         //Primero verificamos lso datos de id usuario y id curso en la tabla de matriculas 
         //enrolloment
-        
-        //id usuario Moodle
-        $id_usuario_moodle = $usuario->user_moodle_id;
 
-        dd($course);
+        $id_usuario_moodle = $usuario->user_moodle_id;//id usuario Moodle
+        $course //id curso moodle
+
+
+        //ahora buscamos una matricula
+        //$id_matricula = Enrollment::where('')
+
+        dd($id_usuario_moodle);
 
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
