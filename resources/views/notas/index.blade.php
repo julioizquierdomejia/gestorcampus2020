@@ -50,20 +50,27 @@
 						  </span><span class="badge badge-success" style="font-size: 20px;">{{$promedio}}</span>
 						</div>
 
-						@if($curso->type == 1)
-							<span>Para poder gestionar el certificado, deberás cancelar por medio de nuesta pasarela de pagos el costo de <b>S/. {{ $curso->price }}</b>, para continuar hacer click en el boton Gestionar tu certificado</span>
-						@else
-							<span>Ahora que has aprobado el curso puedes gestionar tu certificado haciendo click en el boton de abajo isn costo alguno</span>
-						@endif
 
-						<form>
-							@csrf
-							<a class="btn btn-secondary mt-2" id="bnt_certificate">Gestionar su Certificado</a>
-						</form>
+            @if($statusCertificado == false) {{-- preguntamos si ya existe un certificado para este curso de este usuario --}}
+              @if($curso->type == 1)
+                <span>Para poder gestionar el certificado, deberás cancelar por medio de nuesta pasarela de pagos el costo de <b>S/. {{ $curso->price }}</b>, para continuar hacer click en el boton Gestionar tu certificado</span>
+              @else
+                <span>Ahora que has aprobado el curso puedes gestionar tu certificado haciendo click en el boton de abajo isn costo alguno</span>
+              @endif
 
-						<div class="mt-4" id="loading" style="opacity: 0;">
-							<i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
-						</div>
+              <form>
+                @csrf
+                <a class="btn btn-secondary mt-2" id="bnt_certificate">Gestionar su Certificado</a>
+              </form>
+
+              <div class="mt-4" id="loading" style="opacity: 0;">
+                <i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
+              </div>
+            @else
+              <span>Ud ya getiono su certificado, lo puede ver y descargar en su pagina de perfil</span>
+            @endif
+						
+
 					@else
 						<div class="alert alert-danger" role="alert">
 						  <span class="font-weight-bold">{{ $usuario->name }}, Ud desaprobo el curso con:

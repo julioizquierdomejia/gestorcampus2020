@@ -98,13 +98,20 @@ class NotasController extends Controller
 
 
         //ahora buscamos una matricula
-        $id_matricula = Enrollment::where('course_id', 100)
+        $id_matricula = Enrollment::where('course_id', $course)
                         ->where('user_id', $id_usuario_moodle)
                         ->first();
 
         dd($id_matricula);
+        $statusCertificado = false;
+
+        if ($id_matricula == null) {
+            $statusCertificado = false;
+        }else{
+            $statusCertificado = true;
+        }
 
 
-        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user'));
+        return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user', 'statusCertificado'));
     }
 }
