@@ -4,7 +4,7 @@
 
 hola soy el certificado
 
-<img src="certificados/base.png">
+<img src="/public/certificados/base.png">
 
 
 @endsection
