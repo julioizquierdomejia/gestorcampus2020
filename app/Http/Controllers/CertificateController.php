@@ -60,6 +60,8 @@ class CertificateController extends Controller
         //
         $img = Image::make('certificados/base.png');
 
+        dd($img);
+
         return view('certificates.index', compact('img'));
         // open an image file
     }
