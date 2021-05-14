@@ -50,7 +50,8 @@ class PerfilController extends Controller
         //listar los certificados de este usurio
         //hacemos un join entre las tablas matricula y tabla certificados
         $certificados = DB::table('enrollments')
-                            ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')->get();
+                            ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')
+                            ->join('courses', 'enrollmennts.course_id', 'courses.course_moodle_id')->get();
 
 
         return view('perfil.index', compact('usuario', 'misCursos', 'user', 'certificados'));
