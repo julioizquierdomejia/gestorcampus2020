@@ -116,8 +116,6 @@ class NotasController extends Controller
             $statusCertificado = true;
         }
 
-        dd($id_certificado);
-
 
         return view('notas.index', compact('usuario', 'quiz', 'cant_notas', 'notas', 'cant_notas_existente', 'statusCurso', 'percent', 'curso', 'promedio', 'user', 'statusCertificado'));
     }
