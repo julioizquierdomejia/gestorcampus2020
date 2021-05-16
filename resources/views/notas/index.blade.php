@@ -401,35 +401,35 @@
 
 
             $('#bnt_certificate').click(function(){
-			$('#loading').css('opacity', 1);
-			
-			$.ajax({
-		      //url: "/shopping",
-		      url: "{{ route('certificate.searchCertificate') }}",
-		      method: 'POST',
-		      data:{
-		        _token:$('input[name="_token"]').val(),
-		        //info para registrar la matriculacion
-		        id : "{{$curso->course_moodle_id}}", //enviamos el ID del curso de moodle
-		        course_moodle_id: "{{$curso->course_moodle_id}}", //enviamos el id del curso moodle
+        			$('#loading').css('opacity', 1);
+        			
+        			$.ajax({
+        		      //url: "/shopping",
+        		      url: "{{ route('certificate.searchCertificate') }}",
+        		      method: 'POST',
+        		      data:{
+        		        _token:$('input[name="_token"]').val(),
+        		        //info para registrar la matriculacion
+        		        id : "{{$curso->course_moodle_id}}", //enviamos el ID del curso de moodle
+        		        course_moodle_id: "{{$curso->course_moodle_id}}", //enviamos el id del curso moodle
 
-		      }
-		    }).done(function(res){
+        		      }
+        		    }).done(function(res){
 
-		    	$('#loading').css('opacity', 0);
+        		    	$('#loading').css('opacity', 0);
 
-		    	if(res == 1){//debe de pagar el certificado
-		    		$('#form_datos').show('slow');
+        		    	if(res == 1){//debe de pagar el certificado
+        		    		$('#form_datos').show('slow');
 
-		    	}else{//si no solo debe de generarlo
-		    		alert(res);
-		    	}
+        		    	}else{//si no solo debe de generarlo
+        		    		alert(res);
+        		    	}
 
 
-		      //alert(res);
-		      //alert('matriculacion')
-		    })
-		})
+        		      //alert(res);
+        		      //alert('matriculacion')
+        		    })
+        		})
 
             </script>
 
