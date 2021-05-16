@@ -403,6 +403,9 @@
             $('#bnt_certificate').click(function(){
         			$('#loading').css('opacity', 1);
         			
+              alert('hola');
+
+              /*
         			$.ajax({
         		      //url: "/shopping",
         		      url: "{{ route('certificate.searchCertificate') }}",
@@ -429,6 +432,7 @@
         		      //alert(res);
         		      //alert('matriculacion')
         		    })
+                */
         		})
 
             </script>
