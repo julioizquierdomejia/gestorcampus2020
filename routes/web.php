@@ -103,7 +103,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	Route::get('notas/{id}', [App\Http\Controllers\NotasController::class, 'show'])->name('notas.show');
 
 	//rutas para certificados
-	Route::post('/certificados/', [App\Http\Controllers\CertificateController::class, 'searchCertificate'])->name('certificate.searchCertificate');
+	Route::post('/certificados', [App\Http\Controllers\CertificateController::class, 'searchCertificate'])->name('certificate.searchCertificate');
 
 
 });
