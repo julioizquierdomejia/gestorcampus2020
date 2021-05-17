@@ -73,9 +73,9 @@ class CertificateController extends Controller
 
         $alumno_name = $usuario->name.', '.$usuario->last_name.$usuario->mothers_last_name;
 
-        $img->text($alumno_name, $centro, 1280, function($font) {
+        $img->text($alumno_name, $centro, 1284, function($font) {
             $font->file('font/Impact.ttf');
-            $font->size(116);
+            $font->size(96);
             $font->color('#005267');
             $font->align('center');
             $font->valign('top');
