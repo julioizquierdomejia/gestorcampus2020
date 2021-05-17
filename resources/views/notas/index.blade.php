@@ -423,7 +423,8 @@
 
         		    	}else{//si no solo debe de generarlo
         		    		  $('#status-curso').html(res);
-                      $('#status-curso').hide("slow");
+                      $('#status-curso').show("slow");
+                      $('#bnt_certificate').hide('slow');
         		    	}
 
         		      //alert(res);
