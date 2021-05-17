@@ -403,6 +403,8 @@
             $('#bnt_certificate').click(function(){
         			$('#loading').css('opacity', 1);
 
+              alert("{{$curso->course_moodle_id}}");
+
         			$.ajax({
         		      //url: "/shopping",
         		      url: "{{ route('certificate.searchCertificate') }}",
