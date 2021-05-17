@@ -61,7 +61,10 @@ class CertificateController extends Controller
         
         $img = Image::make('certificados/base.png');
 
-        $img->text('Julio Izquierdo Mejia', 0, 0, function($font) {
+        //detecto el ancho te la imagen, para determinar el centro de la misma
+        $centro = $img->width()/2;
+
+        $img->text('Julio Izquierdo Mejia', $centro, 0, function($font) {
             $font->file('font/Impact.ttf');
             $font->size(124);
             $font->color('#000000');
