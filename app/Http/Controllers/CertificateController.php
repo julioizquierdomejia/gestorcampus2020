@@ -59,7 +59,16 @@ class CertificateController extends Controller
     {
         //
         
-        $img = Image::make('certificados/base.png');
+        //$img = Image::make('certificados/base.png');
+
+        $img->text('certificados/base.png', 0, 0, function($font) {
+            $font->file('foo/bar.ttf');
+            $font->size(24);
+            $font->color('#fdf6e3');
+            $font->align('center');
+            $font->valign('top');
+            $font->angle(45);
+        });
 
         //return view('certificates.index');
         return $img->response('jpg');
