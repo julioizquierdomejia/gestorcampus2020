@@ -99,7 +99,7 @@ class CertificateController extends Controller
             //es Prepago // el curso ya eta pagado puede descargar su certificado
 
             //Buscamos si el certificado ya se encuentra registrado
-            $message = 'El certificado se generó con éxito';
+            $message = 'El certificado se generó con éxito, lo podras ver y descargar desde tu pagina de perfil';
 
             //$cursoMatriculado = DB::table('enrollments')->get();
 
