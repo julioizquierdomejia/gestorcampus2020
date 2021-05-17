@@ -71,6 +71,8 @@ class CertificateController extends Controller
     {
         //
 
+        return "hola";
+        /*
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
 
@@ -106,7 +108,7 @@ class CertificateController extends Controller
             return 2;
         }
         
-
+    */
 
     }
 
