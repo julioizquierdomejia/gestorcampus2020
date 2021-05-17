@@ -67,7 +67,7 @@ class CertificateController extends Controller
 
         $img = Image::make('certificados/base.png');
 
-        dd($usuario);
+        dd($matricula->user_id);
 
         //detecto el ancho te la imagen, para determinar el centro de la misma
         $centro = $img->width()/2;
