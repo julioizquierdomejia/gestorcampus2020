@@ -104,7 +104,7 @@ class CertificateController extends Controller
             //$cursoMatriculado = DB::table('enrollments')->get();
 
             //return $cursoMatriculado;
-            return $course_moodle_id;
+            return $user_moodle_id;
         }
         
 
