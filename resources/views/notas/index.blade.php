@@ -424,7 +424,7 @@
 
         		    	}else{//si no solo debe de generarlo
         		    		//alert(res);
-                    alert('hola')
+                    alert(res);
         		    	}
 
         		      //alert(res);
