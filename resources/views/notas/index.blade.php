@@ -416,8 +416,8 @@
         		      }
         		    }).done(function(res){
 
-                  alert('res');
-                  
+                  alert(res);
+
                   /*
                   
         		    	$('#loading').css('opacity', 0);
