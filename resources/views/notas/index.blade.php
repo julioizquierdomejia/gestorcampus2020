@@ -423,6 +423,7 @@
 
         		    	}else{//si no solo debe de generarlo
         		    		  $('#status-curso').html(res);
+                      $('#status-curso').hide("slow");
         		    	}
 
         		      //alert(res);
