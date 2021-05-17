@@ -103,7 +103,7 @@ class CertificateController extends Controller
             //$cursoMatriculado = DB::table('enrollments')->get();
 
             //return $cursoMatriculado;
-            return $message;
+            return 2;
         }
         
 
