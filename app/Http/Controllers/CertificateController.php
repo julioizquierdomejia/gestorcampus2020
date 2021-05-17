@@ -59,7 +59,7 @@ class CertificateController extends Controller
     {
         //
         //ubicamos la matricula conel Id matricula que nos llegga
-        $matricula = Enrollment::finorFail($certificate);
+        $matricula = Enrollment::findorFail($certificate);
 
         //ahora obtenemos e¡lso objetos de uruario y de curso
         $usuario = UserMoodle::where('user_moodle_id', $matricula->user_id);
