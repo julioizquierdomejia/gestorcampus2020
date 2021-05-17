@@ -87,6 +87,11 @@ class ShoppingController extends Controller
 
     }
 
+    public function test(Request $request)
+    {
+        return 'hola';
+    }    
+
     public function storeCertificate(Request $request)
     {
 
