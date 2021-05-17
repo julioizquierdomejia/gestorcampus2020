@@ -110,15 +110,14 @@ class CertificateController extends Controller
                                 ->first();
 
             //registrar el certificado
-            /*
+            
             Certificate::create([
                 'enrollment_id' => $enrollment_id->id,
                 'status' => 1,
             ]);
-            */
+            
 
-            //return $cursoMatriculado;
-            return $enrollment_id->id;
+            return $message;
         }
         
 

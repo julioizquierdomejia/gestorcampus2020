@@ -422,8 +422,7 @@
         		    		$('#form_datos').show('slow');
 
         		    	}else{//si no solo debe de generarlo
-        		    		//alert(res);
-                    alert(res);
+        		    		  $('#status-curso').html(res);
         		    	}
 
         		      //alert(res);
