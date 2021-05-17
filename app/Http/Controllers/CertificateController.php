@@ -62,12 +62,11 @@ class CertificateController extends Controller
         $matricula = Enrollment::findorFail($certificate);
 
         //ahora obtenemos e¡lso objetos de uruario y de curso
-        $usuario = UserMoodle::where('user_moodle_id', $matricula->user_id);
-        $curso = Course::where('course_moodle_id', $matricula->course_id);
+        $usuario = UserMoodle::where('user_moodle_id', $matricula->user_id)->first();
+        $curso = Course::where('course_moodle_id', $matricula->course_id)->first();
 
         $img = Image::make('certificados/base.png');
 
-        dd($usuario);
 
         //detecto el ancho te la imagen, para determinar el centro de la misma
         $centro = $img->width()/2;
