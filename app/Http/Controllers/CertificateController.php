@@ -64,7 +64,7 @@ class CertificateController extends Controller
         //detecto el ancho te la imagen, para determinar el centro de la misma
         $centro = $img->width()/2;
 
-        $img->text('Julio Izquierdo Mejia', $centro, 0, function($font) {
+        $img->text('Julio Izquierdo Mejia', $centro, 1200, function($font) {
             $font->file('font/Impact.ttf');
             $font->size(124);
             $font->color('#000000');
