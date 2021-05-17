@@ -403,7 +403,7 @@
             $('#bnt_certificate').click(function(){
         			$('#loading').css('opacity', 1);
 
-              alert("{{$curso->course_moodle_id}}");
+              alert($('input[name="_token"]').val());
 
         			$.ajax({
         		      //url: "/shopping",
