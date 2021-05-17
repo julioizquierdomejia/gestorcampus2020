@@ -415,6 +415,8 @@
 
         		      }
         		    }).done(function(res){
+                  alert('done');
+                  /*
                   alert('res');
         		    	$('#loading').css('opacity', 0);
 
@@ -426,7 +428,7 @@
                     alert('hola')
         		    	}
 
-
+                  */
         		      //alert(res);
         		      //alert('matriculacion')
         		    })
