@@ -55,7 +55,7 @@ class CertificateController extends Controller
      * @param  \App\Models\Certificate  $certificate
      * @return \Illuminate\Http\Response
      */
-    public function show(Certificate $certificate)
+    public function show($certificate)
     {
         //
         dd($certificate);
