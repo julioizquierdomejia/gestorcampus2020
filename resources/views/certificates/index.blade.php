@@ -6,7 +6,13 @@
 <div class="container mt-5 mb-5">
 	<div class="row">
 		<div class="col">
-			<img src="{{ asset('/certificados/base.png') }}" class="img-fluid" alt="...">
+			<div class="certificado" style="position: absolute;">
+				<img src="{{ asset('/certificados/base.png') }}" class="img-fluid" alt="...">	
+				<div class="nombre" style="position: absolute; top: 100px; left: 400px;">
+					<p>Julio Izquierdo Mejia</p>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 
