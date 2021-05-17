@@ -58,7 +58,7 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
-        dd($certificate);
+        dd($certificate->id);
         $img = Image::make('certificados/base.png');
 
         //detecto el ancho te la imagen, para determinar el centro de la misma
