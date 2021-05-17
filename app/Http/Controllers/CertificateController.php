@@ -62,7 +62,7 @@ class CertificateController extends Controller
         $img = Image::make('certificados/base.png');
 
         $img->text('Julio Izquierdo Mejia', 600, 100, function($font) {
-            $font->size(100);
+            $font->size(10000);
             $font->color('#000000');
             $font->align('center');
             $font->valign('top');
