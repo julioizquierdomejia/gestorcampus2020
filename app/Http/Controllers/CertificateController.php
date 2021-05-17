@@ -103,8 +103,22 @@ class CertificateController extends Controller
 
             //$cursoMatriculado = DB::table('enrollments')->get();
 
+
+            //buscar el ID del usuario y el ID del curso en la tabla Enrollment
+            $enrollment_id = Enrollment::where('course_id', $id_curso_moodle->course_moodle_id)
+                                ->where('user_id', $id_user_moodle->user_moodle_id)
+                                ->first();
+
+            //registrar el certificado
+            /*
+            Certificate::create([
+                'enrollment_id' => $enrollment_id->id,
+                'status' => 1,
+            ]);
+            */
+
             //return $cursoMatriculado;
-            return $user_moodle_id;
+            return $enrollment_id;
         }
         
 
