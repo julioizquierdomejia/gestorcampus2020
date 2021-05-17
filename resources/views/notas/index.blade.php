@@ -405,7 +405,7 @@
 
         			$.ajax({
         		      //url: "/shopping",
-        		      url: "{{ route('shopping.test') }}",
+        		      url: "{{ route('certificate.searchCertificate') }}",
         		      method: 'POST',
         		      data:{
         		        _token:$('input[name="_token"]').val(),
@@ -415,11 +415,8 @@
 
         		      }
         		    }).done(function(res){
-
-                  alert(res);
-
                   /*
-                  
+                  alert('res');
         		    	$('#loading').css('opacity', 0);
 
         		    	if(res == 1){//debe de pagar el certificado
