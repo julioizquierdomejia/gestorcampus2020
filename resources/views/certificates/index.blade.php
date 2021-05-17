@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container mx-5">
+<div class="container mt-5 mb-5">
 	<div class="row">
 		<div class="col">
 			<img src="{{ asset('/certificados/base.png') }}" class="img-fluid" alt="...">
