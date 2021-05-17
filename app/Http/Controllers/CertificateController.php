@@ -118,7 +118,7 @@ class CertificateController extends Controller
             */
 
             //return $cursoMatriculado;
-            return $enrollment_id;
+            return $enrollment_id->id;
         }
         
 
