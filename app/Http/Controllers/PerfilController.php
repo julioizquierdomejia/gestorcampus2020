@@ -52,6 +52,8 @@ class PerfilController extends Controller
         $certificados = DB::table('enrollments')
                             ->join('certificates', 'enrollments.id', 'certificates.enrollment_id')
                             ->join('courses', 'enrollments.course_id', 'courses.course_moodle_id')->get();
+
+                            dd($certificados);
                             
         return view('perfil.index', compact('usuario', 'misCursos', 'user', 'certificados'));
     }
