@@ -71,7 +71,6 @@ class CertificateController extends Controller
     public function searchCertificate(Request $request)
     {
         //
-        return "hola";
 
         $user_id = \Auth::user()->id; //auth()->id();
         $usuario = usermoodle::where('id', $user_id)->first();
