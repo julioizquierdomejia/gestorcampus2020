@@ -58,13 +58,19 @@ class CertificateController extends Controller
     public function show($certificate)
     {
         //
-        //primero buscamos la matricula de este certificado
+        //ubicamos la matricula conel Id matricula que nos llegga
+        $matricula = Enrollment::finorFail($certificate);
+
+        //ahora obtenemos e¡lso objetos de uruario y de curso
+        $usuario = UserMoodle::where('user_moodle_id', $matricula->user_id);
+        $curso = Course::where('course_moodle_id', $matricula->course_id);
+
         $img = Image::make('certificados/base.png');
 
         //detecto el ancho te la imagen, para determinar el centro de la misma
         $centro = $img->width()/2;
 
-        $img->text('Julio Izquierdo Mejia', $centro, 1280, function($font) {
+        $img->text($usuario->name, $centro, 1280, function($font) {
             $font->file('font/Impact.ttf');
             $font->size(116);
             $font->color('#005267');

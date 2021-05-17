@@ -204,11 +204,11 @@
 				@foreach($certificados as $certificado)
 					<div class="col-sm-4">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body">{{--Aqui enviamos el id de la matricula--}}
 								<h5 class="card-title"><b>{{$certificado->fullname}}</b></h5>
-								<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO - {{$certificado->id}}</h6>
+								<h6 class="card-subtitle mb-2 text-primary">CERTIFICADO - {{$certificado->enrollment_id}}</h6>
 								<p class="card-text">Se certifica que {{$usuario->name}} aprobó el curso de {{$certificado->fullname}}</p>
-								<a href=" {{ route('certificate.show', $certificado->id) }} " class="btn btn-primary">Ver certificado</a>
+								<a href=" {{ route('certificate.show', $certificado->enrollment_id) }} " class="btn btn-primary">Ver certificado</a>
 							</div>
 						</div>
 					</div>
