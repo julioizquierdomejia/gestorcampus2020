@@ -63,7 +63,7 @@
                 <a class="btn btn-secondary mt-2" id="bnt_certificate">Gestionar su Certificado</a>
               </form>
 
-              <div class="mt-4" id="loading" style="opacity: 0;">
+              <div class="mt-4" id="loading" style="opacity: 1;">
                 <i class="fas fa-spinner-third fa-spin"></i> <span class="text-secondary">Revisando Certificación</span>
               </div>
             @else
