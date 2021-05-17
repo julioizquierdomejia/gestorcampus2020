@@ -58,10 +58,9 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         //
-        $img = Image::make('https://previews.123rf.com/images/flamix/flamix1404/flamix140400001/27898868-fondo-de-garant%C3%ADa-para-el-bono-certificado-diploma-el-grosor-de-las-l%C3%ADneas-se-puede-cambiar-f%C3%A1cilmente.jpg');
-        //$img->blur();
+        
 
-        return '<img src="'.$img.'"/>';
+        return view('certificates.index');
 
         //return view('certificates.index');
         // open an image file
