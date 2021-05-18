@@ -97,7 +97,7 @@ class CertificateController extends Controller
 
         $certificado = $img->response('jpg');
 
-        //dd($img);
+        dd($certificado);
 
         return view('certificates.index', compact('certificado'));
 
