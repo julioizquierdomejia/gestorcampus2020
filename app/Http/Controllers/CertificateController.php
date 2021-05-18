@@ -196,7 +196,7 @@ class CertificateController extends Controller
     public function qrgenerate()
     {
         //
-        echo "string";
+        return "soy el QR";
     }
 
 }
