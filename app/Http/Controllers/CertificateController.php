@@ -82,6 +82,17 @@ class CertificateController extends Controller
             //$font->angle(45);
         });
 
+        $texto = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+
+        $img->text($texto, $centro, 1040, function($font) {
+            $font->file('font/Impact.ttf');
+            $font->size(12);
+            $font->color('#005267');
+            $font->align('center');
+            $font->valign('top');
+            //$font->angle(45);
+        });
+
         //return view('certificates.index');
         return $img->response('jpg');
 
