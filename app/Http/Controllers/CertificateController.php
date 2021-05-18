@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+
+
 class CertificateController extends Controller
 {
     /**
@@ -196,7 +200,8 @@ class CertificateController extends Controller
     public function qrgenerate()
     {
         //
-        return "soy el QR";
+        
+        return QrCode::generate('Make me into a QrCode!');
     }
 
 }
