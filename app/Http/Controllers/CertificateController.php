@@ -82,11 +82,11 @@ class CertificateController extends Controller
             //$font->angle(45);
         });
 
-        $texto = "Lorem Ipsum is simply dummy text of the printing and typesetting.\n industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,.\n when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+        $texto = "Aprobó satifactoriamente el curso de Salud Mental del programa de apoyoa al segunda \n Especialidad de residencia médica, realizado desde el 28 de julio del 2020, con una duración de \n 72 horasy un valor académico de3,000 créditos, con una nota de 11.00";
 
         $img->text($texto, $centro, 1040, function($font) {
             $font->file('font/Times New Roman.ttf');
-            $font->size(62);
+            $font->size(50);
             $font->color('#005267');
             $font->align('center');
             $font->valign('top');
