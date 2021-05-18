@@ -86,6 +86,8 @@ class CertificateController extends Controller
             //$font->angle(45);
         });
 
+        $img->insert('qrcodes/qr.png');
+
         $texto = "Aprobó satifactoriamente el curso de Salud Mental del programa de apoyoa al segunda \n Especialidad de residencia médica, realizado desde el 28 de julio del 2020, con una duración de \n 72 horasy un valor académico de3,000 créditos, con una nota de 11.00";
 
         /*
@@ -200,8 +202,8 @@ class CertificateController extends Controller
     public function qrgenerate()
     {
         //
-        
-        return QrCode::generate('Make me into a QrCode!');
+
+        return QrCode::generate('Julio - Mili - Maju - Marcia y Ringo');
     }
 
 }
