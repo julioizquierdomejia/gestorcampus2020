@@ -85,8 +85,8 @@ class CertificateController extends Controller
         $texto = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 
         $img->text($texto, $centro, 1040, function($font) {
-            $font->file('font/Impact.ttf');
-            $font->size(12);
+            $font->file('font/Times New Roman.ttf');
+            $font->size(36);
             $font->color('#005267');
             $font->align('center');
             $font->valign('top');
