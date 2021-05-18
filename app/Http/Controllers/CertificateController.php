@@ -98,16 +98,9 @@ class CertificateController extends Controller
         //$certificado = $img->response('jpg');
         //dd($certificado);
 
-        // create response and add encoded image data
-        $response = Response::make($img->encode('png'));
-
-        // set content-type
-        $response->header('Content-Type', 'image/png');
-
-        //return view('certificates.index', compact('certificado'));
-        return $response;
         //return view('certificates.index');
-        // open an image file
+        return $img->response('jpg');
+
     }
 
 
