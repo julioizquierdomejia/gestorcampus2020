@@ -86,7 +86,7 @@ class CertificateController extends Controller
 
         $img->text($texto, $centro, 1040, function($font) {
             $font->file('font/Times New Roman.ttf');
-            $font->size(72);
+            $font->size(62);
             $font->color('#005267');
             $font->align('center');
             $font->valign('top');
