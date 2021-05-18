@@ -9,7 +9,7 @@
 		<div class="col">
 			<div class="certificado">
 				{{--<img src="{{ asset('/certificados/') }}/{{$img->basename}}" class="img-fluid" alt="...">	--}}
-				<img src="{{ $img->encoded }}">
+				<img src="{{ $certificado }}">
 			</div>
 			
 		</div>
