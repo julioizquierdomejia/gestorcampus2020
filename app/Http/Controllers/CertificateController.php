@@ -95,7 +95,7 @@ class CertificateController extends Controller
         });
         */
 
-        $img->response('jpg')
+        $img->response('jpg');
 
         return view('certificates.index', compact('img'));
 
