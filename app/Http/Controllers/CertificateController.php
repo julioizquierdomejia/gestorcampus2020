@@ -203,7 +203,7 @@ class CertificateController extends Controller
     {
         //
 
-        return QrCode::generate('Julio - Mili - Maju - Marcia y Ringo');
+        return QrCode::generate('Julio - Mili - Maju - Marcia y Ringo', 'qrcodes/qr.svg');
     }
 
 }
