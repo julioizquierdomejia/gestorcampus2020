@@ -95,11 +95,11 @@ class CertificateController extends Controller
         });
         */
 
-        $img->response('jpg');
+        $certificado = $img->response('jpg');
 
         //dd($img);
 
-        return view('certificates.index', compact('img'));
+        return view('certificates.index', compact('certificado'));
 
         //return view('certificates.index');
         // open an image file
