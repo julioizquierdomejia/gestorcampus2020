@@ -82,7 +82,7 @@ class CertificateController extends Controller
             //$font->angle(45);
         });
 
-        $texto = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
+        $texto = "Lorem Ipsum is simply dummy text of the printing and typesetting.\n industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,.\n when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
 
         $img->text($texto, $centro, 1040, function($font) {
             $font->file('font/Times New Roman.ttf');
