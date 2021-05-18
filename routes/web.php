@@ -107,7 +107,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard')])->group(functi
 	//rutas para certificados
 	Route::post('/certificado', [App\Http\Controllers\CertificateController::class, 'searchCertificate'])->name('certificate.searchCertificate');
 
-	Route::post('/certificado/qrgenerate', [App\Http\Controllers\CertificateController::class, 'qrgenerate'])->name('qrgenerate');
+	Route::get('/certificado/qrgenerate', [App\Http\Controllers\CertificateController::class, 'qrgenerate'])->name('qrgenerate');
 
 
 });
