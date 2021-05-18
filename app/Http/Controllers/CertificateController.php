@@ -84,6 +84,7 @@ class CertificateController extends Controller
 
         $texto = "Aprobó satifactoriamente el curso de Salud Mental del programa de apoyoa al segunda \n Especialidad de residencia médica, realizado desde el 28 de julio del 2020, con una duración de \n 72 horasy un valor académico de3,000 créditos, con una nota de 11.00";
 
+        /*
         $img->text($texto, $centro, 1440, function($font) {
             $font->file('font/Times New Roman.ttf');
             $font->size(56);
@@ -92,6 +93,7 @@ class CertificateController extends Controller
             $font->valign('top');
             //$font->angle(45);
         });
+        */
 
         //return view('certificates.index');
         return $img->response('jpg');
