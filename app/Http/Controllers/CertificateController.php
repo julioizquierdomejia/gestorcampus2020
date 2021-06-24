@@ -202,7 +202,6 @@ class CertificateController extends Controller
     public function qrgenerate()
     {
         //
-
         QrCode::generate('Julio - Mili - Maju - Marcia y Ringo', 'qrcodes/qr.png');
     }
 

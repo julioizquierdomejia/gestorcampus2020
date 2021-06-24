@@ -30,6 +30,7 @@
             @endif
             
         @else
+
             <a href="{{ route('login') }}" class="btn btn-primary">Acceder</a>
 
             @if (Route::has('register'))

@@ -4,11 +4,13 @@
 
 
           <!-- Modal -->
-          <div id="modalProcesando" class="modal fade align-middle" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-              <!-- Contenido del modal -->
-              <div class="alert alert-danger" role="alert">
-                <i class="fas fa-spinner fa-spin fa-2x mr-4"></i></i> Procesando Matricua
+
+          <div class="modal fade" id="modalProcesando" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  Procesando Matricula
+                </div>
               </div>
             </div>
           </div>
@@ -249,6 +251,18 @@
                                     <input type="text" name='distrito' class="form-control" id="campo_distrito" value="{{$usuario->distrito}}">
                                   </div>
                                 </div>
+
+                                <h5 class="mt-2">Tipo de Documento</h5>
+                                <div class="form-row mb-4">
+                                  <div class="form-check form-check-inline ml-2">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                    <label class="form-check-label" for="inlineRadio1">Boleta de Venta</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">Factura</label>
+                                  </div>
+                                </div>
                                 
                                 <!--button type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Pagar - CheckOut</button-->
                                 <a class="btn btn-success" id="btn_pagar"><i class="fab fa-cc-visa mr-2"></i>Pagar - CheckOut</a>
@@ -297,6 +311,9 @@
                       </div>
                         <!--------------------->
 
+                        <div class="docs">
+                          
+                        </div>
 
                       </div>
                       <div class="col-sm-3 p-4">
@@ -331,6 +348,7 @@
 
           @section('javascript')
 
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script type="text/javascript">
 
               $(document).ready(function(){
@@ -345,6 +363,7 @@
 
               //Le damos actividad al boton para mostrar y/o oculatar el fomulario de datos
               $( ".btn_comprar" ).click(function() {
+
                 $( "#form_datos" ).toggle( "slow", function() {
                 // Animation complete.
                 });
@@ -353,6 +372,7 @@
               $( "#btn_cancelar" ).click(function() {
                 $( "#form_datos" ).toggle( "slow", function() {
                 // Animation complete.
+
                 });
               });
 
@@ -361,6 +381,7 @@
               $('#btn_pagar').on('click', function(e) {
 
                   $('#status-curso').hide("slow");
+                  
                   //hacemos primero la validacion de los campos del input
                   email = $('#campo_email').val();
                   nombre = $('#campo_nombre').val();
@@ -372,6 +393,7 @@
                     $('#status-curso').show("slow");
                     $('#status-curso').html('Para continuar debes de llenar todos los datos')
                   }else{
+                    // Si todos los datos estan correctos 
                     // Abre el formulario con la configuración en Culqi.settings
                     Culqi.open();
                     e.preventDefault();
@@ -445,6 +467,7 @@
             var input_user_id = $('input[name=user_id]').val();
 
             function culqi() {
+              $("#modalProcesando").modal("show");
               if (Culqi.token) { // ¡Objeto Token creado exitosamente!
                   var token = Culqi.token.id;
                   var data = { 
@@ -472,15 +495,12 @@
                     
                     //alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
                     //definimos las variables con el valor de los inputs hidden del form
-                    //necesario para grabar en el carrito de compras 
-                    //ShopingCarts
-
+                    
                     registrarLaMatricula();
 
-                    //aqui lanzamos el cargador
-                    $("#miModal").modal("hide");
-
                     if (res=="exito") {
+
+
                       //pdf();
                       //alert(res);
                       $('#btn_pagar').hide("slow");
@@ -489,6 +509,30 @@
                       $('#btn_comprar_curso').hide('slow');
 
                       $( "#form_datos" ).hide("slow");
+
+                      //ahora lanzamos el ajax para NUBEFACT
+                      var url_fact = "/plugins/nubeFact-json2.php";
+
+                      var data_fact = { 
+                        id:'1', 
+                        producto:'{{$curso->fullname}}',
+                        precio: parseInt('{{$curso->price}}'+'00'),
+                        token:"8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69",
+                        customer_id: parseInt('{{$user->document}}'),
+                        address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
+                        address_city: "{{$user->address}}",
+                        first_name: nombre, //"{{$user->name}}",
+                        last_name: apellidos, //"{{$user->last_name}}",
+                        email: email,
+                        telephone: telefono, //"{{$usuario->celular}}",
+                      };//Aquí termina la DATA
+
+
+                      $.post(url_fact,data_fact,function(res){ //Envio de informacion por AJAX a NUBEFACT
+                        $("#modalProcesando").modal("hide");
+                        $('.docs').html(res);
+                      }); //Aquí termna el AJAX de NUBEFACT
+
 
                     }else{
                       //alert(res);
@@ -510,6 +554,8 @@
 
             function registrarLaMatricula(){
 
+              $("#modalProcesando").modal("show");
+              console.log('Inicio matricula');
               
               $.ajax({
                   //url: "/shopping",
@@ -540,13 +586,18 @@
                   }
                 }).done(function(res){
                   //alert(res);
+                  //aqui ya se resuelve la compra
+                  $("#modalProcesando").modal("hide");
+                  console.log('Acabo matricula');
+
                 })
             }
 
             //esta funcion solo matricula para cursos PostPago
             function registrarLaEnrollments(){
               //aqui lanzamos el cargador
-              //$("#modalProcesando").modal("show");
+              $("#modalProcesando").modal("show");
+              console.log('Inicio matricula');
               
               $.ajax({
                   //url: "/shopping",
@@ -561,10 +612,12 @@
                   }
                 }).done(function(res){
                   //aqui ocultamos el cargador
-                  //$("#modalProcesando").modal("hide");
+                  $("#modalProcesando").modal("hide");
                   $('#btn_matricula').hide("slow");
                   $('#status-curso_2').html('Gracias ya te encuentras Matriculado en este curso');
                   $('#status-curso_2').show('slow');
+
+                  $(document).scrollTop();
                   
                 })
             }
