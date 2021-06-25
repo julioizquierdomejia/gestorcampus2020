@@ -46,12 +46,25 @@ $token = "1317ecf0ffd141a089b3eeaa09446bb113f22f42536d49efb1370c13764f06e7";
 # - MANUAL para archivo TXT en el link: https://goo.gl/Lz7hAq
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
  */
+/*
+id:'1', 
+producto:'{{$curso->fullname}}',
+precio: parseInt('{{$curso->price}}'+'00'),
+token:"8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69",
+customer_id: parseInt('{{$user->document}}'),
+address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
+address_city: "{{$user->address}}",
+first_name: nombre, //"{{$user->name}}",
+last_name: apellidos, //"{{$user->last_name}}",
+email: email,
+telephone: telefono, //"{{$usuario->celular}}",
+*/
 
 $data = array(
     "operacion"				=> "generar_comprobante",
     "tipo_de_comprobante"               => "1",
     "serie"                             => "FFF1",
-    "numero"				=> "1",
+    "numero"				=> "2",
     "sunat_transaction"			=> "1",
     "cliente_tipo_de_documento"		=> "6",
     "cliente_numero_de_documento"	=> "20600695771",

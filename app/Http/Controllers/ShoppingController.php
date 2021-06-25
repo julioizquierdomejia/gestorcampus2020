@@ -80,6 +80,10 @@ class ShoppingController extends Controller
             'provincia' => $request->provincia,
             'city' => $request->city,
             'distrito' => $request->distrito,
+
+            'document_type' => $request->document_type,
+            'ruc' => $request->ruc,
+            'business_name' => $request->business_name,
         ]);
 
 
@@ -121,6 +125,7 @@ class ShoppingController extends Controller
             'provincia' => $request->provincia,
             'city' => $request->city,
             'distrito' => $request->distrito,
+
         ]);
 
 

@@ -30,6 +30,10 @@ class Shopping extends Model
         'distrito',
 
         'status',
+
+        'document_type',
+        'ruc',
+        'business_name',
     ];
 
     /**

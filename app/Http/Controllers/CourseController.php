@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 use App\Models\Shopping;
 use App\Models\Enrollment;
+use App\Models\DocumentoCompbt;
+
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -342,10 +344,8 @@ class CourseController extends Controller
             }
         }
 
-        //dd($cursosTomados);
-
+        //$documents = DB::connection('mysql_moodle_sigen')->table('documento_compbt')->get();
         
-
         return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos', 'statusCourse'));
     }
 
@@ -376,7 +376,7 @@ class CourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit( $course)
+    public function edit($course)
     {
         //
         $curso = Course::where('id', $course)->first();

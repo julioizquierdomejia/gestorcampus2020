@@ -135,7 +135,7 @@
                               </p>
                               
                           </div>
-                        </div>
+                        </div>  
 
                         <div class="row">
                           <div class="col">
@@ -255,12 +255,23 @@
                                 <h5 class="mt-2">Tipo de Documento</h5>
                                 <div class="form-row mb-4">
                                   <div class="form-check form-check-inline ml-2">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                    <label class="form-check-label" for="inlineRadio1">Boleta de Venta</label>
+                                    <input class="form-check-input" type="radio" name="document_type" id="boleta" value="2" checked>
+                                    <label class="form-check-label" for="boleta">Boleta de Venta</label>
                                   </div>
                                   <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">Factura</label>
+                                    <input class="form-check-input" type="radio" name="document_type" id="factura" value="1">
+                                    <label class="form-check-label" for="factura">Factura</label>
+                                  </div>
+                                </div>
+
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="campo_direccion">Ruc</label>
+                                    <input type="text" name='ruc' class="form-control" id="ruc" value="">
+                                  </div>
+                                  <div class="form-group col-md-8">
+                                    <label for="inputCity">Razon Social</label>
+                                    <input type="text" name='business_name' class="form-control" id="business_name" value="">
                                   </div>
                                 </div>
                                 
@@ -382,21 +393,47 @@
 
                   $('#status-curso').hide("slow");
                   
-                  //hacemos primero la validacion de los campos del input
-                  email = $('#campo_email').val();
-                  nombre = $('#campo_nombre').val();
-                  apellidos = $('#campo_apellidos').val();
-                  direccion = $('#campo_direccion').val();
-                  telefono = $('#campo_telefono').val();
 
-                  if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == ""){
-                    $('#status-curso').show("slow");
-                    $('#status-curso').html('Para continuar debes de llenar todos los datos')
+                  if($('input:radio[name=document_type]:checked').val() == 2){
+
+                    //hacemos primero la validacion de los campos del input si es boleta
+                    email = $('#campo_email').val();
+                    nombre = $('#campo_nombre').val();
+                    apellidos = $('#campo_apellidos').val();
+                    direccion = $('#campo_direccion').val();
+                    telefono = $('#campo_telefono').val();
+
+                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == ""){
+                      $('#status-curso').show("slow");
+                      $('#status-curso').html('Para continuar debes de llenar todos los datos')
+                    }else{
+                      // Si todos los datos estan correctos 
+                      // Abre el formulario con la configuración en Culqi.settings
+                      Culqi.open();
+                      e.preventDefault();
+                    }
+
                   }else{
-                    // Si todos los datos estan correctos 
-                    // Abre el formulario con la configuración en Culqi.settings
-                    Culqi.open();
-                    e.preventDefault();
+
+                    //hacemos primero la validacion de los campos del input si es Factura
+                    email = $('#campo_email').val();
+                    nombre = $('#campo_nombre').val();
+                    apellidos = $('#campo_apellidos').val();
+                    direccion = $('#campo_direccion').val();
+                    telefono = $('#campo_telefono').val();
+                    ruc = $('#ruc').val();
+                    business_name = $('#business_name').val();
+
+                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == "" | ruc == "" | business_name == ""){
+                      $('#status-curso').show("slow");
+                      $('#status-curso').html('Para continuar debes de llenar todos los datos / Incluyendo RUC y Razon Social')
+                    }else{
+                      // Si todos los datos estan correctos 
+                      // Abre el formulario con la configuración en Culqi.settings
+                      Culqi.open();
+                      e.preventDefault();
+                    }
+
                   }
 
               });
@@ -460,6 +497,12 @@
                 provincia = $('#campo_provincia').val();
                 ciudad = $('#campo_ciudad').val();
                 distrito = $('#campo_distrito').val();
+
+                document_type = $('input:radio[name=document_type]:checked').val();
+                ruc = $('#ruc').val();
+                business_name = $('#business_name').val();
+
+
               }
               
 
@@ -500,7 +543,6 @@
 
                     if (res=="exito") {
 
-
                       //pdf();
                       //alert(res);
                       $('#btn_pagar').hide("slow");
@@ -513,20 +555,28 @@
                       //ahora lanzamos el ajax para NUBEFACT
                       var url_fact = "/plugins/nubeFact-json2.php";
 
-                      var data_fact = { 
-                        id:'1', 
-                        producto:'{{$curso->fullname}}',
-                        precio: parseInt('{{$curso->price}}'+'00'),
-                        token:"8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69",
-                        customer_id: parseInt('{{$user->document}}'),
-                        address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
-                        address_city: "{{$user->address}}",
-                        first_name: nombre, //"{{$user->name}}",
-                        last_name: apellidos, //"{{$user->last_name}}",
-                        email: email,
-                        telephone: telefono, //"{{$usuario->celular}}",
-                      };//Aquí termina la DATA
+                      //preguntamos por el tipo de documento para ver que datos se envian a NUBEFACT
+                      if($('input:radio[name=document_type]:checked').val() == 2){
+                        
 
+                      }else{
+
+                      }
+
+
+                      var data_fact = {
+                          id:'1',
+                          producto:producto,
+                          precio: precio,
+                          token:"8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69",
+                          customer_id: parseInt('{{$user->document}}'),
+                          address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
+                          address_city: "{{$user->address}}",
+                          first_name: nombre, //"{{$user->name}}",
+                          last_name: apellidos, //"{{$user->last_name}}",
+                          email: email,
+                          telephone: telefono, //"{{$usuario->celular}}",
+                        }
 
                       $.post(url_fact,data_fact,function(res){ //Envio de informacion por AJAX a NUBEFACT
                         $("#modalProcesando").modal("hide");
@@ -582,6 +632,11 @@
                     provincia : provincia,
                     city : ciudad,
                     distrito : distrito,
+
+                    document_type : document_type,
+                    ruc : ruc,
+                    business_name : business_name,
+
 
                   }
                 }).done(function(res){
