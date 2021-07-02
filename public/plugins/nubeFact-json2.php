@@ -62,14 +62,14 @@ telephone: telefono, //"{{$usuario->celular}}",
 
 $data = array(
     "operacion"				=> "generar_comprobante",
-    "tipo_de_comprobante"               => "1",
-    "serie"                             => "FFF1",
-    "numero"				=> "2",
+    "tipo_de_comprobante"               => "1", //$_POST['document_type'], //"1",
+    "serie"                             => "FFF1", //$_POST['document_type_string'], //"FFF1",
+    "numero"				=> $_POST['numero'], //"4",
     "sunat_transaction"			=> "1",
     "cliente_tipo_de_documento"		=> "6",
-    "cliente_numero_de_documento"	=> "20600695771",
-    "cliente_denominacion"              => "NUBEFACT SA",
-    "cliente_direccion"                 => "CALLE LIBERTAD 116 MIRAFLORES - LIMA - PERU",
+    "cliente_numero_de_documento"	=> $_POST['ruc'], //"20600695771",
+    "cliente_denominacion"              => $_POST['business_name'], //"NUBEFACT SA",
+    "cliente_direccion"                 => $_POST['address'],
     "cliente_email"                     => "",
     "cliente_email_1"                   => "",
     "cliente_email_2"                   => "",
@@ -82,13 +82,13 @@ $data = array(
     "descuento_global"                  => "",
     "total_descuento"                   => "",
     "total_anticipo"                    => "",
-    "total_gravada"                     => "600",
+    "total_gravada"                     => $_POST['costo_base'], //"600",
     "total_inafecta"                    => "",
     "total_exonerada"                   => "",
-    "total_igv"                         => "108",
+    "total_igv"                         => $_POST['IGV'], // "108",
     "total_gratuita"                    => "",
     "total_otros_cargos"                => "",
-    "total"                             => "708",
+    "total"                             => $_POST['precio'], //"708",
     "percepcion_tipo"                   => "",
     "percepcion_base_imponible"         => "",
     "total_percepcion"                  => "",
@@ -102,7 +102,7 @@ $data = array(
     "tipo_de_nota_de_debito"            => "",
     "enviar_automaticamente_a_la_sunat" => "true",
     "enviar_automaticamente_al_cliente" => "false",
-    "codigo_unico"                      => "",
+    "codigo_unico"                      => $_POST['codigo_unico'], // '001000', //"",
     "condiciones_de_pago"               => "",
     "medio_de_pago"                     => "",
     "placa_vehiculo"                    => "",
@@ -112,36 +112,19 @@ $data = array(
     "items" => array( 
                     array(
                         "unidad_de_medida"          => "NIU",
-                        "codigo"                    => "001",
-                        "descripcion"               => "DETALLE DEL PRODUCTO",
+                        "codigo"                    => $_POST['id'], // "001",
+                        "descripcion"               => $_POST['producto'], // "DETALLE DEL PRODUCTO",
                         "cantidad"                  => "1",
-                        "valor_unitario"            => "500",
-                        "precio_unitario"           => "590",
+                        "valor_unitario"            => $_POST['costo_base'], //"500",
+                        "precio_unitario"           => $_POST['precio'], //"590",
                         "descuento"                 => "",
-                        "subtotal"                  => "500",
+                        "subtotal"                  => $_POST['costo_base'], //"500",
                         "tipo_de_igv"               => "1",
-                        "igv"                       => "90",
-                        "total"                     => "590",
+                        "igv"                       => $_POST['IGV'], // "90",
+                        "total"                     => $_POST['precio'], //"590",
                         "anticipo_regularizacion"   => "false",
                         "anticipo_documento_serie"  => "",
                         "anticipo_documento_numero" => ""
-                    ),
-                    array(
-   			"unidad_de_medida"          => "ZZ",
-                        "codigo"                    => "001",
-                        "descripcion"               => "DETALLE DEL SERVICIO",
-                        "cantidad"                  => "5",
-                        "valor_unitario"            => "20",
-                        "precio_unitario"           => "23.60",
-                        "descuento"                 => "",
-                        "subtotal"                  => "100",
-                        "tipo_de_igv"               => "1",
-                        "igv"                       => "18",
-                        "total"                     => "118",
-                        "anticipo_regularizacion"   => "false",
-                        "anticipo_documento_serie"  => "",
-                        "anticipo_documento_numero" => ""
-
                     )
     )
 );
@@ -219,5 +202,7 @@ if (isset($leer_respuesta['errors'])) {
             <tr><th>codigo_hash:</th><td><?php echo $leer_respuesta['codigo_hash']; ?></td></tr>
         </tbody>
     </table>
+
+    
 <?php
 }

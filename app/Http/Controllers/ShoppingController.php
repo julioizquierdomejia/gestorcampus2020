@@ -10,6 +10,7 @@ use App\Models\CourseMoodle;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\UserMoodle;
+use App\Models\DocumentoCompbt;
 
 
 class ShoppingController extends Controller
@@ -80,6 +81,8 @@ class ShoppingController extends Controller
             'provincia' => $request->provincia,
             'city' => $request->city,
             'distrito' => $request->distrito,
+
+            'link_document' => 'aqui el link para descargar el documento',
 
             'document_type' => $request->document_type,
             'ruc' => $request->ruc,
@@ -170,6 +173,32 @@ class ShoppingController extends Controller
 
 
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     * Traera el numero del ultimo documento según el tipo de documento
+     */
+    //public function getTypeDoc(Request $request)
+    public function getTypeDoc(Request $request, DocumentoCompbt $DocumentoCompbt)
+    {
+        //Series de los documentos
+        //Factura -> F001
+        //Boleta -> B001
+        $typeDoc = $request->type;
+        $DocumentoCompbt = DocumentoCompbt::where('tipo_de_comprobante', $typeDoc)->first();
+        
+        $new_number_doc = $DocumentoCompbt->numero + 1;        
+
+        $DocumentoCompbt->update([
+            'numero' => $new_number_doc,
+        ]);
+
+        return $new_number_doc;
+
+    }
+
 
     /**
      * Display the specified resource.

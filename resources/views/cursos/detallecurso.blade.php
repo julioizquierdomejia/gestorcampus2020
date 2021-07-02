@@ -399,11 +399,12 @@
                     //hacemos primero la validacion de los campos del input si es boleta
                     email = $('#campo_email').val();
                     nombre = $('#campo_nombre').val();
+                    dni = $('#campo_documento').val();
                     apellidos = $('#campo_apellidos').val();
                     direccion = $('#campo_direccion').val();
                     telefono = $('#campo_telefono').val();
 
-                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == ""){
+                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == "" | dni == ""){
                       $('#status-curso').show("slow");
                       $('#status-curso').html('Para continuar debes de llenar todos los datos')
                     }else{
@@ -419,12 +420,13 @@
                     email = $('#campo_email').val();
                     nombre = $('#campo_nombre').val();
                     apellidos = $('#campo_apellidos').val();
+                    dni = $('#campo_documento').val();
                     direccion = $('#campo_direccion').val();
                     telefono = $('#campo_telefono').val();
                     ruc = $('#ruc').val();
                     business_name = $('#business_name').val();
 
-                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == "" | ruc == "" | business_name == ""){
+                    if(email == "" | nombre == "" | apellidos == "" | direccion == "" | telefono == "" | ruc == "" | business_name == "" | dni == ""){
                       $('#status-curso').show("slow");
                       $('#status-curso').html('Para continuar debes de llenar todos los datos / Incluyendo RUC y Razon Social')
                     }else{
@@ -465,6 +467,10 @@
                 direccion = $(this).val();
               });
 
+              $( "#campo_documento" ).change(function() {
+                dni = $(this).val();
+              });
+
               $( "#campo_telefono" ).change(function() {
                 telefono = $(this).val();
               });
@@ -492,6 +498,7 @@
                 celular = $('#campo_celular').val();
 
                 direccion = $('#campo_direccion').val();
+                dni = $('#campo_documento').val();
                 urbanizacion = $('#campo_urbanizacion').val();
                 pais = $('#campo_pais').val();
                 provincia = $('#campo_provincia').val();
@@ -501,6 +508,11 @@
                 document_type = $('input:radio[name=document_type]:checked').val();
                 ruc = $('#ruc').val();
                 business_name = $('#business_name').val();
+
+                //calcular costo base e IGV
+                precio = parseInt('{{$curso->price}}');
+                costo_base = precio / 1.18;
+                IGV =  precio - costo_base;
 
 
               }
@@ -514,7 +526,7 @@
               if (Culqi.token) { // ¡Objeto Token creado exitosamente!
                   var token = Culqi.token.id;
                   var data = { 
-                    id:'1', 
+                    id:'{{$curso->id}}',
                     producto:'{{$curso->fullname}}',
                     precio: parseInt('{{$curso->price}}'+'00'),
                     token:token,
@@ -538,10 +550,8 @@
                     
                     //alert(' Tu pago se Realizó con ' + res + '. Agradecemos tu preferencia.');
                     //definimos las variables con el valor de los inputs hidden del form
-                    
-                    registrarLaMatricula();
 
-                    if (res=="exito") {
+                    if (res=="exito") { // si se procesar el Pago, se procede con la genracion del documento a la Sunat
 
                       //pdf();
                       //alert(res);
@@ -552,39 +562,105 @@
 
                       $( "#form_datos" ).hide("slow");
 
+
                       //ahora lanzamos el ajax para NUBEFACT
                       var url_fact = "/plugins/nubeFact-json2.php";
 
-                      //preguntamos por el tipo de documento para ver que datos se envian a NUBEFACT
-                      if($('input:radio[name=document_type]:checked').val() == 2){
+                      var data_fact = {
                         
-
-                      }else{
-
                       }
 
+                      var num_doc = 0;
+                      //segun el valor del tipo de documento traemos el ultimo nuero del documento
+                      //si es 1 es Factura
+                      //si es 2 es boleta
+                      //definimos la url y la data
 
-                      var data_fact = {
-                          id:'1',
-                          producto:producto,
-                          precio: precio,
-                          token:"8d19d8c7c1f6402687720eab85cd57a54f5a7a3fa163476bbcf381ee2b5e0c69",
-                          customer_id: parseInt('{{$user->document}}'),
-                          address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
-                          address_city: "{{$user->address}}",
-                          first_name: nombre, //"{{$user->name}}",
-                          last_name: apellidos, //"{{$user->last_name}}",
-                          email: email,
-                          telephone: telefono, //"{{$usuario->celular}}",
+                      $.ajax({
+                        url: "{{ route('shopping.getTypeDoc') }}",
+                        method: 'POST',
+                        data:{
+                          _token:$('input[name="_token"]').val(),
+                          //info para registrar la matriculacion
+                          type : $('input:radio[name=document_type]:checked').val(), 
+
+                        }
+                      }).done(function(res){
+                        //aqui ocultamos el cargador
+                        
+                        num_doc = res; //parseInt(res)+1;
+
+                        //luego de obtener el ultimo numero del documento a emitir
+                        //hacmeos el proceso de generacion del docuemnto
+
+                        if($('input:radio[name=document_type]:checked').val() == 2){
+                          var data_fact = {
+                            id:'{{$curso->id}}',
+                            numero:num_doc,
+                            serie:'2',
+                            producto:'{{$curso->fullname}}',
+                            precio: precio, // parseInt('{{$curso->price}}'+'00'),
+                            costo_base: costo_base,
+                            IGV: IGV,
+                            producto:'{{$curso->fullname}}',
+                            token:token,
+                            customer_id: parseInt('{{$user->document}}'),
+                            address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
+                            address_city: "{{$user->address}}",
+                            first_name: nombre, //"{{$user->name}}",
+                            last_name: apellidos, //"{{$user->last_name}}",
+                            email: email,
+                            telephone: telefono, //"{{$usuario->celular}}",
+                            document_type_string: 'FFF1',
+                            document_type: document_type,
+                            ruc: parseInt(dni),
+                            business_name: nombre,
+                            codigo_unico: '{{$curso->id}}' + num_doc,
+                          }
+                        }else{
+                          var data_fact = {
+                            id:'{{$curso->id}}',
+                            numero: num_doc,
+                            serie: '1',
+                            producto:'{{$curso->fullname}}',
+                            precio: precio, //parseInt('{{$curso->price}}'+'00'),
+                            costo_base: costo_base,
+                            IGV: IGV,
+                            producto:'{{$curso->fullname}}',
+                            token:token,
+                            customer_id: parseInt('{{$user->document}}'),
+                            address: direccion, //'Mz A2 Lote 9 - Santa Ana - Los olivos', //"{{$usuario->address}}",
+                            address_city: "{{$user->address}}",
+                            first_name: nombre, //"{{$user->name}}",
+                            last_name: apellidos, //"{{$user->last_name}}",
+                            email: email,
+                            telephone: telefono, //"{{$usuario->celular}}",
+                            document_type_string: 'FFF1',
+                            document_type: document_type,
+                            ruc: ruc,
+                            business_name: business_name,
+                            codigo_unico: '{{$curso->id}}' + num_doc,
+                          }
                         }
 
-                      $.post(url_fact,data_fact,function(res){ //Envio de informacion por AJAX a NUBEFACT
-                        $("#modalProcesando").modal("hide");
-                        $('.docs').html(res);
-                      }); //Aquí termna el AJAX de NUBEFACT
+                        $.post(url_fact,data_fact,function(res){ //Envio de informacion por AJAX a NUBEFACT
+                          $("#modalProcesando").modal("hide");
+                          $('.docs').html(res);
+
+                          //luego de procesar el pago y posteriormente generar el documento con exito
+                          //se procede a hacer la matricula en el sistema de gestion de aspefam
+
+                          
+
+                          registrarLaMatricula();
+
+                        }); //Aquí termna el AJAX de NUBEFACT
+
+                        
+                      })
 
 
-                    }else{
+                    }else{  // si no se procesa el pago de la pasarela se envia mensaje al front
                       //alert(res);
                       $('#btn_pagar').hide("slow");
                       $('#status-curso').show("slow");
@@ -632,6 +708,8 @@
                     provincia : provincia,
                     city : ciudad,
                     distrito : distrito,
+
+                    //link_document : link,
 
                     document_type : document_type,
                     ruc : ruc,

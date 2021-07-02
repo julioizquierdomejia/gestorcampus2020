@@ -34,6 +34,8 @@ class Shopping extends Model
         'document_type',
         'ruc',
         'business_name',
+
+        'link_document',
     ];
 
     /**
