@@ -182,7 +182,11 @@ if (isset($leer_respuesta['errors'])) {
     echo $leer_respuesta['errors'];
 } else {
 	//Mostramos la respuesta
+    echo $leer_respuesta;
+    return;
 ?>
+
+
 <h2>RESPUESTA DE SUNAT</h2>
     <table border="1" style="border-collapse: collapse">
         <tbody>
@@ -203,6 +207,5 @@ if (isset($leer_respuesta['errors'])) {
         </tbody>
     </table>
 
-    
 <?php
 }

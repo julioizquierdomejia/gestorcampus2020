@@ -708,6 +708,8 @@
                           $("#modalProcesando").modal("hide");
                           $('.docs').html(res);
 
+                          console.log(res);
+
                           //luego de procesar el pago y posteriormente generar el documento con exito
                           //se procede a hacer la matricula en el sistema de gestion de aspefam
 
