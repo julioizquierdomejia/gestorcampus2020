@@ -89,8 +89,8 @@ class ShoppingController extends Controller
             'business_name' => $request->business_name,
         ]);
 
-
-        authenticated_moodle(\Auth::user()->email, \Auth::user()->password);
+        //revisar para la auto autenticacion de moodle luego de la matricula
+        //authenticated_moodle(\Auth::user()->email, \Auth::user()->password);
 
     }
 
