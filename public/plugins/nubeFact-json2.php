@@ -182,6 +182,8 @@ if (isset($leer_respuesta['errors'])) {
     echo $leer_respuesta['errors'];
 } else {
 	//Mostramos la respuesta
+    echo $leer_respuesta;
+    return;
 ?>
 
 
@@ -191,7 +193,7 @@ if (isset($leer_respuesta['errors'])) {
             <tr><th>tipo:</th><td><?php echo $leer_respuesta['tipo_de_comprobante']; ?></td></tr>
             <tr><th>serie:</th><td><?php echo $leer_respuesta['serie']; ?></td></tr>
             <tr><th>numero:</th><td><?php echo $leer_respuesta['numero']; ?></td></tr>
-            <tr><th>enlace:</th><td><a href="<?php echo $leer_respuesta['enlace']; ?>">ver documento</a></td></tr>
+            <tr><th>enlace:</th><td><?php echo $leer_respuesta['enlace']; ?></td></tr>
             <tr><th>aceptada_por_sunat:</th><td><?php echo $leer_respuesta['aceptada_por_sunat']; ?></td></tr>
             <tr><th>sunat_description:</th><td><?php echo $leer_respuesta['sunat_description']; ?></td></tr>
             <tr><th>sunat_note:</th><td><?php echo $leer_respuesta['sunat_note']; ?></td></tr>

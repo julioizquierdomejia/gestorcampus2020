@@ -1,7 +1,7 @@
 <div class="header">
     <div class="row">
         <div class="col-sm-6 logo d-flex align-items-center">
-            <a href="/">
+            <a href=" {{ env('ruta_app') }} ">
                 <img src=" {{ asset('assets/img/logo_header.png' ) }} ">
             </a>
         </div>
