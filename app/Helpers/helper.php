@@ -48,7 +48,7 @@
                 curl_setopt($ch, CURLOPT_HEADER, 1);
                 $response = curl_exec($ch);
                 $info = curl_getinfo($ch);
-                $headers = $this->get_headers_from_curl_response($response);
+                $headers = get_headers_from_curl_response($response);
 
 
                 $_SESSION["MoodleSession_Shared"] = $headers['Set-Cookie'];
