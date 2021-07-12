@@ -90,7 +90,7 @@ class ShoppingController extends Controller
         ]);
 
 
-        
+        authenticated_moodle(\Auth::user()->email, \Auth::user()->password);
 
     }
 
