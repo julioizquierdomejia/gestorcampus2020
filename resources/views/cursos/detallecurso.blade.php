@@ -264,10 +264,15 @@
                                   </div>
                                 </div>
 
-                                <div class="form-row">
+
+                                <div class="form-row" id="box-ruc">
                                   <div class="form-group col-md-4">
                                     <label for="campo_direccion">Ruc</label>
-                                    <input type="text" name='ruc' class="form-control" id="ruc" value="">
+
+                                    <input type="text" name='ruc' class="form-control" id="ruc" value="" oninput="validarInput(this)">
+                                    <pre id="resultado"></pre>
+                                    <pre id="existente"></pre>
+
                                   </div>
                                   <div class="form-group col-md-8">
                                     <label for="inputCity">Razon Social</label>
@@ -362,7 +367,63 @@
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script type="text/javascript">
 
+              //Handler para el evento cuando cambia el input
+              //Elimina cualquier caracter espacio o signos habituales y comprueba validez
+              function validarInput(input) {
+                  var ruc       = input.value.replace(/[-.,[\]()\s]+/g,""),
+                      resultado = document.getElementById("resultado"),
+                      existente = document.getElementById("existente"),
+                      valido;
+                      
+                  existente.innerHTML = "";
+                  
+                  //Es entero?    
+                  if ((ruc = Number(ruc)) && ruc % 1 === 0
+                    && rucValido(ruc)) { // ⬅️ Acá se comprueba
+                    valido = "Válido";
+                      resultado.classList.add("ok");
+                      alert('el ruc es correto');
+                  } else {
+                      valido   = "No válido";
+                    resultado.classList.remove("ok");
+                  }
+                      
+                  resultado.innerText = "RUC: " + ruc + "\nFormato: " + valido;
+              }
+
+              // Devuelve un booleano si es un RUC válido
+              // (deben ser 11 dígitos sin otro caracter en el medio)
+              function rucValido(ruc) {
+                  //11 dígitos y empieza en 10,15,16,17 o 20
+                  if (!(ruc >= 1e10 && ruc < 11e9
+                     || ruc >= 15e9 && ruc < 18e9
+                     || ruc >= 2e10 && ruc < 21e9))
+                      return false;
+                  
+                  for (var suma = -(ruc%10<2), i = 0; i<11; i++, ruc = ruc/10|0)
+                      suma += (ruc % 10) * (i % 7 + (i/7|0) + 1);
+                  return suma % 11 === 0;
+                  
+              }
+
+              
+
               $(document).ready(function(){
+
+                //Seteamos variable global para el tipo del docuemnto
+                var tipo_documento = 2;
+                //oculatmos la caja para colocar el RUC
+                $('#box-ruc').hide();
+
+                //mostramos o ocultamos el formulario para pedir RUC 
+                //segun el tipo de docuemnto que se solicite (Factura o Boleta)
+                $('input[name=document_type]').change(function(){
+                  if($(this).val() == 1){//Si es Factura
+                    $('#box-ruc').show();
+                  }else{ // Si es Boelta
+                    $('#box-ruc').hide();
+                  }
+                });
 
               //inicializando variables
               Culqi.publicKey = 'pk_test_3b370432f6d56e22';

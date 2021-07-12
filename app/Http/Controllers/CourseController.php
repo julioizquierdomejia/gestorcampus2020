@@ -345,6 +345,8 @@ class CourseController extends Controller
         }
 
         //$documents = DB::connection('mysql_moodle_sigen')->table('documento_compbt')->get();
+
+        authenticated_moodle(\Auth::user()->email, \Auth::user()->password);
         
         return view('cursos.detallecurso', compact('curso', 'cursos', 'tags', 'user', 'curso_comprado', 'instructores', 'usuario', 'misCursos', 'statusCourse'));
     }
